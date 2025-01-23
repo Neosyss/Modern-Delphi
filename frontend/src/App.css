@@ -6,9 +6,17 @@
     --title-font: "Jost", Helvetica, Arial, sans-serif; 
     --style-font: "Allison", Helvetica, Arial, sans-serif; 
     --pri: #83cc61;     
-    --priopa: #cafcb498;     
+    --priopa: #e1ffd4;     
     --sec: #5a9e7c;     
     font: 400 16px var(--title-font);
+}
+
+body{
+    overflow-x: hidden;
+}
+.row{
+    margin: 0!important;
+    padding: 0!important;
 }
 
 .tb-1, .tb-2{
@@ -53,10 +61,13 @@
 .heading-main{
     color: white;
     font-size: 4.5vw;
+    letter-spacing: -0.15vw;
+
 }
 .heading-main-2{
     color: white;
     font-size: 3.2vw;
+    letter-spacing: -0.15vw;
 }
 
 span{
@@ -80,7 +91,7 @@ p{
 }
 
 
-@media (max-width:800px) {
+@media (max-width:768px) {
     .tb-1, .tb-2{
         padding: 1vw 3.6vw;
         font-size: 2.5vw;
@@ -111,6 +122,8 @@ p{
     p{
         font: 400 3vw var(--title-font);
         color: white;
+        letter-spacing: -0.1vw;
+
     }
 }
 
@@ -126,19 +139,19 @@ p{
     }
 
     .heading-main{
-        font-size: 12.5vw;
+        font-size: 12vw;
     }
     .heading-main-2{
-        font-size: 10.5vw;
+        font-size: 10vw;
     }
 
     span{
-        font: 400 16vw var(--style-font);
+        font: 400 15vw var(--style-font);
         line-height: 45%;
     }
 
     .style-2{
-        font: 400 14vw var(--style-font);
+        font: 400 15vw var(--style-font);
         line-height: 45%;
     }
 

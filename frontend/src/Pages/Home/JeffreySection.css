@@ -56,7 +56,7 @@
     border-radius: 100%;
   }
 
-  @media(max-width:800px){
+  @media(max-width:768px){
     .jeffrey-section {
         position: relative;
         width: 100%;

@@ -51,7 +51,7 @@
     transform: rotate(180deg);
 }
 
-@media(max-width: 800px){
+@media(max-width: 768px){
     .carousel{
         height: 70vh;
     }

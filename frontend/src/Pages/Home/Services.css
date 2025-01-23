@@ -1,0 +1,130 @@
+.services-container{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 5vw;
+}
+.services-svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30vw;
+    height: auto;
+}
+
+.w-services{
+    width: 50%;
+}
+
+@media(max-width:768px){
+    .w-services{
+        width: 100%;
+    }
+    .services-container{
+        padding: 3vw;
+    }
+}
+
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2vw;
+}
+
+.service-box {
+    flex: 1 1 calc(30% - 1vw); /* 30% width minus spacing */
+    margin: 0.5vw;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.svg-serv {
+    position: absolute;
+    right: 0%;
+    width: 45%;
+    height: auto;
+    opacity: 1; 
+    z-index: 1000;
+    transition: all 0.3s ease; 
+}
+
+.service-img-cont{
+    border-radius: 20px;
+    object-fit: contain;
+    height: auto;
+    overflow:hidden;
+}
+
+.service-box .pic-c {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    transition: transform 0.4s ease; /* Define transition for zoom */
+}
+.service-img-cont:hover .svg-serv {
+    opacity: 0; 
+}
+.service-img-cont:hover .pic-c{
+    transform: scale(1.15);
+}
+.read-button{
+    position: absolute;
+    top: 33.5%;
+    left: 33.5%;
+    opacity: 0;
+    transition: all .4s ease-in-out;
+    transform: scale(1.7);
+}
+.service-img-cont:hover .read-button{
+    opacity: 1;
+    transform: scale(1);
+}
+
+.service-title {
+    margin-top: 1.5vw;
+}
+
+.service-subt {
+    margin-top: 0vw;
+}
+
+@media (max-width: 1024px) {
+    .services-grid {
+        gap: 3vw;
+    }
+
+    .service-box {
+        flex: 1 1 calc(45% - 3vw); /* Two boxes per row */
+    }
+
+    .services-container {
+        padding: 4vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-box {
+        flex: 1 1 100%; /* One box per row */
+    }
+
+    .services-container {
+        padding: 4vw;
+    }
+    .services-grid{
+        padding: 7px
+    }
+    .service-title {
+        margin-top: 1.5vw;
+    }
+    
+    .service-subt {
+        margin-top: 0vw;
+        line-height: 130%;
+        margin-bottom: 20px;
+    }
+}

@@ -1,6 +1,7 @@
 .containerWelcome{
-    min-height: 100vh;
+    min-height: 90vh;
     padding: 20px;
+    margin-top: 100px;
 }
 
 .padding-picture-section{
@@ -29,16 +30,25 @@
     height: auto;
 }
 
+@media(max-width:1080px){
+    .containerWelcome{
+        margin-top: -10vw;
+        min-height: 70vh;
+    }
+}
 
-@media(max-width:800px){
+@media(max-width:768px){
     .padding-picture-section{
         padding: 1.5vw;
+    }
+    .containerWelcome{
+        margin-top: 5vw;
     }
     .h-cont{
         height: 50vh;
     }
     .f-small{
-        font-size: 4vw;
+        font-size: 5vw;
         line-height: 160%;
     }  
 }

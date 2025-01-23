@@ -1,0 +1,61 @@
+.ourteam-svg{
+    position: absolute;
+    top: 0;
+    left: 70%;
+    width: 30vw;
+    height: auto;
+}
+
+.ourteam-pic{
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+}
+.our-box{
+    background-color: var(--priopa);
+    width: 90%;
+    height: 11vw;
+    border-radius: 15px;
+    transform: translateY(-40px);
+    padding: 20px;
+}
+
+
+.ourteam-box{
+    position: relative;
+    width: 65%;
+    display: flex;
+}
+
+.btn-svg-ot{
+
+}
+.ovsvg{
+    flex:1;
+    color: var(--pri);
+    width: 3vw;
+    height: 3vw;
+    background-color: white;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+.ovsvg:hover{
+    color:white;
+    background-color: var(--pri);
+}
+
+
+
+@media(max-width: 768px){
+    .our-box{
+        height: 40vw;
+    }
+    .ovsvg{
+        width: 12vw;
+        height: 12vw;
+    }
+}

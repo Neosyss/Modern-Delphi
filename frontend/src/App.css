@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allison:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+*{
+    --title-font: "Jost", Helvetica, Arial, sans-serif; 
+    --style-font: "Allison", Helvetica, Arial, sans-serif; 
+    --pri: #83cc61;     
+    --priopa: #cafcb498;     
+    --sec: #5a9e7c;     
+    font: 400 16px var(--title-font);
+}
+
+.tb-1, .tb-2{
+    width: fit-content;
+    padding: .6vw 1.3vw;
+    background-color: #aaaaaa4d;
+    color: white;
+    font-size: 1vw;
+    border-radius: 100px;
+    font-weight: 700;
+}
+
+.tb-2{
+    background-color: var(--priopa);
+    color: black;
+}
+
+.prb-1, .prb-2{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--pri);
+    border-radius: 100px;
+    cursor:pointer;
+    transition: all .3s;
+}
+.prb-2{
+    background-color: var(--sec);
+}
+.prb-1 div, .prb-2 div{
+    color: white;
+    font-weight: 700;
+    font-size: 1vw;
+    width: fit-content;
+    padding: 1vw 1.9vw;
+}
+.prb-1:hover{
+    box-shadow: 0px 0px 2vw 0px rgba(0, 0, 0, 0.279);
+}
+
+.heading-main{
+    color: white;
+    font-size: 4.5vw;
+}
+.heading-main-2{
+    color: white;
+    font-size: 3.2vw;
+}
+
+span{
+    font: 400 7vw var(--style-font);
+    line-height: 45%;
+    color: var(--pri);
+}
+.style-2{
+    font: 400 5.5vw var(--style-font);
+    line-height: 45%;
+    color: var(--pri);
+}
+
+p{
+    font: 400 1.5vw var(--title-font);
+    color: white;
+}
+
+.grey{
+    color: #8c94a7;
+}
+
+
+@media (max-width:800px) {
+    .tb-1, .tb-2{
+        padding: 1vw 3.6vw;
+        font-size: 2.5vw;
+    }
+    
+    .prb-1 div, .prb-2 div{
+        font-size: 2.5vw;
+        padding: 1.5vw 4.5vw;
+    }
+
+    .heading-main{
+        font-size: 7.5vw;
+    }
+
+    .heading-main-2{
+        font-size: 6vw;
+    }
+
+    span{
+        font: 400 10vw var(--style-font);
+        line-height: 45%;
+    }
+    .style-2{
+        font: 400 8vw var(--style-font);
+        line-height: 45%;
+    }
+
+    p{
+        font: 400 3vw var(--title-font);
+        color: white;
+    }
+}
+
+@media (max-width:500px) {
+    .tb-1, .tb-2{
+        padding: 1.7vw 5vw;
+        font-size: 4vw;
+    }
+    
+    .prb-1 div, .prb-2 div{
+        font-size: 4vw;
+        padding: 3vw 7vw;
+    }
+
+    .heading-main{
+        font-size: 12.5vw;
+    }
+    .heading-main-2{
+        font-size: 10.5vw;
+    }
+
+    span{
+        font: 400 16vw var(--style-font);
+        line-height: 45%;
+    }
+
+    .style-2{
+        font: 400 14vw var(--style-font);
+        line-height: 45%;
+    }
+
+    p{
+        font: 400 5vw var(--title-font);
+        color: white;
+    }
+}

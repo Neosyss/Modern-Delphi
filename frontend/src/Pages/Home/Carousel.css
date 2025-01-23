@@ -1,0 +1,119 @@
+.carousel{
+    height: 100vh;
+    overflow: hidden;
+    position:relative;
+    object-fit: contain;
+}
+.carousel-img{
+    width: 100vw;
+    object-fit: cover;
+    height: auto;
+}
+.carousel-svg{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    height: 40%;
+}
+.carousel-content{
+    position:absolute;
+    top:25%;
+    left:50%;
+    height: 50%;
+}
+.carousel-padding{
+    padding: 10px;
+}
+.p-width{
+    width: 60%;
+}
+
+.carousel-btn{
+    position: absolute;
+    top: 50%;
+    width: 20px;
+}
+.left-btn{
+    left: 30px;
+}
+.right-btn{
+    right: 50px;
+}
+
+.arrow-right-svg, .arrow-left-svg{
+    width: 35px;
+    height: auto;
+    color: white;
+    cursor: pointer;
+}
+
+.arrow-left-svg{
+    transform: rotate(180deg);
+}
+
+@media(max-width: 800px){
+    .carousel{
+        height: 70vh;
+    }
+    .carousel-img{
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+    }
+    .carousel-svg{
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        height: 30%;
+    }
+    .carousel-content{
+        position:absolute;
+        top:20%;
+        left:0%;
+        height: 50%;
+    }
+    .p-width{
+        width: 70%;
+    }
+
+    .left-btn{
+        left: 0px;
+    }
+    .right-btn{
+        right: 5px;
+    }
+    .arrow-right-svg, .arrow-left-svg{
+        width: 20px;
+        height: auto;
+        color: white;
+        cursor: pointer;
+    }    
+
+}
+
+@media (max-width: 500px) {
+    .carousel{
+        height: 100vh;
+    }
+    .carousel-img{
+        height: 100%;
+        width: auto;
+        transform: translate(-470px, -300px)scale(0.6);
+        object-fit: cover;
+    }
+    .carousel-svg{
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        height: 12%;
+    }
+    .carousel-content{
+        position:absolute;
+        top:25%;
+        left:0%;
+        height: 50%;
+    }
+    .p-width{
+        width: 100%;
+    }
+}

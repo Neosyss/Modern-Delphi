@@ -1,0 +1,44 @@
+.containerWelcome{
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.padding-picture-section{
+    padding: 6vw;
+}
+
+.f-small{
+    font-size: 1.2vw;
+    line-height: 160%;
+}   
+
+.tickSvg{
+    color: var(--pri);
+    width: 20px;
+    height: 20px;
+}
+.starSvg{
+    color: rgb(255, 191, 0);
+    width: 20px;
+    height: 20px;
+    margin: 0 2px;
+}
+
+.trustpilot{
+    width: 130px;
+    height: auto;
+}
+
+
+@media(max-width:800px){
+    .padding-picture-section{
+        padding: 1.5vw;
+    }
+    .h-cont{
+        height: 50vh;
+    }
+    .f-small{
+        font-size: 4vw;
+        line-height: 160%;
+    }  
+}

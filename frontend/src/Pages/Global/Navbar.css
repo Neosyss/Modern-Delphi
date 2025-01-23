@@ -1,0 +1,142 @@
+/* General Styles */
+.navbar {
+    position: fixed!important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1003;
+    transition: background-color 0.5s ease-in-out, top 0.4s;
+  }
+  
+  .navbar-transparent {
+    background-color: transparent;
+    color: white;
+  }
+  
+  .navbar-solid {
+    background-color: #fff;
+    border-bottom: 1px solid #c9cbce;
+  }
+  
+  .navbar .logo img {
+    height: 50px;
+  }
+  
+  /* Main Menu */
+  .main-menu {
+    display: flex;
+    list-style: none;
+  }
+  
+  .main-menu li {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .main-menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .navbar-solid .main-menu li a {
+    color: #494949fa;
+  }
+  
+  .main-menu li a:hover {
+    color: var(--main);
+  }
+  
+  .main-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px 0;
+  }
+  
+  .main-menu li:hover .dropdown {
+    display: block;
+  }
+  
+  .dropdown li {
+    margin: 0;
+  }
+  
+  .dropdown li a {
+    display: block;
+    padding: 8px 16px;
+    color: #494949fa;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .dropdown li a:hover {
+    background: var(--main);
+    color: white;
+  }
+  
+  /* Menu Side Area */
+  .menu-side-area {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-side-area .btn-main {
+    background-color: var(--main);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .menu-side-area .btn-main:hover {
+    background-color: #016a74;
+  }
+  
+  .menu-btn {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Mobile Menu */
+  .main-menu.open {
+    display: block;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .main-menu.open li {
+    margin: 0;
+  }
+  
+  .main-menu.open a {
+    color: #494949fa;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  @media (max-width: 991px) {
+    .main-menu {
+      display: none;
+    }
+  
+    .menu-btn {
+      display: block;
+    }
+  }
+  

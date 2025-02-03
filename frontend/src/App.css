@@ -54,7 +54,7 @@ body{
     width: fit-content;
     padding: 1vw 1.9vw;
 }
-.prb-1:hover{
+.prb-1:hover, .prb-2:hover{
     box-shadow: 0px 0px 2vw 0px rgba(0, 0, 0, 0.279);
 }
 
@@ -70,7 +70,7 @@ body{
     letter-spacing: -0.15vw;
 }
 
-span{
+.span{
     font: 400 7vw var(--style-font);
     line-height: 45%;
     color: var(--pri);
@@ -81,7 +81,7 @@ span{
     color: var(--pri);
 }
 
-p{
+.p{
     font: 400 1.5vw var(--title-font);
     color: white;
 }
@@ -89,6 +89,55 @@ p{
 .grey{
     color: #8c94a7;
 }
+
+.react-quill .p{
+    color: black;
+}
+strong {
+    font-weight: bold;
+  }
+  
+  em {
+    font-style: italic;
+  }
+  
+  u {
+    text-decoration: underline;
+  }
+  
+  /* Strong + Em (bold + italic) */
+  strong em,
+  em strong {
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  /* Strong + U (bold + underline) */
+  strong u,
+  u strong {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  /* Em + U (italic + underline) */
+  em u,
+  u em {
+    font-style: italic;
+    text-decoration: underline;
+  }
+  
+  /* Strong + Em + U (bold + italic + underline) */
+  strong em u,
+  em strong u,
+  strong u em,
+  u strong em,
+  em u strong,
+  u em strong {
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+  }
+  
 
 
 @media (max-width:768px) {
@@ -110,7 +159,7 @@ p{
         font-size: 6vw;
     }
 
-    span{
+    .span{
         font: 400 10vw var(--style-font);
         line-height: 45%;
     }
@@ -119,7 +168,7 @@ p{
         line-height: 45%;
     }
 
-    p{
+    .p{
         font: 400 3vw var(--title-font);
         color: white;
         letter-spacing: -0.1vw;
@@ -145,7 +194,7 @@ p{
         font-size: 10vw;
     }
 
-    span{
+    .span{
         font: 400 15vw var(--style-font);
         line-height: 45%;
     }
@@ -155,8 +204,15 @@ p{
         line-height: 45%;
     }
 
-    p{
+    .p{
         font: 400 5vw var(--title-font);
         color: white;
     }
+}
+
+.no-select {
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
 }

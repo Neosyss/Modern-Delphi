@@ -1,0 +1,55 @@
+.adminMain{
+    overflow: hidden;
+    height: 100vh;
+    margin:0;
+    padding-top: 70px!important;
+    width: 100vw;
+}
+.sideBar{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+.adminInner{
+    background-color: #e7eeef;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    padding: 30px!important;
+}
+.sideBarItem{
+    padding:10px 20px;
+    border-radius: 5px;
+    margin:6px;
+    cursor: pointer;
+}
+.sideBarItem:hover{
+    background-color: #e7eeef83;
+}
+.selected{
+    background-color: #e7eeef83;
+}
+.adj-h{
+    height: 100%;
+}
+@media (max-width: 768px) {
+    .sideBar{
+        height: 8vh;
+    }
+    .sideBarCont{
+        display: flex;
+        overflow-x: scroll;
+    }
+    .adj-h{
+        height: 18vh;
+    }
+    .adminMain{
+        overflow-y: scroll;
+    }
+    .adminInner{
+        background-color: #e7eeef;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 20px!important;
+    }
+}

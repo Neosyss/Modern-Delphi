@@ -52,16 +52,16 @@ const Services = () => {
         <>
             <div className="services-container">
                 <img src={svg1} alt="Background" className="services-svg" />
-                <div className="py-4">
+                <div className="">
                     <div className="d-flex my-3 justify-content-center">
                         <div className="tb-2">Our Services</div>
                     </div>
                     <div className="d-flex justify-content-center">
                         <h1 className="mt-2 px-1 text-dark heading-main-2">Therapist &</h1>
-                        <span className="mt-3 px-1 style-2">Treatments</span>
+                        <span className="span mt-3 px-1 style-2">Treatments</span>
                     </div>
                     <div className="d-flex justify-content-center">
-                        <p className="grey f-small w-services text-center pt-4">
+                        <p className="p grey f-small w-services text-center pt-4">
                             Qui culpa qui consequat officia cillum quis irure aliquip ut dolore sit eu culpa ut irure nisi occaecat dolore adipisicing do pariatur.
                         </p>
                     </div>
@@ -77,7 +77,7 @@ const Services = () => {
                                     </div>
                                 </div>
                                 <h3 className="service-title ">{item.title}</h3>
-                                <p className="grey service-subt f-small">{item.subtitle}</p>
+                                <p className="p grey service-subt f-small">{item.subtitle}</p>
                             </div>
                             </>
                         ))}

@@ -27,10 +27,10 @@ const OurTeam = () => {
                     </div>
                     <div className="d-flex justify-content-center">
                         <h1 className="mt-2 px-1 text-dark heading-main-2">Our</h1>
-                        <span className="mt-3 px-1 style-2">Team</span>
+                        <span className="span mt-3 px-1 style-2">Team</span>
                     </div>
                     <div className="d-flex justify-content-center">
-                        <p className="grey f-small w-services text-center pt-4">
+                        <p className="p grey f-small w-services text-center pt-4">
                             Qui culpa qui consequat officia cillum quis irure aliquip ut dolore sit eu culpa ut irure nisi occaecat dolore adipisicing do pariatur.
                         </p>
                     </div>
@@ -42,7 +42,7 @@ const OurTeam = () => {
                                 <div className="d-flex justify-content-center flex-column align-items-center">
                                     <div className="our-box d-flex justify-content-center flex-column align-items-center">
                                         <h3 className="service-title p-0 m-0 ">{item.title}</h3>
-                                        <p className="grey service-subt f-small">{item.subtitle}</p>
+                                        <p className="p grey service-subt f-small">{item.subtitle}</p>
                                         <div className="ourteam-box d-flex justify-content-between">
                                             <div className="btn-svg-ot"><FaInstagram className="ovsvg"/></div>
                                             <div className="btn-svg-ot"><FaFacebookF className="ovsvg"/></div>

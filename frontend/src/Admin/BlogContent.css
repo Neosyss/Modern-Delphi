@@ -1,0 +1,158 @@
+.overfl{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top:0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.611);
+    z-index: 100;
+    opacity: 1;
+    backdrop-filter: blur(2px);
+}
+
+.add-blog{
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.682);
+    height: calc(100vh - 140px);
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+
+.blog-list{
+    overflow-x: none;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    max-height:94% ;
+}
+.blog-list::-webkit-scrollbar {
+    display: none;
+}
+
+.view-blog{
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.682);
+    height: calc(100vh - 140px);
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.fs-small{
+    font-size: 40px!important;
+}
+
+.blogListItem{
+    background-color: #e7eaed81;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.title-blog-list{
+    font-size: 23px;
+}
+
+.content-blog-list{
+    font-size: 14px;
+}
+
+.img-blog-list{
+    border-radius: 7px;
+    width: 100px;
+}
+
+.date-blog-list{
+    color: #888;
+
+}
+
+.edit-blog-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .center-edit-blog{
+    width: 50vw;
+    height: 80vh;
+  }
+
+.d-block{
+    display: flex;
+}
+.d-none{
+    display: none;
+}
+
+.cross-svg{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.ql-image{
+    display: none!important;
+}
+
+.react-quill{
+    height: 100px;
+}
+.react-quill-cont{
+    height: 150px;
+}
+
+@media(max-width:768px){
+    .center-edit-blog{
+        width: 80vw;
+        height: 88vh;
+      } 
+      
+      
+    .add-blog{
+        height:fit-content;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .react-quill-cont{
+        height: 180px;
+    }
+
+    .blogListItem{
+        display: flex;
+        flex-direction: column;
+    }
+    .title-blog-list{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .view-blog{
+        height: calc(80vh);
+        margin-bottom: 10px;
+    }
+
+    .blog-list{
+        max-height:94% ;
+    }
+    
+    .content-blog-list{
+        font-size: 14px;
+    }
+    
+    .img-blog-list{
+        border-radius: 7px;
+        width: 100%;
+    }
+    
+}

@@ -1,0 +1,68 @@
+/* Signup.css */
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa; /* Light background */
+    padding: 20px;
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 400px; /* Fixed width for the signup card */
+}
+
+.signup-card {
+    background-color: #ffffff; /* White background */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.signup-card h2 {
+    margin-bottom: 1.5rem;
+    color: #333; /* Dark text color */
+}
+
+.signup-card .form-control {
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Light border */
+}
+
+.signup-card .btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.signup-card .btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.signup-card a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+.signup-card a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .signup-card {
+        padding: 1.5rem;
+    }
+
+    .signup-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .signup-card .btn-primary {
+        font-size: 0.9rem;
+    }
+}

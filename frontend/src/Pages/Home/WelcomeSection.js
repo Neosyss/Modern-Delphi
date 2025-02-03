@@ -15,8 +15,8 @@ const WelcomeSection = () => {
                 <div className="col-md-6 p-3">
                     <div className="tb-2">Welcome</div>
                     <h1 className="mt-2 text-dark heading-main-2">Transform Your</h1>
-                    <span className="style-2">Mental Health</span>
-                    <p className="grey f-small pt-4">Located in Florida , USA, Neosyss specializes in providing top-notch psychotherapy services. Our team of experienced professionals is dedicated to helping you achieve mental wellness and personal growth. Trust Neosyss for all your psychotherapy needs.</p>
+                    <span className="span style-2">Mental Health</span>
+                    <p className="p grey f-small pt-4">Located in Florida , USA, Neosyss specializes in providing top-notch psychotherapy services. Our team of experienced professionals is dedicated to helping you achieve mental wellness and personal growth. Trust Neosyss for all your psychotherapy needs.</p>
                 <div className="row">
                     <div className='col-md-7 mt-3 my-2'>
                         <div><FaCheck className="tickSvg my-1"/><strong className="f-small mx-4">Lorem ipsum</strong></div>

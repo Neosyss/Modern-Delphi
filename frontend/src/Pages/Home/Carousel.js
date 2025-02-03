@@ -47,7 +47,7 @@ const Carousel = () => {
                             <div className="tb-1">{slides[currentSlide].title}</div>
                             <h1 className="mt-2 heading-main">{slides[currentSlide].heading}</h1>
                             <span>{slides[currentSlide].subtitle}</span>
-                            <p className="mt-4 p-width text-light">{slides[currentSlide].description}</p>
+                            <p className="p mt-4 p-width text-light">{slides[currentSlide].description}</p>
                             <div className="mt-4 prb-1">
                                 <div>Our Services</div>
                             </div>

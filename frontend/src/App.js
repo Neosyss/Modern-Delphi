@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './App.css';
 import Home from './Pages/Home/Home';
 import AdminHome from './Admin/AdminHome';
+import UserPanel from './User/UserPanel';
 import Navbar from './Pages/Global/Navbar';
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
@@ -21,6 +22,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/admin" element={<AdminHome />} />
+      <Route path="/user" element={<UserPanel />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 

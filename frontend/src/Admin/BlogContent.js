@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BlogContent.css";
+import axios from 'axios';
 import { IoClose } from "react-icons/io5";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -14,8 +15,9 @@ const BlogListItem = ({ blog, onClick }) => {
             <div className='mx-2'>
                 <div className='date-blog-list'>{blog.date}</div>
                 <div className='title-blog-list'>{blog.title}</div>
-                <div className='content-blog-list'>
-                    {blog.content.substring(0, 100)}...
+                <div className='content-blog-list'
+                dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 100) }}
+                >                       
                 </div>
             </div>
         </div>
@@ -29,56 +31,92 @@ const BlogContent = () => {
     const [hashtags, setHashtags] = useState('');
     const [image, setImage] = useState(null);
     const [currentBlog, setCurrentBlog] = useState(null);
-    const [blogs, setBlogs] = useState([
-        {
-            id: 1,
-            date: '12-12-12',
-            title: 'Sample Blog',
-            hashtags: '#react #webdev',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            image: null
-        },
-        {
-            id: 1,
-            date: '12-12-12',
-            title: 'Sample Blog',
-            hashtags: '#react #webdev',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            image: null
-        },
-        {
-            id: 1,
-            date: '12-12-12',
-            title: 'Sample Blog',
-            hashtags: '#react #webdev',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            image: null
-        },
-        {
-            id: 1,
-            date: '12-12-12',
-            title: 'Sample Blog',
-            hashtags: '#react #webdev',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            image: null
-        },
-        {
-            id: 1,
-            date: '12-12-12',
-            title: 'Sample Blog',
-            hashtags: '#react #webdev',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            image: null
-        },
-        {
-            id: 1,
-            date: '12-12-12',
-            title: 'Sample Blog',
-            hashtags: '#react #webdev',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            image: null
-        }
-    ]);
+    const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Fetch all blogs
+    useEffect(() => {
+        const apiUrl = 'http://localhost:5000/api/blogs';
+        axios
+            .get(apiUrl)
+            .then((response) => {
+                if (response.data && response.data.length > 0) {
+                    setBlogs(response.data);
+                } else {
+                    setError("No blogs found.");
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error.message);
+                setError("Failed to fetch blogs. Please try again later.");
+                setLoading(false);
+            });
+    }, []);
+
+    // Add new blog
+    const handleAddBlog = () => {
+        const newBlog = {
+            title,
+            hashtags,
+            content,
+            image,
+            date: new Date().toLocaleDateString(),
+        };
+
+        axios
+            .post('http://localhost:5000/api/blogs', newBlog)
+            .then((response) => {
+                setBlogs([...blogs, response.data]);
+                setTitle('');
+                setHashtags('');
+                setContent('');
+                setImage(null);
+            })
+            .catch((error) => {
+                console.error('Error adding blog:', error.message);
+                setError("Failed to add blog. Please try again.");
+            });
+    };
+
+    // Update blog
+    const handleUpdateBlog = () => {
+        const updatedBlog = {
+            id: currentBlog.id,
+            title,
+            hashtags,
+            content,
+            image,
+        };
+
+        axios
+            .put(`http://localhost:5000/api/blogs/${currentBlog.id}`, updatedBlog)
+            .then((response) => {
+                setBlogs(blogs.map(blog => 
+                    blog.id === currentBlog.id ? response.data : blog
+                ));
+                closeModel();
+            })
+            .catch((error) => {
+                console.error('Error updating blog:', error.message);
+                setError("Failed to update blog. Please try again.");
+            });
+    };
+
+    // Delete blog
+    const handleDeleteBlog = () => {
+        axios
+            .delete(`http://localhost:5000/api/blogs/${currentBlog.id}`)
+            .then(() => {
+                setBlogs(blogs.filter(blog => blog.id !== currentBlog.id));
+                closeModel();
+            })
+            .catch((error) => {
+                console.error('Error deleting blog:', error.message);
+                setError("Failed to delete blog. Please try again.");
+            });
+    };
 
     const modules = {
         toolbar: [
@@ -112,203 +150,147 @@ const BlogContent = () => {
     const closeModel = () => {
         setIsModelOpen(0);
         setCurrentBlog(null);
+        setTitle(''); 
+        setHashtags('');
+        setContent('');
         setImage(null);
-    }
-
-    const handleUpdate = () => {
-        setBlogs(prevBlogs => 
-            prevBlogs.map(blog => 
-                blog.id === currentBlog.id 
-                ? { ...blog, title, hashtags, content, image } 
-                : blog
-            )
-        );
-        closeModel();
-    }
-
-    const handleDelete = () => {
-        setBlogs(prevBlogs => 
-            prevBlogs.filter(blog => blog.id !== currentBlog.id)
-        );
-        closeModel();
-    }
+    };
 
     return (
         <>
-        {isModelOpen === 1 && (
-            <>
-                <div className="overfl" onClick={closeModel}></div>
-                <div className="edit-blog-modal">
-                    <div className="center-edit-blog">
-                        <div className="d-flex justify-content-between">
-                            <h4>Edit Blog</h4>
-                            <IoClose className="cross-svg" onClick={closeModel}/>
-                        </div>
-                        <div className='mt-4'>Title</div>
-                        <input 
-                            className="form-control"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
+            {isModelOpen === 1 && (
+                <>
+                    <div className="overfl" onClick={closeModel}></div>
+                    <div className="edit-blog-modal">
+                        <div className="center-edit-blog">
+                            <div className="d-flex justify-content-between">
+                                <h4>Edit Blog</h4>
+                                <IoClose className="cross-svg" onClick={closeModel}/>
+                            </div>
+                            <div className='mt-4'>Title</div>
+                            <input 
+                                className="form-control"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
 
-                        <div className='mt-4'>Hashtags</div>
-                        <input 
-                            className="form-control"
-                            value={hashtags}
-                            onChange={(e) => setHashtags(e.target.value)}
-                        />
+                            <div className='mt-4'>Hashtags</div>
+                            <input 
+                                className="form-control"
+                                value={hashtags}
+                                onChange={(e) => setHashtags(e.target.value)}
+                            />
 
-                        <div className='mt-4'>Image</div>
-                        <input 
-                            type="file" 
-                            accept="image/*"
-                            className="form-control"
-                            onChange={handleImageUpload}
-                        />
-                        {image && (
-                            <div className="mt-2 image-preview" style={{
-                                width: '100px', 
-                                height: '100px', 
-                                overflow: 'hidden',
-                                border: '1px solid #ddd'
-                            }}>
-                                <img 
-                                    src={image} 
-                                    alt="Blog preview" 
-                                    style={{
-                                        width: '100%', 
-                                        height: '100%', 
-                                        objectFit: 'cover'
-                                    }} 
+                            <div className='mt-4'>Image</div>
+                            <input 
+                                type="file" 
+                                accept="image/*"
+                                className="form-control"
+                                onChange={handleImageUpload}
+                            />
+
+                            <div className='mt-4'>Content</div>
+                            <div className="react-quill-cont">
+                                <ReactQuill 
+                                    theme="snow"  
+                                    className='react-quill' 
+                                    value={content}
+                                    onChange={setContent}
+                                    modules={modules}
+                                    required
                                 />
                             </div>
-                        )}
-
-                        <div className='mt-4'>Content</div>
-                        <div className="react-quill-cont">
-                        <ReactQuill 
-                            theme="snow"  
-                            className='react-quill' 
-                            value={content}
-                            onChange={setContent}
-                            modules={modules}
-                            required
-                        />
-                        </div>
-                        <div className="d-flex justify-content-end mt-3">
-                            <div 
-                                className="prb-1 mx-2" 
-                                onClick={handleUpdate}
-                            >
-                                <div>Update</div>
-                            </div>
-                            <div 
-                                className="prb-1 bg-danger text-white" 
-                                onClick={handleDelete}
-                            >
-                                <div>Delete</div>
+                            <div className="d-flex justify-content-end mt-3">
+                                <div 
+                                    className="prb-1 mx-2" 
+                                    onClick={handleUpdateBlog}
+                                >
+                                    <div>Update</div>
+                                </div>
+                                <div 
+                                    className="prb-1 bg-danger text-white" 
+                                    onClick={handleDeleteBlog}
+                                >
+                                    <div>Delete</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </>
-        )}
+                </>
+            )}
 
-        <div className="container p-0">
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="add-blog">
-                        <h3>Add New <span className='span fs-small'>Blog</span></h3>
-                        <div className='mt-4'>Title</div>
-                        <input 
-                            className="form-control"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
+            <div className="container p-0">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="add-blog">
+                            <h3>Add New <span className='span fs-small'>Blog</span></h3>
+                            <div className='mt-4'>Title</div>
+                            <input 
+                                className="form-control"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
 
-                        <div className='mt-4'>Hashtags</div>
-                        <input 
-                            className="form-control"
-                            value={hashtags}
-                            onChange={(e) => setHashtags(e.target.value)}
-                        />
+                            <div className='mt-4'>Hashtags</div>
+                            <input 
+                                className="form-control"
+                                value={hashtags}
+                                onChange={(e) => setHashtags(e.target.value)}
+                            />
 
-                        <div className='mt-4'>Image</div>
-                        <input 
-                            type="file" 
-                            accept="image/*"
-                            className="form-control"
-                            onChange={handleImageUpload}
-                        />
-                        {image && (
-                            <div className="mt-2 image-preview" style={{
-                                width: '100px', 
-                                height: '100px', 
-                                overflow: 'hidden',
-                                border: '1px solid #ddd'
-                            }}>
-                                <img 
-                                    src={image} 
-                                    alt="Blog preview" 
-                                    style={{
-                                        width: '100%', 
-                                        height: '100%', 
-                                        objectFit: 'cover'
-                                    }} 
+                            <div className='mt-4'>Image</div>
+                            <input 
+                                type="file" 
+                                accept="image/*"
+                                className="form-control"
+                                onChange={handleImageUpload}
+                            />
+
+                            <div className='mt-4'>Content</div>
+                            <div className="react-quill-cont">
+                                <ReactQuill 
+                                    theme="snow"  
+                                    className='react-quill' 
+                                    value={content}
+                                    onChange={setContent}
+                                    modules={modules}
+                                    required
                                 />
                             </div>
-                        )}
-
-                        <div className='mt-4'>Content</div>
-                        <div className="react-quill-cont">
-                        <ReactQuill 
-                            theme="snow"  
-                            className='react-quill' 
-                            value={content}
-                            onChange={setContent}
-                            modules={modules}
-                            required
-                        />
-                        </div>
-                        <div className="d-flex justify-content-center">
-                            <div 
-                                className="prb-1"
-                                onClick={() => {
-                                    setBlogs(prev => [...prev, {
-                                        id: prev.length + 1,
-                                        date: new Date().toLocaleDateString(),
-                                        title,
-                                        hashtags,
-                                        content,
-                                        image
-                                    }]);
-                                    setTitle('');
-                                    setHashtags('');
-                                    setContent('');
-                                    setImage(null);
-                                }}
-                            >
-                                <div>Submit</div>
+                            <div className="d-flex justify-content-center">
+                                <div 
+                                    className="prb-1"
+                                    onClick={handleAddBlog}
+                                >
+                                    <div>Submit</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="view-blog">
-                        <h3><span className='span fs-small'>Blog</span> List</h3>
-                        <div className="blog-list">
-                            {blogs.map(blog => (
-                                <BlogListItem 
-                                    key={blog.id} 
-                                    blog={blog} 
-                                    onClick={openModel}
-                                />
-                            ))}
+                    <div className="col-md-6">
+                        <div className="view-blog">
+                            <h3><span className='span fs-small'>Blog</span> List</h3>
+                            <div className="blog-list">
+                                {loading ? (
+                                    <div>Loading blogs...</div>
+                                ) : error ? (
+                                    <div className="text-danger">{error}</div>
+                                ) : blogs.length === 0 ? (
+                                    <div>No blogs available.</div>
+                                ) : (
+                                    blogs.map(blog => (
+                                        <BlogListItem 
+                                            key={blog.id} 
+                                            blog={blog} 
+                                            onClick={openModel}
+                                        />
+                                    ))
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
     );
 };

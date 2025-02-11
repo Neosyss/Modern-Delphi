@@ -32,6 +32,10 @@
 .adj-h{
     height: 100%;
 }
+.calendly-inline-widget body:-webkit-scrollbar{
+    display: none;
+}   
+
 @media (max-width: 768px) {
     .sideBar{
         height: 8vh;

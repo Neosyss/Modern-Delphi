@@ -1,68 +1,157 @@
-/* Login.css */
-.login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.back-grey-login{
+    background-color: #e2e5ef94;
     min-height: 100vh;
-    background-color: #f8f9fa; /* Light background */
-    padding: 20px;
+}
+.back-grey-signup{
+    background-color: #e2e5ef94;
+    height: 100vh;
 }
 
-.login-container {
-    width: 100%;
-    max-width: 400px; /* Fixed width for the login card */
+.img-cont-login{
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
 }
 
-.login-card {
-    background-color: #ffffff; /* White background */
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+.back-grey-login label, .back-grey-signup label{
+    font-size: 1vw;
+}
+.back-grey-login div, .back-grey-signup div,
+.back-grey-login p, .back-grey-signup p,
+.back-grey-login a, .back-grey-signup a,
+.back-grey-login input, .back-grey-signup input{
+font-size: 1vw;
+}
+.back-grey-login h2, .back-grey-signup h2{
+    font-size: 2vw;
 }
 
-.login-card h2 {
-    margin-bottom: 1.5rem;
-    color: #333; /* Dark text color */
+.padding-top-login{
+    padding-top: 1.4vw;
 }
 
-.login-card .form-control {
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ddd; /* Light border */
+.padding-row-login{
+    padding: 2vw;
 }
 
-.login-card .btn-primary {
-    background-color: #007bff; /* Bootstrap primary color */
-    border: none;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-}
-
-.login-card .btn-primary:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-}
-
-.login-card a {
-    color: #007bff; /* Link color */
+.a-links a{
     text-decoration: none;
+    color: var(--pri);
 }
 
-.login-card a:hover {
-    text-decoration: underline; /* Underline on hover */
+.login-content{
+    min-height: 80vh;
+    background-color: white;
+    box-shadow: 2px 0 10px #dddee0a7;
+    padding:  50px;
+    width: 80%;
+    border-radius: 0 10px 10px 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 576px) {
-    .login-card {
-        padding: 1.5rem;
+.login-page-img{
+    height: 80vh;
+    width: auto;
+    border-radius: 10px 0 0 10px;
+}
+
+.title-login-page{
+    color: white;
+    position: absolute;
+    bottom: 23vh;
+    left: 30px;
+    font-size: 2.5vw;
+}
+.title2-login-page{
+    color: var(--pri);
+    position: absolute;
+    bottom: 18vh;
+    left: 30px;
+    font-size: 2.5vw;
+}
+.para-login-page{
+    color: white;
+    position: absolute;
+    bottom: 10vh;
+    left: 30px;
+    width: 70%;
+    font-size: 1vw;
+}
+
+@media (max-width:768px){
+    .img-cont-login{
+        height: 25vh;
+        width: 90vw;
+        border-radius: 5px;
+    }
+    .login-content{
+        width: 90vw;
+        min-height: 60vh;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .signup-content{
+        height: 90vh;
+    }   
+
+    .col-height-login{
+        height: 30vh;
+        
+    }
+    .login-page-img{
+        height: auto;
+        width: 100%;
+    }
+    .back-grey-login{
+        height: 120vh;
+    }
+    .back-grey-signup{
+        height: 135vh;
     }
 
-    .login-card h2 {
-        font-size: 1.5rem;
-    }
 
-    .login-card .btn-primary {
-        font-size: 0.9rem;
-    }
+    
+.back-grey-login label, .back-grey-signup label{
+    font-size: 4vw;
+}
+.back-grey-login div, .back-grey-signup div,
+.back-grey-login p, .back-grey-signup p,
+.back-grey-login a, .back-grey-signup a,
+.back-grey-login input, .back-grey-signup input{
+font-size: 4vw;
+}
+.back-grey-login h2, .back-grey-signup h2{
+    font-size: 6vw;
+}
+
+.padding-top-login{
+    padding-top: 1vw;
+}
+
+.padding-row-login{
+    padding: 3vw!important;
+}
+
+.title-login-page{
+    bottom: 14vh;
+    left: 15px;
+    font-size: 8vw;
+    width: 90%;
+    text-align: center;
+}
+.title2-login-page{
+    bottom: 10vh;
+    width: 90%;
+    left: 15px;
+    font-size: 8vw;
+    text-align: center;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.586);
+}
+.para-login-page{
+    bottom: 2vh;
+    left: 15px;
+    width: 90%;
+    font-size: 4vw;
+    text-align: center;
+}
+
 }

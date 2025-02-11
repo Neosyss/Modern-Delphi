@@ -2,6 +2,7 @@ import "./AdminHome.css";
 import { useState } from 'react';
 import HomeContent from "./HomeContent";
 import BlogContent from "./BlogContent";
+import CalendlyManager from "./CalendlyManager";
 import UsersContent from "./UsersContent";
 
 const AdminHome = () => {
@@ -24,11 +25,11 @@ const AdminHome = () => {
                             onClick={() => setSelectedOption("Blogs")}> Blogs </div>
                     </div>
                 </div>
-                <div className="col-md-10 adminInner">
+                <div className={`col-md-10 ${selectedOption === "Bookings" ? 'p-0' : 'adminInner'}`}>
                     {selectedOption === "Home" && <HomeContent/>}
                     {selectedOption === "Users" && <UsersContent/>}
-                    {selectedOption === "Bookings" && <div>Appointments Content</div>}
                     {selectedOption === "Blogs" && <BlogContent/> }
+                    {selectedOption === "Bookings" && <div><CalendlyManager/></div>}
                 </div>
             </div>
         </div>

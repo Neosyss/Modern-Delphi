@@ -4,6 +4,12 @@
     width: 100%;
     padding: 5vw;
 }
+.support-container{
+    position: relative;
+    min-height: 40vh;
+    width: 100%;
+    padding: 5vw;
+}
 .services-svg{
     position: absolute;
     top: 0;

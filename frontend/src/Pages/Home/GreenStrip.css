@@ -33,6 +33,12 @@
     color: white;
 }
 
+.appointment-btn{  
+
+    border-radius: 50px !important; 
+    height: 40px !important;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .green-strip {

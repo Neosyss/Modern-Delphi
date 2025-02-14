@@ -1,0 +1,27 @@
+.btn-custom {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px; /* Rounded buttons */
+}
+
+.btn-success {
+    background-color:var(--sec); /* Green */
+    color: white;
+    border: none;
+}
+
+.btn-outline-dark {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Darker Green */
+}
+
+.btn-outline-dark:hover {
+    background-color: black;
+    color: white;
+}

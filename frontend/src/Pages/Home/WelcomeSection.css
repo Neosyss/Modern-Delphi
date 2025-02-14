@@ -30,6 +30,11 @@
     height: auto;
 }
 
+.h-cont{
+    height: 50vh;
+    margin-top: 100px;
+}
+
 @media(max-width:1080px){
     .containerWelcome{
         margin-top: -10vw;
@@ -50,5 +55,8 @@
     .f-small{
         font-size: 5vw;
         line-height: 160%;
-    }  
+    } 
+    .mobileColor{
+        color: black !important;
+    }
 }

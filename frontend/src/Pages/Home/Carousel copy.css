@@ -51,19 +51,6 @@
     transform: rotate(180deg);
 }
 
-.heading-carousel{
-    color: white;
-    font-size: 3vw;
-    letter-spacing: -0.15vw;
-    width: 70%;
-}
-
-.subtitle-carousel{
-    font: 400 5vw var(--style-font);
-    line-height: 45%;
-    color: var(--pri);
-}
-
 @media(max-width: 768px){
     .carousel{
         height: 70vh;
@@ -128,13 +115,5 @@
     }
     .p-width{
         width: 100%;
-    }
-    .heading-carousel{
-        font-size: 7vw;
-        letter-spacing: -0.15vw;
-        width: 90%;
-    }
-    .subtitle-carousel{
-        font: 400 11vw var(--style-font);
     }
 }

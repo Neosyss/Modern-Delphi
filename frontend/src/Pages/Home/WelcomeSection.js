@@ -12,19 +12,29 @@ const WelcomeSection = () => {
                 <div className="col-md-6 h-cont">
                     <PicContainer1/>
                 </div>
-                <div className="col-md-6 p-3">
-                    <div className="tb-2">Welcome</div>
+                <div className="col-md-6 p-3 ">
+                    <div className="tb-2">About</div>
                     <h1 className="mt-2 text-dark heading-main-2">Transform Your</h1>
                     <span className="span style-2">Mental Health</span>
-                    <p className="p grey f-small pt-4">Located in Florida , USA, Neosyss specializes in providing top-notch psychotherapy services. Our team of experienced professionals is dedicated to helping you achieve mental wellness and personal growth. Trust Neosyss for all your psychotherapy needs.</p>
-                <div className="row">
+                  
+                    <p className="p grey f-small pt-4 mobileColor"><strong>Seeker - Know Theyself</strong><br/><br/>Modern Delphi is nestled in the peaceful boreal Canadian woodlands. It is the home of the Oracle, your guide through the maze of the Present.<br/><br/>
+
+The Oracle is the Wisdom Keeper. To walk the path of a Wisdom Keeper is to join another's Sacred Journey through the Labyrinth. The answers are locked within, where shadows and light entwine. The Seeker always holds the keys; the Wisdom Keeper provides the map.<br/><br/>
+
+The Oracle is the Strategic Seer. To be a Seer is to Understand what lies beneath the surface. The Seer's vision lights the room and parts the veil.You stand at a Crossroads. The Path is yours to choose, the journey yours to claim.<br/><br/>
+
+Step into a world where ancient wisdom meets modern innovation, and unlock the potential within you.<br/><br/>
+
+The future is not written - it is waiting.</p>
+                    
+                {/* <div className="row">
                     <div className='col-md-7 mt-3 my-2'>
                         <div><FaCheck className="tickSvg my-1"/><strong className="f-small mx-4">Lorem ipsum</strong></div>
                         <div><FaCheck className="tickSvg my-1"/><strong className="f-small mx-4">Lorem ipsum</strong></div>
                         <div><FaCheck className="tickSvg my-1"/><strong className="f-small mx-4">Lorem ipsum</strong></div>
                         <div><FaCheck className="tickSvg my-1"/><strong className="f-small mx-4">Lorem ipsum</strong></div>
-                    </div>
-                    <div className="col-md-5 my-2">
+                    </div> */}
+                    {/* <div className="col-md-5 my-2">
                         <div>
                         <h4 className='fw-bold mt-3'>Excellent</h4>
                         <FaStar className="starSvg"/>
@@ -37,10 +47,10 @@ const WelcomeSection = () => {
                             <strong className="grey fw-normal">Based on <strong className="">185 reviews</strong></strong>
                         </div>
                         <img className="trustpilot" src={img1} alt="trustpilot"/>
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
                     <div className=" prb-2">
-                        <div>About Us</div>
+                        <div>Get In Touch</div>
                     </div>
                 </div>
             </div>

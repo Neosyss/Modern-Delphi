@@ -10,7 +10,7 @@ import PricingPlans from "./PricingPlans";
 import Questions from "./Questions";
 import ContactCardHome from "./ContactCardHome";
 import FooterHome from "./FooterHome";
-
+import Support from "./Support";
 
 const Home = () => {
   return (
@@ -18,15 +18,15 @@ const Home = () => {
     {/* <Navbar /> */}
     <Carousel />
     <WelcomeSection />
-    <JeffreySection />
-    <Services />
     <GreenStrip/>
-    <OurTeam/>
     <PricingPlans />
-    <Questions/>
-    <ContactCardHome/>
+    {/* <JeffreySection /> */}
+    {/* <Services /> */}
+    {/* <OurTeam/> */}
+    <Support/>
+    {/* <Questions/> */}
+    {/* <ContactCardHome/> */}
     <FooterHome/>
-    <div style={{height: "100vh"}}></div>
     </>
   );
 };

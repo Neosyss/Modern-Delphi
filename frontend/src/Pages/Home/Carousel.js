@@ -6,63 +6,40 @@ import svg1 from '../../isvgs/flowers-crop.webp';
 import { FaChevronRight } from "react-icons/fa6";
 
 const slides = [
-    {
-        img: img1,
-        title: "Neosyss",
-        heading: "Begin Your",
-        subtitle: "Inner Peace Journey",
-        description: "Embark on a journey of self-discovery and emotional healing with our expert therapists.",
-    },
+   
     {
         img: img2, 
-        title: "Harmony",
-        heading: "Discover Your",
-        subtitle: "Inner Strength",
-        description: "Embark on a journey of self-discovery and emotional healing with our expert therapists.",
+        title: "Your Future Awaits",
+        heading: "Discover Insights Beyond The Ordinary",
+        subtitle: "Welcome to Modern Delphi",
+        description: "Personalized Oracle consultations blending ancient wisdom with modern tools. At Modern Delphi, we blend the Vision of ancient oracles with cutting-edge AI technology to deliver personalized consultations that empower you in your Journey.",
     },
 ];
 
 const Carousel = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    const nextSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
-    };
 
     return (
         <div className="carousel">
             <div className="carousel-content-container">
                 {/* Display the current slide */}
-                <img src={slides[currentSlide].img} alt="carousel-slide" className="carousel-img" />
+                <img src={slides[0].img} alt="carousel-slide" className="carousel-img" />
                 <div className="row">
                     <div className="col-md-6">
                         <img src={svg1} alt="1" className="carousel-svg"/>
                     </div>
                     <div className="col-md-6 carousel-content">
                         <div className="carousel-padding">
-                            <div className="tb-1">{slides[currentSlide].title}</div>
-                            <h1 className="mt-2 heading-main">{slides[currentSlide].heading}</h1>
-                            <span className="span">{slides[currentSlide].subtitle}</span>
-                            <p className="p mt-4 p-width text-light">{slides[currentSlide].description}</p>
+                            <div className="tb-1 mb-4">{slides[0].title}</div>
+                            <span className="span subtitle-carousel">{slides[0].subtitle}</span>
+                            <h1 className="mt-2 heading-carousel">{slides[0].heading}</h1>
+                            <p className="p mt-4 text-light">{slides[0].description}</p>
                             <div className="mt-4 prb-1">
-                                <div>Our Services</div>
+                                <div>View Services</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                    <div className="carousel-btn  left-btn" onClick={prevSlide}>
-                        <FaChevronRight className="arrow-left-svg"/>
-                    </div>
-                    <div className="carousel-btn  right-btn" onClick={nextSlide}>
-                        <FaChevronRight className="arrow-right-svg"/>
-                    </div>
-
-            {/* Carousel navigation divs */}
             
         </div>
     );

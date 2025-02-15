@@ -29,9 +29,9 @@ const ContactCardHome = () => {
                 <p className="p m-0">+929 333 9296</p>
                 <p className="p m-0">contact@neosyss.com</p>
             </div>
-            <div className="col-md-3 d-flex align-items-center justify-content-center flex-column">
+            {/* <div className="col-md-3 d-flex align-items-center justify-content-center flex-column">
                <div className="prb-1 fw-bold height-set-prb">Make Appointment</div>
-            </div>
+            </div> */}
         </div>
         <div className="d-flex row m-0 p-0 justify-content-center">
             <div className="img-cont-contact-c m-0 p-0 col-md-2"><img src={img1} /></div>

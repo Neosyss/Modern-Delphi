@@ -1,7 +1,7 @@
 import './PriceCard.css';
 import { FaCheck } from "react-icons/fa";
 
-const PriceCard = ({name, elem, img ,price}) => {
+const PriceCard = ({name, elem, img ,price, desc}) => {
     return (
         <>
         <div className="price-card">
@@ -19,15 +19,15 @@ const PriceCard = ({name, elem, img ,price}) => {
                 </div>
                 <img src={img} className='price-card-img'/>
             </div>
-            <div className='grey m-3 p-2'>Dolor laborum ex ut labore officia cupidatat ullamco anim veniam sunt enim aliquip duis dolor anim reprehenderit nulla nostrud.</div>
-            
+            <div className='grey m-3 p-2'>{desc}</div>
+{/*             
             <div className='col-md-7 mt-3 m-4'>
                 <div><FaCheck className="tickSvg2 my-1"/><strong className="f-small text-dark mx-3 pt-2">Personalized</strong></div>
                 <div><FaCheck className="tickSvg2 my-1"/><strong className="f-small text-dark mx-3 pt-2">Confidential</strong></div>
                 <div><FaCheck className="tickSvg2 my-1"/><strong className="f-small text-dark mx-3 pt-2">Effective</strong></div>
             </div>
 
-            <div className='appoint-btn m-4 mb-5'>Make Appointment</div>
+            <div className='appoint-btn m-4 mb-5'>Make Appointment</div> */}
         </div>
         </>
     );

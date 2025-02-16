@@ -1,34 +1,129 @@
-.nav-list{
+/* Navigation Row */
+.nav-row {
+  padding: 0 26px!important;
+  position: fixed;
+  width: 100vw;
+  z-index: 1111;
+  transition: background-color .3s ease-in-out;
+}
+
+.atTop {
+  background-color: transparent!important;
+}
+
+.notTop {
+  background-color: white!important;
+}
+
+/* Nav Items */
+.nav-list {
   text-decoration: none;
   display: flex;
   list-style: none;
 }
 
-.nav-item{
-  margin: 20px 2vw;
+.nav-item {
+  margin: 10px 2vw;
+  cursor: pointer;
+  color: var(--sec);
+}
+
+.atTop .nav-item {
   color: white;
 }
 
-.prb-3{
+/* Sign In Button */
+.prb-3 {
   background-color: transparent;
-  color: white;
+  color: var(--sec);
   border-radius: 100px;
-  border: 1px solid white;
+  border: 1px solid var(--sec);
   height: fit-content;
   padding: 10px 20px;
-  margin-top: 10px;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
 }
 
-.nav-row{
-  padding: 0 30px!important;
-  position: fixed;
-  width: 100vw;
-  z-index: 1111;
-  padding-top: 10px!important;
+.atTop .prb-3 {
+  color: white;
+  border: 1px solid white;
 }
 
-.nav-logo{
+.atTop .prb-3:hover {
+  color: var(--sec);
+  background-color: white;
+}
+
+.prb-3:hover {
+  color: white;
+  background-color: var(--sec);
+}
+
+/* Navbar Logo */
+.nav-logo {
   height: 50px;
   width: 100%;
-  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+.line {
+  width: 25px;
+  border-radius: 2px;
+  height: 4px;
+  margin: 2px 0;
+  transition: all 0.3s ease;
+}
+
+.white {
+  background-color: white;
+}
+
+.black {
+  background-color: black;
+}
+
+.baropen {
+  transform: rotate(45deg);
+}
+
+/* Mobile Navigation Dropdown */
+.mobile-nav {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9); /* Always white with slight opacity */
+  width: 200px;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav.open {
+  display: block;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.mobile-nav .nav-item {
+  padding: 10px;
+  color: black; /* Always black */
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mobile-nav .nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

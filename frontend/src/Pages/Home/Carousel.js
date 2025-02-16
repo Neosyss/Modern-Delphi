@@ -3,7 +3,7 @@ import './Carousel.css';
 import img1 from '../../images/1.webp';
 import img2 from '../../images/2.webp';
 import svg1 from '../../isvgs/flowers-crop.webp';
-import { FaChevronRight } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 const slides = [
    
@@ -17,7 +17,7 @@ const slides = [
 ];
 
 const Carousel = () => {
-
+    const navigate = useNavigate();
     return (
         <div className="carousel">
             <div className="carousel-content-container">
@@ -33,7 +33,7 @@ const Carousel = () => {
                             <span className="span subtitle-carousel">{slides[0].subtitle}</span>
                             <h1 className="mt-2 heading-carousel">{slides[0].heading}</h1>
                             <p className="p mt-4 text-light">{slides[0].description}</p>
-                            <div className="mt-4 prb-1">
+                            <div className="mt-4 prb-1" onClick = {()=> {navigate('/consult-oracle')}}>
                                 <div>View Services</div>
                             </div>
                         </div>

@@ -38,6 +38,7 @@ body{
     width: fit-content;
     display: flex;
     align-items: center;
+    height: fit-content;
     justify-content: center;
     background-color: var(--pri);
     border-radius: 100px;

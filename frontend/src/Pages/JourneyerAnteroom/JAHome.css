@@ -1,0 +1,50 @@
+.padding-ar-1{
+    padding: 20px 50px;
+}
+
+.ja-card1{
+    background-color: var(--priopa);
+    border: 1px solid #a4afa8;
+    border-radius: 10px;
+    width: 50%;
+}
+.padding-top-jachat{
+    position: relative;
+    padding-top: 65px;
+    background-color: var(--priopa);
+    display: flex;
+    justify-content: center;
+}
+
+.ja-iframe{
+    height:calc( 100% - 27px);
+    min-height: calc( 100vh - 27px);
+    width: 70%;
+}
+.backbtn-chat{
+    position: absolute;
+    top: 100px;
+    left: 110px;
+}
+
+@media (max-width: 768px) {
+    .padding-ar-1{
+        padding: 20px;
+    }
+    .ja-iframe{
+        height:calc( 100% - 30px);
+        min-height: 670px;
+        width: 100%;
+    }
+    .padding-top-jachat{
+        padding-top: 150px;
+        background-color: var(--priopa);
+        display: flex;
+        justify-content: center;
+    }
+    .backbtn-chat{
+        position: absolute;
+        top: 98px;
+        left: 8px;
+    }
+}

@@ -3,11 +3,12 @@ import './GreenStrip.css';
 import clockIcon from '../../images/Icon.png'; 
 import locationIcon from '../../images/Icon (1).png'; 
 import callIcon from '../../images/Icon (2).png'; 
-
+import { useNavigate } from 'react-router-dom';
 
 
 const GreenStrip = () => {
     const sectionRef = useRef(null);
+    const navigate = useNavigate();
 
     return (
         <div className="green-strip" ref={sectionRef}>
@@ -30,7 +31,7 @@ const GreenStrip = () => {
             </div>
 
             <div className="d-flex justify-content-center mt-4 align-items-center">
-                <div className="prb-2 me-3 appointment-btn">
+                <div className="prb-2 me-3 appointment-btn" onClick = {()=> {navigate('/consult-oracle')}}>
                     <div>Make An Appointment</div>
                 </div>
             </div>

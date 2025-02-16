@@ -1,0 +1,35 @@
+.profile-page{
+    height: 100%;
+    width: 100%;
+}
+.settings-box{
+    background-color: white;
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px 30px;
+    border-radius: 15px;
+}
+
+.unjustify{
+    display: flex;
+    margin: 15px 0;
+}
+.width-label{
+    width: 50%;
+}
+@media (max-width: 768px) {
+.settings-box{
+    background-color: white;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 15px;
+    padding: 10px 15px;
+}
+.width-label{
+    width: 100%;
+    word-wrap: break-word;
+}
+.unjustify{
+    display:block!important;
+}
+}

@@ -1,37 +1,76 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home/Home';
 import AdminHome from './Admin/AdminHome';
 import UserPanel from './User/UserPanel';
 import Navbar from './Pages/Global/Navbar';
 import Login from './Auth/Login';
+import ProfilePage from './Auth/ProfilePage';
 import Signup from './Auth/Signup';
+import SacredBlog from './Pages/SacredLibrary/SacredBlog';
+import SLHome from './Pages/SacredLibrary/SLHome';
+import FooterHome from './Pages/Home/FooterHome';
+import JAHome from './Pages/JourneyerAnteroom/JAHome';
+import JAChatRoom from './Pages/JourneyerAnteroom/JAChatRoom';
+import ConsultOracleHome from './Pages/ConsultOracle/ConsultOracleHome';
+import ScrollToTop from './ScrollToTop';
+import { Navigate, Outlet } from "react-router-dom";
+import TermsOfUse from './Pages/Global/TermsOfUse';
 
-const ProtectedRoute = ({ element }) => {
-  const isAuthenticated = localStorage.getItem('authToken'); 
-  return isAuthenticated ? element : <Navigate to="/login" />;
+
+const ProtectedRoute = () => {
+    const token = localStorage.getItem("authToken");
+    return token ? <Outlet /> : <Navigate to="/login" replace />;
 };
+
+const ProtectedAdminRoute = () => {
+  const token = localStorage.getItem("adminAuthToken");
+  return token ? <Outlet /> : <Navigate to="/login" replace />;
+};
+
+
+const Layout = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const hideFooterRoutes = ["/journeyers-chatroom"]; // Add routes where you want to hide the footer
+
+  return (
+    <>
+      <Navbar isAtHome={isHomePage} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        
+        <Route path="/terms-of-use" element={<TermsOfUse termsOrPolicy={1}/>} />
+        <Route path="/privacy-policy" element={<TermsOfUse termsOrPolicy={0}/>} />
+        
+        <Route path="/sacred-library" element={<SLHome />} />
+        <Route path="/sacred-blog" element={<SacredBlog />} />
+        <Route path="/journeyers-anteroom" element={<JAHome />} />
+        <Route path="/journeyers-chatroom" element={<JAChatRoom />} />
+        <Route path="/consult-oracle" element={<ConsultOracleHome />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        <Route element={<ProtectedRoute />}>
+            <Route path="/user" element={<UserPanel />} />
+        </Route>
+        <Route element={<ProtectedAdminRoute />}>
+            <Route path="/admin" element={<AdminHome />} />
+        </Route>
+
+      </Routes>
+      {!hideFooterRoutes.includes(location.pathname) && <FooterHome />}
+    </>
+  );
+};
+
 
 function App() {
   return (
-    <>
-    <Navbar/>
     <Router>
-      <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/admin" element={<AdminHome />} />
-      <Route path="/user" element={<UserPanel />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/signup" element={<Signup />} /> */}
-        {/* <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} /> */}
-      </Routes>
+      <ScrollToTop/>
+      <Layout />
     </Router>
-    </>
   );
 }
 

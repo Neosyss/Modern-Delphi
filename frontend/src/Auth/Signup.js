@@ -1,43 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Signup.css"; 
-import img from '../images/2.webp'; // Assuming you use the same image
+import img from '../images/2.webp';
 import ErrorBox from '../ErrorBox.js';
 
 const Signup = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const userToken = localStorage.getItem("authToken");
+        const adminToken = localStorage.getItem("adminAuthToken");
+
+        if (adminToken) {
+            navigate("/admin");
+        } else if (userToken) {
+            navigate("/user");
+        }
+    }, []);
+
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [showErrorBox, setShowErrorBox] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Basic validation
         if (password !== confirmPassword) {
             setError("Passwords do not match");
             setShowErrorBox(true);
             return;
         }
 
-        if (password.length < 6) {
-            setError("Password must be at least 8 characters or longer");
+        if (password.length < 8) {
+            setError("Password must be at least 8 characters long");
             setShowErrorBox(true);
             return;
         }
 
-        // Clear any previous errors
-        setError("");
-        setShowErrorBox(false);
+        setLoading(true);
 
-        // Add your signup logic here
-        console.log("Full Name:", fullName);
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Confirm Password:", confirmPassword);
+        try {
+            const response = await axios.post("http://localhost:5000/api/auth/signup", {
+                fullName,
+                email,
+                password
+            });
 
-        // You can add API calls or further logic here
+            const { token, role } = response.data;
+
+            if (role === "admin") {
+                localStorage.setItem("adminAuthToken", token);
+                navigate("/admin");
+            } else {
+                localStorage.setItem("authToken", token);
+                navigate("/user");
+            }
+        } catch (error) {
+            setError(error.response?.data?.message || "Signup failed");
+            setShowErrorBox(true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleCloseErrorBox = () => {
@@ -46,11 +74,11 @@ const Signup = () => {
 
     return (
         <>
-            {/* Render the ErrorBox component */}
             <ErrorBox
                 message={error}
                 show={showErrorBox}
                 onClose={handleCloseErrorBox}
+                
                 timeout={2500}
             />
 
@@ -62,16 +90,14 @@ const Signup = () => {
                             <h4 className="title-login-page">Welcome to</h4>
                             <h4 className="title2-login-page">Modern Delphi</h4>
                             <h4 className="para-login-page">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis tempore consequuntur 
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                             </h4>
                         </div>
                         <div className="col-md-6 p-4 px-5 mt-3 login-content signup-content">
                             <h2 className="text-center mb-3">Sign Up</h2>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="mb-2">
-                                    <label htmlFor="fullName" className="form-label">
-                                        Full Name
-                                    </label>
+                                    <label htmlFor="fullName" className="form-label">Full Name</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -83,9 +109,7 @@ const Signup = () => {
                                     />
                                 </div>
                                 <div className="mb-2">
-                                    <label htmlFor="email" className="form-label">
-                                        Email
-                                    </label>
+                                    <label htmlFor="email" className="form-label">Email</label>
                                     <input
                                         type="email"
                                         className="form-control"
@@ -97,9 +121,7 @@ const Signup = () => {
                                     />
                                 </div>
                                 <div className="mb-2">
-                                    <label htmlFor="password" className="form-label">
-                                        Password
-                                    </label>
+                                    <label htmlFor="password" className="form-label">Password</label>
                                     <input
                                         type="password"
                                         className="form-control"
@@ -111,9 +133,7 @@ const Signup = () => {
                                     />
                                 </div>
                                 <div className="mb-2">
-                                    <label htmlFor="confirmPassword" className="form-label">
-                                        Confirm Password
-                                    </label>
+                                    <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                                     <input
                                         type="password"
                                         className="form-control"
@@ -124,13 +144,13 @@ const Signup = () => {
                                         required
                                     />
                                 </div>
-                                <div type="submit" onClick={handleSubmit} className="prb-1 w-100 mt-4">
-                                    <div>Sign up with email</div>
+                                <div onClick={handleSubmit} className="prb-2 w-100 mt-4" disabled={loading}>
+                                    <div>{loading ? "Signing Up..." : "Sign up with email"}</div>
                                 </div>
 
                                 <p className="pt-3 px-3 text-center a-links">
                                     By clicking the button above, you agree to our{" "}
-                                    <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
+                                    <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>
                                 </p>
 
                                 <div className="text-center a-links">

@@ -9,10 +9,25 @@ import OurTeam from "./OurTeam";
 import PricingPlans from "./PricingPlans";
 import Questions from "./Questions";
 import ContactCardHome from "./ContactCardHome";
-import FooterHome from "./FooterHome";
 import Support from "./Support";
+import axios from "axios";
+import { useEffect } from "react";
+
+const trackSiteVisit = async () => {
+  try {
+      await axios.post("http://localhost:5000/api/sitemetrics/track");
+      console.log(1);
+  } catch (error) {
+      console.error("Error tracking site visit:", error);
+  }
+};
 
 const Home = () => {
+
+  useEffect(() => {
+    trackSiteVisit(); 
+  }, []);
+
   return (
     <>
     {/* <Navbar /> */}
@@ -26,7 +41,6 @@ const Home = () => {
     <Support/>
     {/* <Questions/> */}
     {/* <ContactCardHome/> */}
-    <FooterHome/>
     </>
   );
 };

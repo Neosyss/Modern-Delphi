@@ -10,19 +10,19 @@ const BlogListItem = ({ blog, onClick }) => {
     return (
         <div className='blogListItem d-flex' onClick={() => onClick(blog)}>
             <div>
-                <img src={blog.image || imagex} className='img-blog-list' alt="Blog thumbnail"/>
+                <img src={blog.images || imagex} className='img-blog-list' alt="Blog thumbnail"/>
             </div>
             <div className='mx-2'>
-                <div className='date-blog-list'>{blog.date}</div>
+                <div className='date-blog-list'>{new Date(blog.date).toLocaleDateString()}</div>
                 <div className='title-blog-list'>{blog.title}</div>
                 <div className='content-blog-list'
-                dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 100) }}
-                >                       
+                dangerouslySetInnerHTML={{ __html: blog.description.substring(0, 100) }}>
                 </div>
             </div>
         </div>
     );
 }
+
 
 const BlogContent = () => {
     const [isModelOpen, setIsModelOpen] = useState(0);
@@ -36,7 +36,8 @@ const BlogContent = () => {
     const [error, setError] = useState(null);
 
     // Fetch all blogs
-    useEffect(() => {
+
+    const fetchBlogs = () => {
         const apiUrl = 'http://localhost:5000/api/blogs';
         axios
             .get(apiUrl)
@@ -53,64 +54,86 @@ const BlogContent = () => {
                 setError("Failed to fetch blogs. Please try again later.");
                 setLoading(false);
             });
+    }
+
+    useEffect(() => {
+        fetchBlogs();
     }, []);
 
-    // Add new blog
-    const handleAddBlog = () => {
-        const newBlog = {
-            title,
-            hashtags,
-            content,
-            image,
-            date: new Date().toLocaleDateString(),
-        };
-
-        axios
-            .post('http://localhost:5000/api/blogs', newBlog)
-            .then((response) => {
-                setBlogs([...blogs, response.data]);
-                setTitle('');
-                setHashtags('');
-                setContent('');
-                setImage(null);
-            })
-            .catch((error) => {
-                console.error('Error adding blog:', error.message);
-                setError("Failed to add blog. Please try again.");
+    const handleAddBlog = async () => {
+        if (!title || !hashtags || !content) {
+            setError('All fields are required. Please fill them out.');
+            return;
+        }
+    
+        if (!image) {
+            setError('Please upload an image');
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', content);
+        formData.append('hashtags', hashtags);
+        formData.append('image', image);
+    
+        try {
+            const response = await axios.post('http://localhost:5000/api/blogs', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
+    
+            if (response.status === 200) {
+    
+                fetchBlogs();
+                setContent('');
+                setError('');
+                setHashtags('');
+                setImage(null);
+                setTitle('');
+            }
+        } catch (error) {
+            console.error('Error submitting blog:', error);
+            setError("Failed to add blog. Please try again.");
+        }
     };
+    
 
     // Update blog
     const handleUpdateBlog = () => {
-        const updatedBlog = {
-            id: currentBlog.id,
-            title,
-            hashtags,
-            content,
-            image,
-        };
+        if (!title || !content) {
+            setError("Title and content are required.");
+            return;
+        }
 
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("hashtags", hashtags);
+        formData.append("description", content);
+        formData.append("image", image);
+        
         axios
-            .put(`http://localhost:5000/api/blogs/${currentBlog.id}`, updatedBlog)
+            .put(`http://localhost:5000/api/blogs/${currentBlog.blog_id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            })
             .then((response) => {
-                setBlogs(blogs.map(blog => 
-                    blog.id === currentBlog.id ? response.data : blog
-                ));
+                fetchBlogs(); // Refresh blog list
                 closeModel();
             })
             .catch((error) => {
-                console.error('Error updating blog:', error.message);
+                console.error("Error updating blog:", error.message);
                 setError("Failed to update blog. Please try again.");
             });
+        
     };
 
     // Delete blog
     const handleDeleteBlog = () => {
         axios
-            .delete(`http://localhost:5000/api/blogs/${currentBlog.id}`)
+            .delete(`http://localhost:5000/api/blogs/${currentBlog.blog_id}`)
             .then(() => {
-                setBlogs(blogs.filter(blog => blog.id !== currentBlog.id));
+                setBlogs(blogs.filter(blog => blog.blog_id !== currentBlog.blog_id));
                 closeModel();
+                setError(null);
             })
             .catch((error) => {
                 console.error('Error deleting blog:', error.message);
@@ -127,25 +150,29 @@ const BlogContent = () => {
         ]
     };
 
-    const handleImageUpload = (e) => {
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+            const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+            if (!validTypes.includes(file.type)) {
+                setError('Please upload a valid image file (jpg or png)');
+                setImage(null);
+            } else {
+                setError('');
+                setImage(file);
+            }
         }
     };
+
 
     const openModel = (blog) => {
         setCurrentBlog(blog);
         setTitle(blog.title);
         setHashtags(blog.hashtags);
-        setContent(blog.content);
-        setImage(blog.image);
+        setContent(blog.description);
+        setImage(blog.images ? blog.images : null);
         setIsModelOpen(1);
-    }
+    };
 
     const closeModel = () => {
         setIsModelOpen(0);
@@ -154,6 +181,7 @@ const BlogContent = () => {
         setHashtags('');
         setContent('');
         setImage(null);
+        setError(null);
     };
 
     return (
@@ -186,7 +214,7 @@ const BlogContent = () => {
                                 type="file" 
                                 accept="image/*"
                                 className="form-control"
-                                onChange={handleImageUpload}
+                                onChange={handleImageChange}
                             />
 
                             <div className='mt-4'>Content</div>
@@ -200,6 +228,7 @@ const BlogContent = () => {
                                     required
                                 />
                             </div>
+                            {error && <div className="text-danger">{error}</div>}
                             <div className="d-flex justify-content-end mt-3">
                                 <div 
                                     className="prb-1 mx-2" 
@@ -243,7 +272,7 @@ const BlogContent = () => {
                                 type="file" 
                                 accept="image/*"
                                 className="form-control"
-                                onChange={handleImageUpload}
+                                onChange={handleImageChange}
                             />
 
                             <div className='mt-4'>Content</div>
@@ -257,6 +286,7 @@ const BlogContent = () => {
                                     required
                                 />
                             </div>
+                            {error && <div className="text-danger">{error}</div>}
                             <div className="d-flex justify-content-center">
                                 <div 
                                     className="prb-1"
@@ -280,7 +310,7 @@ const BlogContent = () => {
                                 ) : (
                                     blogs.map(blog => (
                                         <BlogListItem 
-                                            key={blog.id} 
+                                            key={blog.blog_id} 
                                             blog={blog} 
                                             onClick={openModel}
                                         />

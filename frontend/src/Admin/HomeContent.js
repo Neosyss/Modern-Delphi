@@ -1,29 +1,38 @@
 import "./HomeContent.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const HomeContent = () => {
-    const [dateFilter, setDateFilter] = useState("overall"); // Default filter
+    const fetchData = async (filter) => {
+    try {
+        const response = await axios.get(`http://localhost:5000/api/sitemetrics`, {
+            params: { filter },
+        });
+        setTraffic(response.data.traffic);
+        setUsers(response.data.users);
+        setAppointments(response.data.appointments);
+    } catch (error) {
+        console.error("Error fetching statistics:", error);
+    }
+    };
 
-    const [traffic, setTraffic] = useState(1530); // Example traffic value
-    const [users, setUsers] = useState(2300000); // Example users value
-    const [appointments, setAppointments] = useState(130); // Example appointments value
+
+    const [dateFilter, setDateFilter] = useState("thisMonth"); // Default filter
+    const [traffic, setTraffic] = useState(0);
+    const [users, setUsers] = useState(0);
+    const [appointments, setAppointments] = useState(0);
 
     // Utility function to format numbers
     const formatNumber = (num) => {
-        if (num >= 1000000) {
-            return `${(num / 1000000).toFixed(1)}M`; // Convert to millions (e.g., 1.5M)
-        } else if (num >= 1000) {
-            return `${(num / 1000).toFixed(1)}K`; // Convert to thousands (e.g., 1.5K)
-        } else {
-            return num.toString(); // Return as is for numbers less than 1000
-        }
-    };
-
-    const handleDateFilterChange = (value) => {
-        setDateFilter(value);
-        // Add logic to filter data based on the selected date range
-        console.log("Selected Date Filter:", value);
-    };
+        if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
+        else if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
+        return num.toString();
+    }; 
+    
+    useEffect(() => {
+        fetchData(dateFilter);
+    }, [dateFilter]);
 
     return (
         <>
@@ -40,7 +49,7 @@ const HomeContent = () => {
                                 <select
                                     className="form-select"
                                     value={dateFilter}
-                                    onChange={(e) => handleDateFilterChange(e.target.value)}
+                                    onChange={(e) => setDateFilter(e.target.value)}
                                 >
                                     <option value="today">Today</option>
                                     <option value="thisWeek">This Week</option>

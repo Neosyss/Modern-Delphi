@@ -4,6 +4,7 @@ import HomeContent from "./HomeContent";
 import BlogContent from "./BlogContent";
 import CalendlyManager from "./CalendlyManager";
 import UsersContent from "./UsersContent";
+import ProfilePage from "../Auth/ProfilePage";
 
 const AdminHome = () => {
 
@@ -23,6 +24,8 @@ const AdminHome = () => {
                             onClick={() => setSelectedOption("Bookings")}> Bookings </div>
                         <div className={`sideBarItem ${selectedOption === "Blogs" ? "selected" : ""}`} 
                             onClick={() => setSelectedOption("Blogs")}> Blogs </div>
+                        <div className={`sideBarItem ${selectedOption === "Profile" ? "selected" : ""}`} 
+                            onClick={() => setSelectedOption("Profile")}> Profile </div>
                     </div>
                 </div>
                 <div className={`col-md-10 ${selectedOption === "Bookings" ? 'p-0' : 'adminInner'}`}>
@@ -30,6 +33,7 @@ const AdminHome = () => {
                     {selectedOption === "Users" && <UsersContent/>}
                     {selectedOption === "Blogs" && <BlogContent/> }
                     {selectedOption === "Bookings" && <div><CalendlyManager/></div>}
+                    {selectedOption === "Profile" && <ProfilePage panelType ={0}/>}
                 </div>
             </div>
         </div>

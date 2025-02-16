@@ -5,7 +5,7 @@ import axios from "axios";
 import "./SacredBlog.css";
 
 const SacredBlog = () => {
-    const { id } = 19; // Get blog ID from URL params
+    const { id } = useParams(); // Get the blog ID dynamically
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -15,10 +15,11 @@ const SacredBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/blogs/19`);
+                const response = await axios.get(`http://localhost:5000/api/blogs/${id}`);
                 setBlog(response.data);
             } catch (err) {
                 setError("Failed to fetch blog post.");
+                navigate('/lost-page')
             } finally {
                 setLoading(false);
             }

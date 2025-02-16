@@ -48,7 +48,7 @@ const Navbar = () => {
           <div className="d-flex justify-content-between">
             <div>
               {/* <img src={img2} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo"/> */}
-              <h4 className="nav-logo pt-2" style={{color:"var(--sec)"}} onClick={() => {navigate('/')}}>Modern Delphi</h4>
+              <h4 className="nav-item" onClick={() => {navigate('/')}}>Modern Delphi</h4>
             </div>
             <div>
               <ul className="nav-list">
@@ -78,7 +78,7 @@ const Navbar = () => {
           <div className="d-flex justify-content-between align-items-center">
             <div>
               {/* <img src={img2} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo" /> */}
-              <h4 className="nav-logo pt-3" style={{color:"var(--sec)"}} onClick={() => {navigate('/')}}>Modern Delphi</h4>
+              <h4 className="nav-item px-0 mx-0" onClick={() => {navigate('/')}}>Modern Delphi</h4>
             </div>
             <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
               <div className={`line ${menuOpen ? "baropen" : ""} ${isAtTopClass ? "white" : "black"}`}></div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import "./SLHome.css";
 import pic1 from '../../images/misc/10.webp';
@@ -15,10 +16,11 @@ const SLHome = () => {
     });
     const [loading, setLoading] = useState(false);
 
-    const fetchBlogs = async (isLoadMore = false) => {
+    const fetchBlogs = async () => {
         try {
             setLoading(true);
-            const limit = pagination.isInitialLoad ? 3 : 7; // 7 more to make it total of 10
+            const limit = pagination.isInitialLoad ? 3 : 7; // Adjust limit accordingly
+    
             const response = await axios.post('http://localhost:5000/api/blogs/paginated', {
                 limit,
                 page: pagination.currentPage
@@ -32,12 +34,8 @@ const SLHome = () => {
                 return;
             }
     
-            // If loading more, append new blogs to existing ones
-            if (!pagination.isInitialLoad) {
-                setBlogs(prevBlogs => [...prevBlogs, ...data.blogs]);
-            } else {
-                setBlogs(data.blogs);
-            }
+            // Replace previous blogs with new ones
+            setBlogs(data.blogs);
     
             setPagination(prev => ({
                 ...data.pagination,
@@ -50,18 +48,19 @@ const SLHome = () => {
         }
     };
     
-
-    useEffect(() => {
-        fetchBlogs();
-    }, []);
-
     const handleLoadMore = () => {
         setPagination(prev => ({
             ...prev,
             currentPage: prev.currentPage + 1
         }));
-        fetchBlogs(true);
+    
+        fetchBlogs(); // Call without `true` to prevent appending
     };
+    
+
+    useEffect(() => {
+        fetchBlogs();
+    }, []);
 
     return (
         <>
@@ -121,8 +120,9 @@ const SLHome = () => {
                             <div key={blog.blog_id} className="col-md-3">
                                 <SLCard 
                                     image={blog.images || pic1} 
-                                    title={blog.title} 
-                                    description={blog.description.substring(0, 100) + '...'} 
+                                    title={blog.title.substring(0,50)} 
+                                    description={blog.description.substring(0, 100)} 
+                                    id={blog.blog_id}
                                 />
                             </div>
                         ))}
@@ -198,17 +198,19 @@ const SLHome = () => {
     );
 };
 
-const SLCard = ({ image, title, description }) => {
+const SLCard = ({ image, title, description, id }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="sl-card my-3">
             <div className="img-sl-card">
                 <img src={image} alt={title} className="img-fluid" />
             </div>
             <div className="card- p-3">
-                <h4 className="card-title">{title}</h4>
-                <div className="d-flex mt-3 justify-content-center">
-                    <p className="card-description">{description}</p>
-                    <FaArrowRight className="arrow-sl"/>
+                <h4 style={{color: "var(--sec)"}} className="card-title">{title}</h4>
+                <div className="d-flex mt-1 justify-content-between">
+                    <p className="card-description" dangerouslySetInnerHTML={{__html:description}}></p>
+                    <FaArrowRight className="arrow-sl" onClick={() => {navigate(`/sacred-blog/${id}`)}}/>
                 </div>
             </div>
         </div>

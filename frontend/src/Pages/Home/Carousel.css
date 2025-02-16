@@ -111,7 +111,7 @@
     .carousel-img{
         height: 100%;
         width: auto;
-        transform: translate(-470px, -300px)scale(0.6);
+        transform: translate(-170px, -300px);
         object-fit: cover;
     }
     .carousel-svg{

@@ -16,6 +16,7 @@ import ConsultOracleHome from './Pages/ConsultOracle/ConsultOracleHome';
 import ScrollToTop from './ScrollToTop';
 import { Navigate, Outlet } from "react-router-dom";
 import TermsOfUse from './Pages/Global/TermsOfUse';
+import LostPage from './Pages/Global/LostPage';
 
 
 const ProtectedRoute = () => {
@@ -44,7 +45,7 @@ const Layout = () => {
         <Route path="/privacy-policy" element={<TermsOfUse termsOrPolicy={0}/>} />
         
         <Route path="/sacred-library" element={<SLHome />} />
-        <Route path="/sacred-blog" element={<SacredBlog />} />
+        <Route path="/sacred-blog/:id" element={<SacredBlog />} />
         <Route path="/journeyers-anteroom" element={<JAHome />} />
         <Route path="/journeyers-chatroom" element={<JAChatRoom />} />
         <Route path="/consult-oracle" element={<ConsultOracleHome />} />
@@ -57,6 +58,10 @@ const Layout = () => {
         <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin" element={<AdminHome />} />
         </Route>
+
+      <Route path="/lost-page" element={<LostPage />} />
+      <Route path="*" element={<LostPage />} />
+
 
       </Routes>
       {!hideFooterRoutes.includes(location.pathname) && <FooterHome />}

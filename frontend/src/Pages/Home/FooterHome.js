@@ -4,7 +4,7 @@ const FooterHome = () => {
     return (
         <>
         <div className="footer-main py-5">
-            <div className="row p-4 pt-5">
+            <div className="row p-4 pt-4">
                 <div className="col-md-4 mt-3 px-4">
                     <p className="p grey">Neosyss</p>
                     
@@ -39,7 +39,15 @@ const FooterHome = () => {
                     
                 </div>
                 <div className="col-md-4 mt-3 px-4">
-
+                        <p className="p text-dark text-center fw-bold">Our Values</p>
+                            <div className="my-4 text-center">
+                                <div className="f-link grey">About Us</div>
+                                <div className="f-link grey">Our Services</div>
+                                <div className="f-link grey">Case Study</div>
+                                <div className="f-link grey">Blog</div>
+                                <div className="f-link grey">Contact Us</div>
+                                <div className="f-link grey">Testimonials</div>
+                            </div>
                 </div>
                 </div>
             </div>

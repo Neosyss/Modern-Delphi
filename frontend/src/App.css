@@ -175,6 +175,10 @@ strong {
         letter-spacing: -0.1vw;
 
     }
+    .grey{
+        color: #8c94a7!important;
+    }
+    
 }
 
 @media (max-width:500px) {

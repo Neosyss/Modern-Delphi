@@ -1,0 +1,49 @@
+.price-card{
+    background-color: var(--priopa);
+    height: 400px;
+}
+.price-card2{
+   background-color: var(--sec);
+   color: white;
+}
+.priopa-btn{
+    background-color: var(--priopa)!important;
+}
+.priopa-btn div{
+    color: black!important;
+}
+
+.price-head {
+    font-size: 2.3rem;
+}
+.svgtick{
+    height: 22px;
+    width: 22px;
+}
+
+.back-priopa{
+    background-color: #ecf4f0;
+}
+.fastar-green{
+    color: var(--sec);
+    margin-right: 5px;
+}
+.card-holder{
+    display: flex;
+    justify-content: center;
+}
+.card4{
+    background-color: white;
+    border-radius: 10px;
+    height: 250px;
+    width: 300px;
+    padding: 10px 20px;
+}
+@media (max-width: 768px) {
+    .price-head {
+        font-size: 2.5rem;
+    }
+    .card-holder{
+        display: inline-block;
+    }
+}

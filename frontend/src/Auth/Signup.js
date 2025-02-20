@@ -26,10 +26,24 @@ const Signup = () => {
     const [error, setError] = useState("");
     const [showErrorBox, setShowErrorBox] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [agreeTerms, setAgreeTerms] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!fullName || !email || !password || !confirmPassword ){
+            setError("Please Fill all details.");
+            setShowErrorBox(true);
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError("Please enter a valid email address.");
+            setShowErrorBox(true);
+            return;
+        }
+
+      
         if (password !== confirmPassword) {
             setError("Passwords do not match");
             setShowErrorBox(true);
@@ -38,6 +52,12 @@ const Signup = () => {
 
         if (password.length < 8) {
             setError("Password must be at least 8 characters long");
+            setShowErrorBox(true);
+            return;
+        }
+
+        if (!agreeTerms) {
+            setError("You must agree to the terms and conditions to proceed.");
             setShowErrorBox(true);
             return;
         }
@@ -78,7 +98,6 @@ const Signup = () => {
                 message={error}
                 show={showErrorBox}
                 onClose={handleCloseErrorBox}
-                
                 timeout={2500}
             />
 
@@ -144,15 +163,21 @@ const Signup = () => {
                                         required
                                     />
                                 </div>
-                                <div onClick={handleSubmit} className="prb-2 w-100 mt-4" disabled={loading}>
+                               
+                                <div className="my-2 mt-3">
+                                    <input
+                                        type="checkbox"
+                                        id="agreeTerms"
+                                        className="move-down"
+                                        checked={agreeTerms}
+                                        onChange={() => setAgreeTerms(!agreeTerms)}
+                                    />
+                                    <label htmlFor="agreeTerms" className="ms-2 a-links">I agree to the  <a target="_blank" href="/terms-of-use"> Terms of Use</a> and
+                                    <a target="_blank" href="/privacy-policy"> Privacy Policy</a></label>
+                                </div>
+                                <div onClick={handleSubmit} className="prb-2 w-100 my-3" disabled={loading || !agreeTerms}>
                                     <div>{loading ? "Signing Up..." : "Sign up with email"}</div>
                                 </div>
-
-                                <p className="pt-3 px-3 text-center a-links">
-                                    By clicking the button above, you agree to our{" "}
-                                    <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>
-                                </p>
-
                                 <div className="text-center a-links">
                                     Already have an account? <a href="login">Sign In</a>
                                 </div>

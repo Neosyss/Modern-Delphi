@@ -1,101 +1,29 @@
 import './UsersContent.css'
-import { FaUser } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const UsersContent = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortBy, setSortBy] = useState('date');
-    const [users] = useState([
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A Name',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'A nam sad',
-            email: 'email@gmail.com',
-            appointmentDate: '2021-04-01'
-        },
-        {
-            id: '#1213123123',
-            name: 'User Nme',
-            email: 'email@gmail.com',
-            appointmentDate: '2024-02-01'
-        },
-    ]);
-    
-    const [filteredUsers, setFilteredUsers] = useState(users);
+    const [sortBy, setSortBy] = useState('');
+    const [users, setUsers] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
+
+    const fetchUsersData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/api/all-users`);
+            setUsers(response.data);
+            setFilteredUsers(response.data);
+        } catch (error) {
+            console.error("Error fetching users:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUsersData();
+    }, []);
 
     const openModal = (user) => {
         setCurrentUser(user);
@@ -118,21 +46,18 @@ const UsersContent = () => {
     };
 
     const filterUsers = (search, sort) => {
-        let filtered = users.filter(user => 
-            user.name.toLowerCase().includes(search.toLowerCase()) ||
-            user.email.toLowerCase().includes(search.toLowerCase()) ||
-            user.id.includes(search)
-        );
+        let filtered = users.filter(user => {
+            return (
+                (user.name && user.name.toLowerCase().includes(search.toLowerCase())) ||
+                (user.email && user.email.toLowerCase().includes(search.toLowerCase())) ||
+                (user.user_id && user.user_id.toString().includes(search))
+            );
+        });
 
-        switch (sort) {
-            case 'name':
-                filtered.sort((a, b) => a.name.localeCompare(b.name));
-                break;
-            case 'date':
-                filtered.sort((a, b) => new Date(b.appointmentDate) - new Date(a.appointmentDate));
-                break;
-            default:
-                break;
+        if (sort === 'pending') {
+            filtered.sort((a, b) => b.pending_appointments - a.pending_appointments); // Sort by highest pending first
+        } else if (sort === 'name') {
+            filtered.sort((a, b) => a.name.localeCompare(b.name));
         }
 
         setFilteredUsers(filtered);
@@ -140,7 +65,7 @@ const UsersContent = () => {
 
     const clearFilters = () => {
         setSearchTerm('');
-        setSortBy('date');
+        setSortBy('');
         setFilteredUsers(users);
     };
 
@@ -155,7 +80,6 @@ const UsersContent = () => {
                                 <h4>User Details</h4>
                                 <IoClose className="cross-svg" onClick={closeModal}/>
                             </div>
-                            
                         </div>
                     </div>
                 </>
@@ -165,7 +89,7 @@ const UsersContent = () => {
                 <div className="row m-0">
                     <h3><span className='span fs-small'>User</span> Details</h3>
                     
-                    <div className="filter-row  bg-light rounded mb-4">
+                    <div className="filter-row bg-light rounded mb-4">
                         <div className="row">
                             <div className="col-md-4 mt-2">
                                 <input
@@ -182,8 +106,9 @@ const UsersContent = () => {
                                     value={sortBy}
                                     onChange={(e) => handleSort(e.target.value)}
                                 >
+                                    <option value="">Apply Filter</option>
+                                    <option value="pending">Show Pending First</option>
                                     <option value="name">Sort by Name</option>
-                                    <option value="date">Sort by Appointment Date</option>
                                 </select>
                             </div>
                             <div className="col-md-2 mt-2">
@@ -201,25 +126,21 @@ const UsersContent = () => {
                         <table className="table table-hover">
                             <thead className="table-light">
                                 <tr>
-                                    <th className="px-3" scope="col">Name</th>
                                     <th scope="col">User ID</th>
+                                    <th className="px-3" scope="col">Name</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Appointment Date</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">Confirmed Appointments</th>
+                                    <th scope="col">Unscheduled (Paid)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredUsers.map(user => (
-                                    <tr key={user.id}>
-                                        <td className='px-3'>{user.name}</td>
-                                        <td>{user.id}</td>
-                                        <td>{user.email}</td>
-                                        <td>{new Date(user.appointmentDate).toLocaleDateString()}</td>
-                                        <td>
-                                            <div className="prb-1" onClick={() => openModal(user)}>
-                                                <div className='m-0 px-3 p-1'>Details</div>
-                                            </div>
-                                        </td>
+                                    <tr key={user.user_id}>
+                                        <td>{user.user_id}</td>
+                                        <td className='px-3'>{user.name || 'N/A'}</td>
+                                        <td>{user.email || 'N/A'}</td>
+                                        <td>{user.booked_appointments || 0}</td>
+                                        <td>{user.pending_appointments || 0}</td>
                                     </tr>
                                 ))}
                             </tbody>

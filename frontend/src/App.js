@@ -17,7 +17,10 @@ import ScrollToTop from './ScrollToTop';
 import { Navigate, Outlet } from "react-router-dom";
 import TermsOfUse from './Pages/Global/TermsOfUse';
 import LostPage from './Pages/Global/LostPage';
+import StripePage from './Pages/ConsultOracle/StripePage';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 const ProtectedRoute = () => {
     const token = localStorage.getItem("authToken");
@@ -29,6 +32,7 @@ const ProtectedAdminRoute = () => {
   return token ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Layout = () => {
   const location = useLocation();
@@ -49,6 +53,11 @@ const Layout = () => {
         <Route path="/journeyers-anteroom" element={<JAHome />} />
         <Route path="/journeyers-chatroom" element={<JAChatRoom />} />
         <Route path="/consult-oracle" element={<ConsultOracleHome />} />
+        <Route path="/stripe-payment/:id" element={
+          <Elements stripe={stripePromise}>
+            <StripePage/> 
+          </Elements>
+          } />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 

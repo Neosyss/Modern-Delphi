@@ -7,10 +7,38 @@ import "./SacredBlog.css";
 const SacredBlog = () => {
     const { id } = useParams(); // Get the blog ID dynamically
     const [blog, setBlog] = useState(null);
+    const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
+
+    const fetchBlogs = async () => {
+        try {
+            setLoading(true);
+    
+            const response = await axios.post('http://localhost:5000/api/blogs/paginated', {
+                limit: 6, 
+                page: 1
+            });
+            const data = response.data;
+            if (!Array.isArray(data.blogs)) {
+                console.error("Expected an array of blogs, but got:", data.blogs);
+                return;
+            }
+            const filteredBlogs = data.blogs.filter(blog => Number(blog.blog_id) !== Number(id));
+            setBlogs(filteredBlogs);
+        } catch (error) {
+            console.error("Error fetching blogs:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
+    useEffect(() => {
+        fetchBlogs();
+    }, [id]);
+    
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -45,7 +73,6 @@ const SacredBlog = () => {
                 })}
             </div>
 
-
             <div className="sblog-img-cont">
                 <img src={blog.images || "default-blog.jpg"} className="sblog-img" alt="Blog" />
             </div>
@@ -54,15 +81,16 @@ const SacredBlog = () => {
                 <div className="col-md-8 mx-0 padding-psm my-5" dangerouslySetInnerHTML={{ __html: blog.description }}>
                 </div>
                 <div className="col-md-4 py-4">
-                    <h4 className="my-3 mt-4">Popular Posts</h4>
-                    {blog.popularPosts?.map((post, index) => (
-                        <div className="small-slcard pt-4" key={index}>
+                    <h4 className="my-3 mt-4">Popular Blogs</h4>
+                    {blogs.map((blogx, index) => (
+                        <div className="small-slcard pt-4" onClick={()=>{navigate(`/sacred-blog/${blogx.blog_id}`)}}
+                        key={index}>
                             <div className="img-cont-smcard">
-                                <img src={post.image || "default-thumbnail.jpg"} alt="Popular post" />
+                                <img src={blogx.images || "default-thumbnail.jpg"} alt="Popular post" />
                             </div>
-                            <div className="px-3">
-                                <div>{post.category}</div>
-                                <h5>{post.title}</h5>
+                            <div className="px-3 smwi">
+                                <h5>{blogx.title}</h5>
+                                <p dangerouslySetInnerHTML={{__html:blogx.description.substring(0,70)}}></p>
                             </div>
                         </div>
                     ))}

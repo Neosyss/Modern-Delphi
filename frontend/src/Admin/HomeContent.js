@@ -36,7 +36,6 @@ const HomeContent = () => {
 
     return (
         <>
-            {/* Date Filter Row */}
             <div className="row mb-4">
                 <div className="col-md-12">
                     <div className="filter-row bg-light rounded p-3">
@@ -56,7 +55,7 @@ const HomeContent = () => {
                                     <option value="thisMonth">This Month</option>
                                     <option value="last6Months">Last 6 Months</option>
                                     <option value="last1Year">Last 1 Year</option>
-                                    <option value="overall">Overall</option>
+                                    <option value="overall">All Time</option>
                                 </select>
                             </div>
                         </div>

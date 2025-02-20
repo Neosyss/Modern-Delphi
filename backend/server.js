@@ -7,6 +7,7 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const multer = require('multer');
 const nodemailer = require('nodemailer'); // Import Nodemailer
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
@@ -125,27 +126,27 @@ app.get("/api/sitemetrics", async (req, res) => {
         switch (filter) {
             case "today":
                 siteMetricsCondition = "AND metric_date = CURDATE()";
-                appointmentsCondition = "AND appointment_date = CURDATE()";
+                appointmentsCondition = "AND created_at = CURDATE()";
                 usersCondition = "AND created_at >= CURDATE()";
                 break;
             case "thisWeek":
                 siteMetricsCondition = "AND YEARWEEK(metric_date, 1) = YEARWEEK(CURDATE(), 1)";
-                appointmentsCondition = "AND YEARWEEK(appointment_date, 1) = YEARWEEK(CURDATE(), 1)";
+                appointmentsCondition = "AND YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)";
                 usersCondition = "AND YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)";
                 break;
             case "thisMonth":
                 siteMetricsCondition = "AND YEAR(metric_date) = YEAR(CURDATE()) AND MONTH(metric_date) = MONTH(CURDATE())";
-                appointmentsCondition = "AND YEAR(appointment_date) = YEAR(CURDATE()) AND MONTH(appointment_date) = MONTH(CURDATE())";
+                appointmentsCondition = "AND YEAR(created_at) = YEAR(CURDATE()) AND MONTH(created_at) = MONTH(CURDATE())";
                 usersCondition = "AND YEAR(created_at) = YEAR(CURDATE()) AND MONTH(created_at) = MONTH(CURDATE())";
                 break;
             case "last6Months":
                 siteMetricsCondition = "AND metric_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
-                appointmentsCondition = "AND appointment_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
+                appointmentsCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
                 usersCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
                 break;
             case "last1Year":
                 siteMetricsCondition = "AND metric_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
-                appointmentsCondition = "AND appointment_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+                appointmentsCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
                 usersCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
                 break;
             case "overall":
@@ -164,7 +165,7 @@ app.get("/api/sitemetrics", async (req, res) => {
 
         // Fetch confirmed appointments
         const [appointmentsResults] = await db.promise().query(
-            `SELECT COUNT(*) AS appointments FROM Appointments WHERE appt_type = 'confirmed' ${appointmentsCondition}`
+            `SELECT COUNT(*) AS appointments FROM Appointments WHERE 1 = 1 ${appointmentsCondition}`
         );
         const appointments = appointmentsResults[0].appointments || 0;
 
@@ -180,6 +181,30 @@ app.get("/api/sitemetrics", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
+
+// fetch all users
+app.get('/api/all-users', (req, res) => {
+    const query = `
+        SELECT 
+            u.name, 
+            u.user_id, 
+            u.email, 
+            COUNT(CASE WHEN a.appt_booked = '1' THEN 1 END) AS booked_appointments, 
+            COUNT(CASE WHEN a.appt_booked = '0' THEN 1 END) AS pending_appointments
+        FROM Users u
+        LEFT JOIN Appointments a ON u.user_id = a.user_id
+        WHERE u.role = 'user'
+        GROUP BY u.user_id
+        ORDER BY u.created_at DESC;
+    `;
+
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
 
 
 // --------------
@@ -315,11 +340,11 @@ app.post('/api/blogs/paginated', (req, res) => {
 
 app.get("/api/auth/user", (req, res) => {
     const token = req.headers.authorization?.split(" ")[1];
-
+    
     if (!token) {
         return res.status(401).json({ error: "Unauthorized" });
     }
-
+    
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const query = "SELECT user_id, name, email FROM Users WHERE user_id = ? and role = 'user'";
@@ -440,6 +465,7 @@ app.post("/api/auth/login", (req, res) => {
 
         // Compare hashed password
         if (!bcrypt.compareSync(password, user.password_hash)) {
+        // if (password !==  user.password_hash) {
             return res.status(401).json({ error: "Invalid email or password" });
         }
 
@@ -454,44 +480,209 @@ app.post("/api/auth/login", (req, res) => {
 });
 
 // change pass
+app.post("/api/save-payment", async (req, res) => {
+    try {
+        const { 
+            user_id, paymentIntentId, pricing_id, amount, currency, 
+            name, email, address, city, postalCode, country 
+        } = req.body;
 
-app.post("/api/auth/change-password", async (req, res) => {
-    const { userId, currentPassword, newPassword } = req.body;
+        if (!user_id || !paymentIntentId || !pricing_id || !amount || !currency || 
+            !name || !email || !address || !city || !postalCode || !country) {
+            return res.status(400).json({ success: false, error: "All fields are required" });
+        }
 
-    if (!userId || !currentPassword || !newPassword) {
-        return res.status(400).json({ error: "All fields are required" });
+        const query = `
+            INSERT INTO appointments 
+            (user_id, payment_intent_id, pricing_id, amount, currency, 
+            name, email, address, city, postal_code, country, paid, appt_booked) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        const values = [
+            user_id, paymentIntentId, pricing_id, amount, currency, 
+            name, email, address, city, postalCode, country, '1', '0'
+        ];
+
+        const [result] = await db.promise().query(query, values);
+
+        res.status(200).json({ success: true, message: "Payment details saved successfully", result });
+    } catch (error) {
+        console.error("Error saving payment details:", error);
+        res.status(500).json({ success: false, error: "Internal Server Error" });
     }
-
-    const query = "SELECT password_hash FROM Users WHERE user_id = ?";
-    
-    db.query(query, [userId], async (err, results) => {
-        if (err) {
-            console.error("Database error:", err);
-            return res.status(500).json({ error: "Database error" });
-        }
-
-        if (results.length === 0) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        const isMatch = await bcrypt.compare(currentPassword, results[0].password_hash);
-        if (!isMatch) {
-            return res.status(401).json({ error: "Incorrect current password" });
-        }
-
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-        const updateQuery = "UPDATE Users SET password_hash = ? WHERE user_id = ?";
-
-        db.query(updateQuery, [hashedNewPassword, userId], (err) => {
-            if (err) {
-                console.error("Error updating password:", err);
-                return res.status(500).json({ error: "Error updating password" });
-            }
-            res.status(200).json({ message: "Password updated successfully" });
-        });
-    });
 });
 
+// stripePayment
+
+app.post("/create-payment-intent", async (req, res) => {
+    try {
+      // You can add logic here to handle dynamic amount, currency, etc.
+      const amount = 1000; // Amount in cents (e.g., $10.00)
+  
+      // Create a PaymentIntent on the server
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: 'usd', // or your currency of choice
+        // Optional: Add billing details if required
+        description: 'Payment for goods/services', // You can adjust description based on the payment scenario
+      });
+  
+      // Send the client secret to the frontend
+      res.send({
+        clientSecret: paymentIntent.client_secret,
+      });
+    } catch (error) {
+      res.status(500).send({
+        error: error.message,
+      });
+    }
+  });
+  
+
+  app.get("/api/price-data", (req, res) => {
+
+        const query = "SELECT * FROM pricing";
+        db.query(query, (err, results) => {
+            if (err) {
+                console.error("Database error:", err);
+                return res.status(500).json({ error: "Database error" });
+            }
+            if (results.length === 0) {
+                return res.status(404).json({ error: "Pricing details not found" });
+            }
+            res.status(200).json({ price_details: results });
+        });
+});
+  
+app.post("/api/save-payment", async (req, res) => {
+    try {
+      const { user_id, paymentIntentId, pricing_id, amount, currency, name, email, address, city, postalCode, country, status, date } = req.body;
+  
+      // Save to database (replace with actual DB logic)
+      await db.query(
+        "INSERT INTO appointments (user_id, payment_intent_id, pricing_id, amount, currency, name, email, address, city, postal_code, country, status, date, paid, appt_booked) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [user_id, paymentIntentId, pricing_id, amount, currency, name, email, address, city, postalCode, country, status, date, '1', '0']
+      );
+  
+      res.json({ success: true, message: "Payment details saved successfully" });
+    } catch (error) {
+      console.error("Error saving payment details:", error);
+      res.status(500).json({ success: false, error: "Internal Server Error" });
+    }
+  });
+  
+
+  app.post("/api/appt_booked", async (req, res) => {
+    try {
+        const { userId, booked } = req.body;
+
+        if (!userId) {
+            return res.status(400).json({ success: false, message: "User ID is required" });
+        }
+
+        const updateQuery = `
+            UPDATE appointments 
+            SET appt_booked = ? 
+            WHERE user_id = ? AND appt_booked = 0 
+            ORDER BY date DESC 
+            LIMIT 1
+        `;
+
+        const [result] = await db.query(updateQuery, [booked, userId]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: "No pending appointment found to update" });
+        }
+
+        res.status(200).json({ success: true, message: "Appointment successfully booked" });
+    } catch (error) {
+        console.error("Error updating appointment:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+});
+
+
+app.post("/api/check-appointment", async (req, res) => {
+    try {
+      const { authToken } = req.body;
+      if (!authToken) {
+        return res.status(400).json({ success: false, message: "Authentication token is required" });
+      }
+      const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
+      const userId = decodedToken.user_id;
+      const checkQuery = `
+        SELECT * FROM appointments WHERE user_id = ? AND appt_booked = '0' ORDER BY created_at DESC LIMIT 1`;
+  
+      const [result] = await db.promise().query(checkQuery, [userId]);
+      if (result.length > 0) {return res.json({ hasPendingAppointment: true });}
+      else {return res.json({ hasPendingAppointment: false });}
+
+    } catch (error) {
+      console.error("Error checking appointment:", error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+  });
+
+
+app.post("/api/check-paid", async (req, res) => {
+    try {
+      const { authToken } = req.body;
+      if (!authToken) {
+        return res.status(400).json({ success: false, message: "Authentication token is required" });
+      }
+      const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
+      const userId = decodedToken.user_id;
+      const checkQuery = 
+      `SELECT * FROM appointments WHERE user_id = ? AND appt_booked = '0' AND paid = '1' ORDER BY created_at DESC LIMIT 1`;
+  
+      const [result] = await db.promise().query(checkQuery, [userId]);
+      if (result.length > 0) {return res.json({ hasPendingAppointment: true });}
+      else {return res.json({ hasPendingAppointment: false });}
+
+    } catch (error) {
+      console.error("Error checking appointment:", error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+  });
+
+  
+app.post("/api/set-appointment", async (req, res) => {
+    try {
+      const { authToken, eventDataCalendly } = req.body;
+
+      if (!authToken) {
+        return res.status(400).json({ success: false, message: "Authentication token is required" });
+      }
+  
+      const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
+      const userId = decodedToken.user_id;
+      const mysqlDate = new Date(eventDataCalendly.created_at).toISOString().slice(0, 19).replace("T", " ");
+  
+      const checkQuery = `
+        Update appointments 
+        set appt_booked = '1', 
+        meeting_link = ?,
+        meeting_time = ?,
+        meeting_title = ?,
+        meeting_creation_date = ?
+        WHERE user_id = ? 
+          AND appt_booked = '0' 
+        ORDER BY created_at DESC 
+        LIMIT 1
+      `;
+  
+      const [result] = await db.promise().query(checkQuery, [eventDataCalendly.location['join_url'], eventDataCalendly.start_time, eventDataCalendly.name, mysqlDate ,userId]);
+  
+      if (result.length > 0) {
+        return res.json({ message:"Appointment Set up" });
+    } else {
+          return res.json({ message:"Appointment Not Set up" });
+      }
+    } catch (error) {
+      console.error("Error checking appointment:", error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+  });
 
 
 // Start the server

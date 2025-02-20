@@ -7,6 +7,8 @@ import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
 
 const SLHome = () => {
+
+    const navigate = useNavigate();
     const [sections, setSections] = useState([]);
     const [blogs, setBlogs] = useState([]);
     const [pagination, setPagination] = useState({
@@ -104,7 +106,7 @@ const SLHome = () => {
                 </div>
             </div>
 
-            <div className="slhome-background3">
+            <div className="slhome-background3 back-priopa py-5">
                 <div className="tb-2">Knowledge</div>
                 <div className="d-flex justify-content-center align-items-center flex-column text-center">
                     <h1 className="my-3 w-80 sl-heading3">
@@ -153,7 +155,7 @@ const SLHome = () => {
                 <div className="container my-4">
                     <div className="row justify-content-center">
                         <div className="col-md-3 my-2">
-                            <div className="sl-card2 p-4">
+                            <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/journeyers-anteroom')}}>
                                 <div>
                                     <FaArrowRight className="arrow-sl my-4"/>
                                     <h5>Return to the Anteroom</h5>
@@ -166,7 +168,7 @@ const SLHome = () => {
                             </div>
                         </div>
                         <div className="col-md-3 my-2">
-                            <div className="sl-card2 p-4 sl-spec">
+                            <div className="sl-card2 cursor-pointer p-4 sl-spec">
                                 <div>
                                     <FaArrowRight className="arrow-sl my-4"/>
                                     <h5>Visit the Resting Grove</h5>
@@ -179,7 +181,7 @@ const SLHome = () => {
                             </div>
                         </div>
                         <div className="col-md-3 my-2">
-                            <div className="sl-card2 p-4">
+                            <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/consult-oracle')}}>
                                 <div>
                                     <FaArrowRight className="arrow-sl my-4"/>
                                     <h5>Explore More Resources</h5>

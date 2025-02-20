@@ -13,18 +13,20 @@ const Questions = () => {
     return (
         <>
             <div className="d-flex pt-5 my-3 justify-content-center">
-                <div className="tb-2">Do you have</div>
+                <div className="tb-2">FAQs</div>
             </div>
-            <div className="d-flex justify-content-center">
-                <h1 className="mt-2 px-1 text-dark heading-main-2">Any</h1>
-                <span className="span mt-3 px-1 style-2">Questions</span>
+            <div className="d-flex flex-column px-4 align-items-center justify-content-center">
+                <h1 className="mt-2 px-2 text-dark heading-main-2">Frequently Asked Questions</h1>
+                <p className="p mb-4 px-2 text-dark">Explore our frequently asked questions to better understand your consultation experience.</p>
             </div>
             <div className="pad-custom-q">
                 {QuestionsData.map((item, index) => (
                     <div key={index}>
+                        {/* Click event applied to the whole container */}
                         <div
-                            className="question-container border-qc d-flex justify-content-between"
+                            className="question-container border-qc d-flex justify-content-between align-items-center"
                             onClick={() => toggleAnswer(index)}
+                            style={{ cursor: "pointer" }} // Makes the entire div clickable
                         >
                             <p className="p text-dark fw-bold m-0 custom-w-ques">{item.question}</p>
                             {openIndex === index ? (

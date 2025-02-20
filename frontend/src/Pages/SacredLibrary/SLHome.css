@@ -114,7 +114,6 @@
     width: 100%;  
     height: 100%;
     background-color: var(--priopa);
-    border: 1px solid rgb(139, 152, 151);
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;

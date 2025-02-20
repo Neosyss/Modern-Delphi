@@ -25,3 +25,22 @@
     background-color: black;
     color: white;
 }
+
+.custom-centric{
+    display: flex;
+    justify-content: center;
+}
+
+.w-52{
+    width: 60%;
+}
+
+@media (max-width: 768px) {
+    
+.custom-centric{
+    display: block;
+}
+.w-52{
+    width: 90%;
+}
+}

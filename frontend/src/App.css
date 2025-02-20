@@ -181,6 +181,9 @@ strong {
     
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
 @media (max-width:500px) {
     .tb-1, .tb-2{
         padding: 1.7vw 5vw;

@@ -1,6 +1,6 @@
 .sl-blog{
     padding: 50px;
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 .heading-sblog{
@@ -31,27 +31,29 @@
 }
 
 .small-slcard{
-    height: 150px;
+    height: 180px;
     overflow: hidden;
     width: 100%;
     display: flex;
     justify-content: start;
     align-items: start;
-    background-color: whitesmoke;
-    border-bottom: 2px solid black;
+    background-color: #bed0ca3f;
+    border-bottom: 2px solid rgb(146, 165, 169);
     padding: 10px;
     word-wrap: break-word;
 }
 .img-cont-smcard{
-    width: 250px;
+    width: 150px;
     height: 100%;
     object-fit: contain;
     overflow: hidden;
 }
-
+.smwi{
+    width: 70%;
+}
 .img-cont-smcard img{
     height: auto;
-    width: 100%;
+    width: 150px;
     border-radius: 5px;
 }
 

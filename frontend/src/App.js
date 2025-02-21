@@ -21,6 +21,7 @@ import StripePage from './Pages/ConsultOracle/StripePage';
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import PaymentDetails from './Pages/ConsultOracle/PaymentDetails';
 
 const ProtectedRoute = () => {
     const token = localStorage.getItem("authToken");
@@ -53,6 +54,7 @@ const Layout = () => {
         <Route path="/journeyers-anteroom" element={<JAHome />} />
         <Route path="/journeyers-chatroom" element={<JAChatRoom />} />
         <Route path="/consult-oracle" element={<ConsultOracleHome />} />
+        <Route path="/payment-details/:id" element={<PaymentDetails/>} />
         <Route path="/stripe-payment/:id" element={
           <Elements stripe={stripePromise}>
             <StripePage/> 

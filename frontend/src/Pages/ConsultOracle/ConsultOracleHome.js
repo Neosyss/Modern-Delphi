@@ -199,7 +199,7 @@ const PriceCard = ({ pricing_id, price, title, description, css=0 }) => {
     const handlePaymentProceed = () => {
         const token = localStorage.getItem("authToken");
         if (token){
-            navigate(`/stripe-payment/${pricing_id}`);
+            navigate(`/payment-details/${pricing_id}`);
         }else{
             navigate("/login");
         }

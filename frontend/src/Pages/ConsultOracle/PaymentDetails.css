@@ -1,0 +1,35 @@
+.payment-details-main{
+    background-color: white;
+    min-height: 80vh;
+    width: 80vw;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.height-pd{
+    height: 60vh;
+}
+
+.price-lg{
+    color: var(--sec);
+    font-size: 4.5rem;
+}
+
+.fs-med{
+    font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+    .payment-details-main{
+        background-color: white;
+        min-height: 80vh;
+        width: 93vw;
+        margin-top: 20px;
+        border-radius: 20px;
+    }
+    .height-pd{
+        height: 20vh;
+    }
+       
+}

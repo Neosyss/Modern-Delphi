@@ -57,7 +57,7 @@ const ConsultOracleHome = () => {
                 </div>
                 <div className="d-flex justify-content-center m-2">
                     <div className="prb-2 mx-1"><div>Book Now</div></div>
-                    <div className="prb-1 mx-1"><div>Learn More</div></div>
+                    {/* <div className="prb-1 mx-1"><div>Learn More</div></div> */}
                 </div>
             </div>
 

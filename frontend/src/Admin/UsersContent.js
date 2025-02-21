@@ -1,11 +1,8 @@
 import './UsersContent.css'
-import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const UsersContent = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentUser, setCurrentUser] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('');
     const [users, setUsers] = useState([]);
@@ -25,15 +22,6 @@ const UsersContent = () => {
         fetchUsersData();
     }, []);
 
-    const openModal = (user) => {
-        setCurrentUser(user);
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setCurrentUser(null);
-    };
 
     const handleSearch = (value) => {
         setSearchTerm(value);
@@ -71,19 +59,6 @@ const UsersContent = () => {
 
     return (
         <>
-            {isModalOpen && (
-                <>
-                    <div className="overfl" onClick={closeModal}></div>
-                    <div className="user-details-modal">
-                        <div className="center-user-details">
-                            <div className="d-flex justify-content-between">
-                                <h4>User Details</h4>
-                                <IoClose className="cross-svg" onClick={closeModal}/>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )}
 
             <div className="">
                 <div className="row m-0">

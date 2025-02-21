@@ -22,8 +22,8 @@ const seedAdmin = (db) => {
         const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
         // Insert admin user into the database
-        const insertQuery = "INSERT INTO Users (name, email, password_hash, role) VALUES (?, ?, ?, ?)";
-        db.query(insertQuery, [ADMIN_NAME, ADMIN_EMAIL, hashedPassword, "admin"], (err, result) => {
+        const insertQuery = "INSERT INTO Users (name, email, password_hash, role, acceptedTerms) VALUES (?, ?, ?, ?, ?)";
+        db.query(insertQuery, [ADMIN_NAME, ADMIN_EMAIL, hashedPassword, "admin", '1'], (err, result) => {
             if (err) {
                 console.error("❌ Error inserting admin user:", err);
                 return;

@@ -205,6 +205,59 @@ app.get('/api/all-users', (req, res) => {
     });
 });
 
+app.get('/api/all-bookings', (req, res) => {
+    const query = `
+        SELECT 
+            appointments.*, 
+            users.user_id AS user_id, 
+            users.name AS user_name, 
+            users.email AS user_email 
+        FROM appointments
+        JOIN users ON appointments.user_id = users.user_id
+        ORDER BY appointments.created_at DESC;
+    `;
+
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
+app.get("/api/user-bookings", (req, res) => {
+    // Get token from request headers
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+        return res.status(401).json({ error: "Unauthorized: No token provided" });
+    }
+
+    try {
+        // Verify JWT and extract user_id
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.user_id;
+
+        // Query to fetch bookings for the logged-in user
+        const query = `
+            SELECT 
+                appointments.*, 
+                users.name AS user_name, 
+                users.email AS user_email 
+            FROM appointments
+            JOIN users ON appointments.user_id = users.user_id
+            WHERE appointments.user_id = ?
+            and appointments.appt_booked = '1'
+            ORDER BY appointments.created_at DESC;
+        `;
+
+        db.query(query, [userId], (err, results) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json(results);
+        });
+    } catch (error) {
+        res.status(403).json({ error: "Unauthorized: Invalid token" });
+    }
+});
+
 
 
 // --------------
@@ -420,10 +473,10 @@ app.post("/api/auth/signup", async (req, res) => {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             // Insert new user into database
-            const insertQuery = "INSERT INTO Users (name, email, password_hash, role) VALUES (?, ?, ?, ?)";
+            const insertQuery = "INSERT INTO Users (name, email, password_hash, role, acceptedTerms) VALUES (?, ?, ?, ?, ?)";
             const role = "user";
 
-            db.query(insertQuery, [fullName, email, hashedPassword, role], (err, result) => {
+            db.query(insertQuery, [fullName, email, hashedPassword, role, '1'], (err, result) => {
                 if (err) {
                     console.error("Error inserting user:", err);
                     return res.status(500).json({ error: "Database error" });

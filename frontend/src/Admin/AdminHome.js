@@ -2,9 +2,9 @@ import "./AdminHome.css";
 import { useState } from 'react';
 import HomeContent from "./HomeContent";
 import BlogContent from "./BlogContent";
-import CalendlyManager from "./CalendlyManager";
 import UsersContent from "./UsersContent";
 import ProfilePage from "../Auth/ProfilePage";
+import Bookings from "./Bookings";
 
 const AdminHome = () => {
 
@@ -32,7 +32,7 @@ const AdminHome = () => {
                     {selectedOption === "Home" && <HomeContent/>}
                     {selectedOption === "Users" && <UsersContent/>}
                     {selectedOption === "Blogs" && <BlogContent/> }
-                    {selectedOption === "Bookings" && <div><CalendlyManager/></div>}
+                    {selectedOption === "Bookings" && <div><Bookings/></div>}
                     {selectedOption === "Profile" && <ProfilePage panelType ={0}/>}
                 </div>
             </div>

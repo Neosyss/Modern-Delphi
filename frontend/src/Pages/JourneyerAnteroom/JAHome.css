@@ -27,6 +27,11 @@
     left: 110px;
 }
 
+.close-svg{
+    width: 30px;
+    height: 30px;
+}
+
 @media (max-width: 768px) {
     .padding-ar-1{
         padding: 20px;

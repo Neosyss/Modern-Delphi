@@ -102,7 +102,7 @@ const Login = () => {
                                 <div>Sign in with Email</div></div>
                         </form>
                         <p className="py-3 px-3 text-center a-links">
-                            By clicking the button above, you agree to our <a href="/terms-of-use">Terms of Use</a> and <a href="/privacy-policy">Privacy Policy</a>.
+                            By clicking the button above, you agree to our <a href="/terms-of-use">Terms of Use and Disclaimers</a>
                         </p>
                         <div className="text-center a-links">
                             Don't Have an account? <a href="/signup">Sign Up</a>

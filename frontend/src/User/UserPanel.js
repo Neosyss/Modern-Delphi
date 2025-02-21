@@ -2,8 +2,8 @@ import "./UserPanel.css";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NewAppointment from "./NewAppointment";
-import Home from "./Home";
 import ProfilePage from "../Auth/ProfilePage";
+import UserBookings from "./UserBookings";
 
 const UserPanel = () => {
     const location = useLocation();
@@ -18,18 +18,14 @@ const UserPanel = () => {
                     <div className="p-0 m-0 sideBarCont">
                         <div className={`sideBarItem ${selectedOption === "Profile" ? "selected" : ""}`} 
                             onClick={() => setSelectedOption("Profile")}> Home </div>
-                        <div className={`sideBarItem ${selectedOption === "Users" ? "selected" : ""}`} 
-                            onClick={() => setSelectedOption("Users")}> Bookings </div>
+                        <div className={`sideBarItem ${selectedOption === "BookingList" ? "selected" : ""}`} 
+                            onClick={() => setSelectedOption("BookingList")}> Bookings </div>
                         <div className={`sideBarItem ${selectedOption === "Bookings" ? "selected" : ""}`} 
                             onClick={() => setSelectedOption("Bookings")}> New Appointment </div>
-                        <div className={`sideBarItem ${selectedOption === "Blogs" ? "selected" : ""}`} 
-                            onClick={() => setSelectedOption("Blogs")}> Contact Us </div>
                     </div>
                 </div>
                 <div className={`col-md-10 ${selectedOption === "Bookings" ? 'p-0' : 'adminInner'}`}>
-                    {selectedOption === "Home" && <Home />}
-                    {selectedOption === "Users" && <></>}
-                    {selectedOption === "Blogs" && <></>}
+                    {selectedOption === "BookingList" && <><UserBookings/></>}
                     {selectedOption === "Bookings" && <NewAppointment />}
                     {selectedOption === "Profile" && <><ProfilePage panelType={1}/></>}
                 </div>

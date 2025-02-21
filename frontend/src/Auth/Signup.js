@@ -172,8 +172,7 @@ const Signup = () => {
                                         checked={agreeTerms}
                                         onChange={() => setAgreeTerms(!agreeTerms)}
                                     />
-                                    <label htmlFor="agreeTerms" className="ms-2 a-links">I agree to the  <a target="_blank" href="/terms-of-use"> Terms of Use</a> and
-                                    <a target="_blank" href="/privacy-policy"> Privacy Policy</a></label>
+                                    <label htmlFor="agreeTerms" className="ms-2 a-links">I agree to the  <a target="_blank" href="/terms-of-use"> Terms of Use and Disclaimers</a> </label>
                                 </div>
                                 <div onClick={handleSubmit} className="prb-2 w-100 my-3" disabled={loading || !agreeTerms}>
                                     <div>{loading ? "Signing Up..." : "Sign up with email"}</div>

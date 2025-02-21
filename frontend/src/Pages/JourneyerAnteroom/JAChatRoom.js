@@ -1,22 +1,15 @@
 import { useState, useEffect } from "react";
+import { IoIosClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const JAChatRoom = () => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(true);
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleCloseModal = () => {
-        if (isChecked) {
-            setShowModal(false);
-        }
-    };
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (token) {
             setShowModal(false);
-            setIsChecked(true);
         }
     }, []);
 
@@ -25,26 +18,25 @@ const JAChatRoom = () => {
             {showModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h2>Terms and Conditions</h2>
-                        <p>You need to agree to our terms of use and privacy policy to continue chatting with the chatbot.</p>
-                        <div className="checkbox-container">
-                            <input
-                                type="checkbox"
-                                id="agreeCheckbox"
-                                onChange={(e) => setIsChecked(e.target.checked)}
-                            />
-                            <label htmlFor="agreeCheckbox" className="ms-2 a-links">I agree to the  <a target="_blank" href="/terms-of-use"> Terms of Use</a> and
-                            <a target="_blank" href="/privacy-policy"> Privacy Policy</a></label>
-                        </div>
-                        <div className="d-flex mt-2 justify-content-center">
-                        <div className={`prb-1 mx-1`} onClick={() => {navigate('/journeyers-anteroom')}}>
-                            <div>
-                                Exit Chat
+                        <div className="">
+                            <div className="d-flex justify-content-end">
+                                <div ><IoIosClose className="close-svg cursor-pointer" 
+                                onClick={() => {navigate('/journeyers-anteroom')}}
+                                /> </div>
                             </div>
-                        </div>
-                        <div className={`prb-2 ${!isChecked ? "disabled" : ""}`} onClick={handleCloseModal}>
-                            <div>
-                                Continue
+                            <h3>Sign In to access the Anteroom</h3>
+                            <p>You need to sign in or create an account to access the Journeyer's Anteroom</p>
+
+                        <div className="my-5 d-flex justify-content-center align-items-center">
+                            <div className="prb-1 mx-1"
+                            onClick = {() => {navigate('/login')}}
+                            >
+                                <div>Sign In</div>
+                            </div>
+                            <div className="prb-2 mx-1"
+                            onClick = {() => {navigate('/signup')}}
+                            >
+                                <div>Sign Up</div>
                             </div>
                         </div>
                         </div>

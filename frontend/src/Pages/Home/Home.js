@@ -5,6 +5,7 @@ import PricingPlans from "./PricingPlans";
 import Support from "./Support";
 import axios from "axios";
 import { useEffect } from "react";
+import HomeChatBot from "./HomeChatBot";
 
 const trackSiteVisit = async () => {
   try {
@@ -26,6 +27,7 @@ const Home = () => {
     {/* <Navbar /> */}
     <Carousel />
     <WelcomeSection />
+    <HomeChatBot/>
     <GreenStrip/>
     <PricingPlans />
     {/* <JeffreySection /> */}

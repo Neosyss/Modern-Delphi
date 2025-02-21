@@ -26,7 +26,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage, fileFilter });
 
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: 'http://127.0.0.1:3000', 
     methods: 'GET,POST,PUT,DELETE',  
     credentials: true,               
 }));
@@ -34,7 +34,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: '127.0.0.1',
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,

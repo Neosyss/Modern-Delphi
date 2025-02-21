@@ -165,13 +165,13 @@ app.get("/api/sitemetrics", async (req, res) => {
 
         // Fetch confirmed appointments
         const [appointmentsResults] = await db.promise().query(
-            `SELECT COUNT(*) AS appointments FROM Appointments WHERE 1 = 1 ${appointmentsCondition}`
+            `SELECT COUNT(*) AS appointments from appointments WHERE 1 = 1 ${appointmentsCondition}`
         );
         const appointments = appointmentsResults[0].appointments || 0;
 
         // Fetch users with role = 'user'
         const [usersResults] = await db.promise().query(
-            `SELECT COUNT(*) AS users FROM Users WHERE role = 'user' ${usersCondition}`
+            `SELECT COUNT(*) AS users from users WHERE role = 'user' ${usersCondition}`
         );
         const users = usersResults[0].users || 0;
 
@@ -192,7 +192,7 @@ app.get('/api/all-users', (req, res) => {
             u.email, 
             COUNT(CASE WHEN a.appt_booked = '1' THEN 1 END) AS booked_appointments, 
             COUNT(CASE WHEN a.appt_booked = '0' THEN 1 END) AS pending_appointments
-        FROM Users u
+        from users u
         LEFT JOIN Appointments a ON u.user_id = a.user_id
         WHERE u.role = 'user'
         GROUP BY u.user_id
@@ -212,7 +212,7 @@ app.get('/api/all-bookings', (req, res) => {
             users.user_id AS user_id, 
             users.name AS user_name, 
             users.email AS user_email 
-        FROM appointments
+        from appointments
         JOIN users ON appointments.user_id = users.user_id
         ORDER BY appointments.created_at DESC;
     `;
@@ -242,7 +242,7 @@ app.get("/api/user-bookings", (req, res) => {
                 appointments.*, 
                 users.name AS user_name, 
                 users.email AS user_email 
-            FROM appointments
+            from appointments
             JOIN users ON appointments.user_id = users.user_id
             WHERE appointments.user_id = ?
             and appointments.appt_booked = '1'
@@ -263,7 +263,7 @@ app.get("/api/user-bookings", (req, res) => {
 // --------------
 // ✅ Fetch all blogs
 app.get('/api/blogs', (req, res) => {
-    db.query('SELECT blog_id, title, description, hashtags, images, date FROM Blogs ORDER BY date DESC', (err, results) => {
+    db.query('SELECT blog_id, title, description, hashtags, images, date from blogs ORDER BY date DESC', (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
 
         const blogs = results.map(blog => ({
@@ -277,7 +277,7 @@ app.get('/api/blogs', (req, res) => {
 // ✅ Fetch a single blog by ID
 app.get('/api/blogs/:id', (req, res) => {
     const { id } = req.params;
-    db.query('SELECT * FROM Blogs WHERE blog_id = ?', [id], (err, results) => {
+    db.query('SELECT * from blogs WHERE blog_id = ?', [id], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         if (results.length === 0) return res.status(404).json({ error: "Blog not found" });
 
@@ -338,7 +338,7 @@ app.put('/api/blogs/:id', upload.single('image'), (req, res) => {
 // ✅ Delete a blog
 app.delete('/api/blogs/:id', (req, res) => {
     const blogId = req.params.id;
-    db.query('DELETE FROM Blogs WHERE blog_id = ?', [blogId], (err) => {
+    db.query('DELETE from blogs WHERE blog_id = ?', [blogId], (err) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json({ message: "Blog deleted successfully" });
     });
@@ -358,14 +358,14 @@ app.post('/api/blogs/paginated', (req, res) => {
     const offset = (page - 1) * limit;
 
     // First, get total count of blogs
-    db.query('SELECT COUNT(*) as total FROM Blogs', (err, countResults) => {
+    db.query('SELECT COUNT(*) as total from blogs', (err, countResults) => {
         if (err) return res.status(500).json({ error: err.message });
 
         const total = countResults[0].total;
 
         // Then get the paginated blogs
         db.query(
-            'SELECT blog_id, title, description, hashtags, images, date FROM Blogs ORDER BY date DESC LIMIT ? OFFSET ?',
+            'SELECT blog_id, title, description, hashtags, images, date from blogs ORDER BY date DESC LIMIT ? OFFSET ?',
             [limit, offset],
             (err, results) => {
                 if (err) return res.status(500).json({ error: err.message });
@@ -400,7 +400,7 @@ app.get("/api/auth/user", (req, res) => {
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const query = "SELECT user_id, name, email FROM Users WHERE user_id = ? and role = 'user'";
+        const query = "SELECT user_id, name, email from users WHERE user_id = ? and role = 'user'";
         
         db.query(query, [decoded.user_id], (err, results) => {
             if (err) {
@@ -428,7 +428,7 @@ app.get("/api/auth/admin", (req, res) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const query = "SELECT user_id, name, email FROM Users WHERE user_id = ? and role='admin'";
+        const query = "SELECT user_id, name, email from users WHERE user_id = ? and role='admin'";
         
         db.query(query, [decoded.user_id], (err, results) => {
             if (err) {
@@ -458,7 +458,7 @@ app.post("/api/auth/signup", async (req, res) => {
 
     try {
         // Check if the user already exists
-        const checkQuery = "SELECT email FROM Users WHERE email = ?";
+        const checkQuery = "SELECT email from users WHERE email = ?";
         db.query(checkQuery, [email], async (err, results) => {
             if (err) {
                 console.error("Error checking existing user:", err);
@@ -503,7 +503,7 @@ app.post("/api/auth/login", (req, res) => {
         return res.status(400).json({ error: "Email and password are required" });
     }
 
-    const query = "SELECT user_id, email, password_hash, role FROM Users WHERE email = ?";
+    const query = "SELECT user_id, email, password_hash, role from users WHERE email = ?";
     db.query(query, [email], (err, results) => {
         if (err) {
             console.error("Error fetching user:", err);
@@ -594,7 +594,7 @@ app.post("/create-payment-intent", async (req, res) => {
 
   app.get("/api/price-data", (req, res) => {
 
-        const query = "SELECT * FROM pricing";
+        const query = "SELECT * from pricing";
         db.query(query, (err, results) => {
             if (err) {
                 console.error("Database error:", err);
@@ -664,7 +664,7 @@ app.post("/api/check-appointment", async (req, res) => {
       const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
       const userId = decodedToken.user_id;
       const checkQuery = `
-        SELECT * FROM appointments WHERE user_id = ? AND appt_booked = '0' ORDER BY created_at DESC LIMIT 1`;
+        SELECT * from appointments WHERE user_id = ? AND appt_booked = '0' ORDER BY created_at DESC LIMIT 1`;
   
       const [result] = await db.promise().query(checkQuery, [userId]);
       if (result.length > 0) {return res.json({ hasPendingAppointment: true });}
@@ -686,7 +686,7 @@ app.post("/api/check-paid", async (req, res) => {
       const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
       const userId = decodedToken.user_id;
       const checkQuery = 
-      `SELECT * FROM appointments WHERE user_id = ? AND appt_booked = '0' AND paid = '1' ORDER BY created_at DESC LIMIT 1`;
+      `SELECT * from appointments WHERE user_id = ? AND appt_booked = '0' AND paid = '1' ORDER BY created_at DESC LIMIT 1`;
   
       const [result] = await db.promise().query(checkQuery, [userId]);
       if (result.length > 0) {return res.json({ hasPendingAppointment: true });}

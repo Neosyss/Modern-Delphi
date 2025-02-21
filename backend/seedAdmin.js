@@ -7,7 +7,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASS
 const ADMIN_NAME = process.env.ADMIN_USERNAME
 
 const seedAdmin = (db) => {
-    db.query("SELECT * FROM Users WHERE email = ?", [ADMIN_EMAIL], async (err, results) => {
+    db.query("SELECT * FROM users WHERE email = ?", [ADMIN_EMAIL], async (err, results) => {
         if (err) {
             console.error("❌ Error checking for existing admin:", err);
             return;

@@ -9,6 +9,13 @@ import pic2 from '../../isvgs/flowers-crop-2.webp';
 import Questions from './Questions';
 import axios from 'axios';
 import PaidAlready from './PaidAlready';
+import { GiGraduateCap } from "react-icons/gi";
+import { FaBookOpen, FaHeart } from "react-icons/fa";
+import { PiTarget } from "react-icons/pi";
+import { FaEye } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
+
 
 const ConsultOracleHome = () => {
 
@@ -73,7 +80,7 @@ const ConsultOracleHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 p-4">
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <GiGraduateCap className="arrow-sl lgsvg my-4"/>
                                     <h5>Illuminate Your Visions With Our Experts</h5>
                                     <p>Gain fresh perspective & guidance on your journey.</p>
                                 </div>
@@ -82,7 +89,7 @@ const ConsultOracleHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 p-4 sl-spec">
                             <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <FaBookOpen className="arrow-sl lgsvg my-4"/>
                                     <h5>Forge your Path With Sacred Readings</h5>
                                     <p>Unlock the wisdom that lies within you.</p>
                                 </div>
@@ -91,7 +98,7 @@ const ConsultOracleHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 p-4">
                             <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <PiTarget className="arrow-sl lgsvg my-4"/>
                                     <h5>Align & Overcome Your Life's Challenges</h5>
                                     <p>Transform obstacles into opportunities for growth.</p>
                                 </div>
@@ -108,9 +115,18 @@ const ConsultOracleHome = () => {
                         <h1 className="my-3">Unlock the Secrets of Your Journey</h1>
                         <p className="p sl-para text-start">An Oracle consultation is a profound experience designed to connect you with ancient wisdom and insight. Through intuitive guidance, you will uncover clarity and direction for your life's path.</p>
                         <p className="p my-4 mt-5 sl-para text-start">
-                            <p className="sl-para p text-start ">Personalized insights tailored to your unique journey.</p>
+                            <div className="d-flex justify-content-start">
+                                <FaEye className='arrow-sl mx-2'/>
+                                <p className="sl-para p text-start ">Personalized insights tailored to your unique journey.</p>
+                            </div>
+                            <div className="d-flex justify-content-start">
+                                <FaRegHeart className='arrow-sl mx-2'/>
                             <p className="sl-para p text-start ">Experience transformative guidance from our skilled Oracles.</p>
+                            </div>
+                            <div className="d-flex justify-content-start">
+                                <IoSearch className='arrow-sl mx-2'/>
                             <p className="sl-para p text-start ">Find answers to your most pressing questions.</p>
+                            </div>
                         </p>
                     </div>
                     <div className="col-md-5">

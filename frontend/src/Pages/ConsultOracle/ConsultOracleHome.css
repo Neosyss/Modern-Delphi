@@ -20,7 +20,10 @@
     height: 22px;
     width: 22px;
 }
-
+.lgsvg{
+    height: 35px;
+    width: 35px;
+}
 .back-priopa{
     background-color: #ecf4f0;
 }

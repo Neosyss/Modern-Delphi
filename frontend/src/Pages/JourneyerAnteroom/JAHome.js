@@ -3,6 +3,14 @@ import { FaArrowRight } from "react-icons/fa6";
 import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
 import { useNavigate } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
+import { PiPathFill } from "react-icons/pi";
+import { FaBookOpen } from "react-icons/fa6";
+import { IoKey } from "react-icons/io5";
+
+
 
 const JAHome = () => {
 
@@ -14,32 +22,45 @@ const JAHome = () => {
                 <div className="tb-2">Welcome</div>
                 <h1 className="my-3">Enter the Anteroom</h1>
                 <div className="d-flex justify-content-center">
-                    <p className="p sl-para w-80">A serene space for reflection, inviting you to explore the 
-                    depths for your journey</p>
+                    <p className="p sl-para w-80">A serene space for reflection, inviting you to explore the
+                        depths for your journey</p>
                 </div>
                 <div className="d-flex justify-content-center m-2">
-                    <div className="prb-2 mx-1" onClick={() => {navigate('/journeyers-chatroom')}}
+                    <div className="prb-2 mx-1" onClick={() => { navigate('/journeyers-chatroom') }}
                     ><div>Let's Have a Chat</div></div>
                 </div>
             </div>
 
             <div className="slhome-background2">
                 <div className="row">
-                    
+
                     <div className="col-md-7">
                         <div className="tb-2">Serenity</div>
                         <h1 className="my-3">Reflect on your journey: What question guides you today?</h1>
                         <p className="p sl-para text-start">Welcome to the Journeyer's Anteroom, a tranquil space for introspection. Here, you can explore the questions that matter most to you.</p>
-                        <p className="p my-4 sl-para text-start">
+
+
+                        <div className="d-flex mt-4 justify-content-start">
+                            <FaEye className='arrow-sl mx-2' />
                             <p className="sl-para p text-start ">Seek clarity and insight into your life's path.</p>
+
+                        </div>
+                        <div className="d-flex justify-content-start">
+                            <FaRegHeart className='arrow-sl mx-2' />
                             <p className="sl-para p text-start ">Embrace the stiffness and listen to your heart.</p>
+
+                        </div>
+                        <div className="d-flex justify-content-start">
+                            <IoSearch className='arrow-sl mx-2' />
                             <p className="sl-para p text-start ">Open your mind to new possibilities and wisdom.</p>
-                        </p>
+
+                        </div>
+
                     </div>
                     <div className="col-md-5">
                         <img src={pic1} className="img-fluid slhomeimg1" />
                     </div>
-                   
+
                 </div>
             </div>
 
@@ -52,7 +73,7 @@ const JAHome = () => {
                         <div className="tb-2">Serenity</div>
                         <h1 className="my-3">Immerse Youself in Calming Sounds</h1>
                         <p className="p sl-para text-start">Experience a soothing soundscape designed to enhance your journey.
-                        Toggle the atmospheric audio on or off to create your perfect space for reflection.</p>
+                            Toggle the atmospheric audio on or off to create your perfect space for reflection.</p>
                         <div className="d-flex my-3 justify-content-start">
                             <div className="ja-card1 my-2 p-3">
                                 <h1>50%</h1>
@@ -68,11 +89,11 @@ const JAHome = () => {
                             <div className="prb-2 mx-1"><div>Pause</div></div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
 
-           
+
             <div className="slhome-background4">
                 <img src={pic2} className="slhomesvg" />
                 <div className="tb-2">Sanctuary</div>
@@ -85,7 +106,7 @@ const JAHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 p-4">
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <PiPathFill className="arrow-sl lgsvg my-4" />
                                     <h5>Embark on a journey of discovery and renewal in our sacred space.</h5>
                                     <p>Delive deeper into your quest for knowledge and peace.
                                     </p>
@@ -95,7 +116,7 @@ const JAHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 p-4 sl-spec">
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <FaBookOpen className="arrow-sl lgsvg my-4" />
                                     <h5>Find tranquility and rejuvenation in the Resting Grove.</h5>
                                     <p>Unwind and recharge your spirit in a serene environment.
                                     </p>
@@ -105,7 +126,7 @@ const JAHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 p-4">
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <IoKey className="arrow-sl lgsvg my-4" />
                                     <h5>Unlock the secrets of the universe in the Sacred Library.
                                     </h5>
                                     <p>Discover ancient wisdom and insights that illuminate your path.</p>
@@ -130,7 +151,7 @@ const SLCard = ({ image, title, description }) => {
                 <h4 className="card-title">{title}</h4>
                 <div className="d-flex mt-3 justify-content-center">
                     <p className="card-description">{description}</p>
-                    <FaArrowRight className="arrow-sl"/>
+                    <FaArrowRight className="arrow-sl" />
                 </div>
             </div>
         </div>

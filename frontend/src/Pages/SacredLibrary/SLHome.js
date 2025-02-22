@@ -5,6 +5,9 @@ import { FaArrowRight } from "react-icons/fa6";
 import "./SLHome.css";
 import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
+import { PiPathFill } from "react-icons/pi";
+import { FaBookOpen } from "react-icons/fa6";
+import { IoKey, IoSearch } from "react-icons/io5";
 
 const SLHome = () => {
 
@@ -157,7 +160,7 @@ const SLHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/journeyers-anteroom')}}>
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <PiPathFill className="arrow-sl lgsvg my-4"/>
                                     <h5>Return to the Anteroom</h5>
                                     <p>Connect with the Oracle for guidance</p>
                                 </div>
@@ -170,7 +173,7 @@ const SLHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 cursor-pointer p-4 sl-spec">
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <FaBookOpen className="arrow-sl lgsvg my-4"/>
                                     <h5>Visit the Resting Grove</h5>
                                     <p>Take a moment to reflect & rejuvenate</p>
                                 </div>
@@ -183,7 +186,7 @@ const SLHome = () => {
                         <div className="col-md-3 my-2">
                             <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/consult-oracle')}}>
                                 <div>
-                                    <FaArrowRight className="arrow-sl my-4"/>
+                                    <IoSearch className="arrow-sl lgsvg my-4"/>
                                     <h5>Explore More Resources</h5>
                                     <p>Find articles and tools for your journey</p>
                                 </div>

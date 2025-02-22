@@ -30,7 +30,6 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage, fileFilter });
 
 app.use(cors({
-    origin: 'http://127.0.0.1:3000', 
     methods: 'GET,POST,PUT,DELETE',  
     credentials: true,               
 }));
@@ -197,7 +196,7 @@ app.get('/api/all-users', (req, res) => {
             COUNT(CASE WHEN a.appt_booked = '1' THEN 1 END) AS booked_appointments, 
             COUNT(CASE WHEN a.appt_booked = '0' THEN 1 END) AS pending_appointments
         from users u
-        LEFT JOIN Appointments a ON u.user_id = a.user_id
+        LEFT JOIN appointments a ON u.user_id = a.user_id
         WHERE u.role = 'user'
         GROUP BY u.user_id
         ORDER BY u.created_at DESC;

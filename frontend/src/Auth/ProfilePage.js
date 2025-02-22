@@ -23,7 +23,7 @@ const ProfilePage = ({ panelType }) => {
             if (!token) return;
 
             try {
-                const response = await axios.get(`/http://82.180.132.121:5000/api/auth/${panelType === 1 ? "user" : "admin"}`, {
+                const response = await axios.get(`/api/auth/${panelType === 1 ? "user" : "admin"}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setUser(response.data.user);

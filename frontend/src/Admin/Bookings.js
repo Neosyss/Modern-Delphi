@@ -13,7 +13,7 @@ const Bookings = () => {
 
     const fetchBookingsData = async () => {
         try {
-            const response = await axios.get(`/http://82.180.132.121:5000/api/all-bookings`);
+            const response = await axios.get(`/api/all-bookings`);
             setBookings(response.data);
             console.log(response.data);
             setFilteredBookings(response.data);

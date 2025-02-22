@@ -18,7 +18,7 @@ const StripePage = () => {
 
   const fetchPriceData = async () => {
     try {
-      const response = await axios.get('/http://82.180.132.121:5000/api/price-data');
+      const response = await axios.get('/api/price-data');
       const matchingPlan = response.data.price_details.find(plan => plan.pricing_id === parseInt(id));
 
         if (matchingPlan) {
@@ -105,7 +105,7 @@ const StripePage = () => {
     const cardElement = elements.getElement(CardElement);
   
     try {
-      const response = await fetch("/http://82.180.132.121:5000/create-payment-intent", {
+      const response = await fetch("/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: price, currency: "usd" }) // Fixed price object

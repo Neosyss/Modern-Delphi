@@ -6,7 +6,7 @@ import axios from "axios";
 const HomeContent = () => {
     const fetchData = async (filter) => {
     try {
-        const response = await axios.get(`/http://82.180.132.121:5000/api/sitemetrics`, {
+        const response = await axios.get(`/api/sitemetrics`, {
             params: { filter },
         });
         setTraffic(response.data.traffic);

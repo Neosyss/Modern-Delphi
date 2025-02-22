@@ -17,7 +17,7 @@ const ConsultOracleHome = () => {
 
     const fetchPriceData = async () => {
       try {
-        const response = await axios.get('/http://82.180.132.121:5000/api/price-data');
+        const response = await axios.get('/api/price-data');
         setPricingDetails(response.data.price_details);
       } catch (error) {
         console.error('Error fetching data:', error);

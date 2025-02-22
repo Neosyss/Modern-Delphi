@@ -298,7 +298,7 @@ app.post('/api/blogs', upload.single('image'), (req, res) => {
 
     if (!title || !description) return res.status(400).json({ error: "Title and description are required" });
     const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const query = 'INSERT INTO Blogs (title, description, hashtags, date, images) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT into blogs (title, description, hashtags, date, images) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [title, description, hashtags, date ,image], (err, result) => {
         if (err) return res.status(500).json({ error: err.message });
 
@@ -477,7 +477,7 @@ app.post("/api/auth/signup", async (req, res) => {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             // Insert new user into database
-            const insertQuery = "INSERT INTO Users (name, email, password_hash, role, acceptedTerms) VALUES (?, ?, ?, ?, ?)";
+            const insertQuery = "INSERT into users (name, email, password_hash, role, acceptedTerms) VALUES (?, ?, ?, ?, ?)";
             const role = "user";
 
             db.query(insertQuery, [fullName, email, hashedPassword, role, '1'], (err, result) => {
@@ -550,7 +550,7 @@ app.post("/api/save-payment", async (req, res) => {
         }
 
         const query = `
-            INSERT INTO appointments 
+            INSERT into appointments 
             (user_id, payment_intent_id, pricing_id, amount, currency, 
             name, email, address, city, postal_code, country, paid, appt_booked) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -617,7 +617,7 @@ app.post("/api/save-payment", async (req, res) => {
   
       // Save to database (replace with actual DB logic)
       await db.query(
-        "INSERT INTO appointments (user_id, payment_intent_id, pricing_id, amount, currency, name, email, address, city, postal_code, country, status, date, paid, appt_booked) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT into appointments (user_id, payment_intent_id, pricing_id, amount, currency, name, email, address, city, postal_code, country, status, date, paid, appt_booked) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [user_id, paymentIntentId, pricing_id, amount, currency, name, email, address, city, postalCode, country, status, date, '1', '0']
       );
   

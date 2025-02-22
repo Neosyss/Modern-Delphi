@@ -1,5 +1,9 @@
 const seedAdmin = require("./seedAdmin");
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+
+bcrypt.setRandomFallback((len) => crypto.randomBytes(len));
+
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -470,8 +474,7 @@ app.post("/api/auth/signup", async (req, res) => {
             }
 
             // Hash the password before storing
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
+            const hashedPassword = await bcrypt.hash(password, 10);
 
             // Insert new user into database
             const insertQuery = "INSERT INTO Users (name, email, password_hash, role, acceptedTerms) VALUES (?, ?, ?, ?, ?)";

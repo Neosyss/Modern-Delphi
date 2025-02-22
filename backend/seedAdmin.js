@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 require('dotenv').config();
+const crypto = require('crypto');
 
+bcrypt.setRandomFallback((len) => crypto.randomBytes(len));
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL
 const ADMIN_PASSWORD = process.env.ADMIN_PASS
@@ -19,8 +21,7 @@ const seedAdmin = (db) => {
         }
 
         // Hash the admin password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, salt);
+        const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
         // Insert admin user into the database
         const insertQuery = "INSERT INTO Users (name, email, password_hash, role, acceptedTerms) VALUES (?, ?, ?, ?, ?)";

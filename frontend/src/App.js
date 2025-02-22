@@ -22,6 +22,7 @@ import StripePage from './Pages/ConsultOracle/StripePage';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import PaymentDetails from './Pages/ConsultOracle/PaymentDetails';
+import AboutUs from './Pages/Global/AboutUs';
 
 const ProtectedRoute = () => {
     const token = localStorage.getItem("authToken");
@@ -48,6 +49,7 @@ const Layout = () => {
         
         <Route path="/terms-of-use" element={<TermsOfUse termsOrPolicy={1}/>} />
         <Route path="/privacy-policy" element={<TermsOfUse termsOrPolicy={0}/>} />
+        <Route path="/about-us" element={<AboutUs />} />
         
         <Route path="/sacred-library" element={<SLHome />} />
         <Route path="/sacred-blog/:id" element={<SacredBlog />} />

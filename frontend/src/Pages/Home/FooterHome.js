@@ -1,54 +1,34 @@
 import "./FooterHome.css";
+import { useNavigate } from "react-router-dom";
 
 const FooterHome = () => {
+    const navigate = useNavigate();
     return (
         <>
-        <div className="footer-main py-5">
-            <div className="row p-4 pt-4">
-                <div className="col-md-4 mt-3 px-4">
-                    <p className="p grey">Neosyss</p>
-                    
-                    <p className="p grey">At Neosyss, we understand that life's challenges can sometimes feel overwhelming, and seeking support can be a daunting step. That's why our team of dedicated therapists is here to provide you with the compassionate guidance and expert care you deserve.</p>
-                </div>
-                <div className="col-md-4 mt-3 px-4">
-                    <div className="d-flex">
-                        <div className="w-50">
-                            <p className="p text-dark mb-4 fw-bold">Company</p>
-                            <div className="my-4">
-                                <div className="f-link grey">Individual Therapy</div>
-                                <div className="f-link grey">Couples Counseling</div>
-                                <div className="f-link grey">Career Counseling</div>
-                                <div className="f-link grey">Stress management</div>
-                                <div className="f-link grey">Anxiety Treatment</div>
-                                <div className="f-link grey">Depression Therapy</div>
-                            </div>
-                        </div>
-                        <div className="w-50 px-2">
-                            <p className="p text-dark fw-bold">Our Services</p>
-                            <div className="my-4">
-                                <div className="f-link grey">About Us</div>
-                                <div className="f-link grey">Our Services</div>
-                                <div className="f-link grey">Case Study</div>
-                                <div className="f-link grey">Blog</div>
-                                <div className="f-link grey">Contact Us</div>
-                                <div className="f-link grey">Testimonials</div>
+            <div className="footer-main py-5">
+                <div className="row p-4 pt-4">
+
+                    <div className="col-md-5 mt-3 px-4">
+                        <div className="d-flex flex-column align-items-center">
+                            <p className="p text-dark fw-bold">Modern Delphi</p>
+                            <div className="">
+                                <div className="f-link grey" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</div>
+                                <div className="f-link grey" onClick={() => {navigate('/sacred-library')}}>Sacred Library</div>
+                                <div className="f-link grey" onClick={() => {navigate('/consult-oracle')}}>Consult the Oracle</div>
+                                <div className="f-link grey" onClick={() => {navigate('/about-us')}}>About Us</div>
                             </div>
                         </div>
 
                     </div>
-                    
-                </div>
-                <div className="col-md-4 mt-3 px-4">
-                        <p className="p text-dark text-center fw-bold">Our Values</p>
-                            <div className="my-4 text-center">
-                                <div className="f-link grey">About Us</div>
-                                <div className="f-link grey">Our Services</div>
-                                <div className="f-link grey">Case Study</div>
-                                <div className="f-link grey">Blog</div>
-                                <div className="f-link grey">Contact Us</div>
-                                <div className="f-link grey">Testimonials</div>
-                            </div>
-                </div>
+                    <div className="col-md-7 mt-3 px-4">
+                        <p className="p text-dark text-center fw-bold">Reach Out to Us</p>
+                        <div className="my-4 text-center">
+                            <div className="f-link grey">contact@moderndelphi.com</div>
+                            <p className="p text-dark text-center fw-bold mt-4">Policies</p>
+                            <div className="f-link grey" onClick={() => {navigate('/terms-of-use')}}>Terms of Use and Disclaimers</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>

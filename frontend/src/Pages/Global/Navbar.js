@@ -55,6 +55,7 @@ const Navbar = () => {
                 <li className="nav-item" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</li>
                 <li className="nav-item" onClick={() => {navigate('/consult-oracle')}}>Consult Oracle</li>
                 <li className="nav-item" onClick={() => {navigate('/sacred-library')}}>Sacred Library</li>
+                <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
               </ul>
             </div>  
             <div>
@@ -90,6 +91,7 @@ const Navbar = () => {
                 <li className="nav-item" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</li>
                 <li className="nav-item" onClick={() => {navigate('/consult-oracle')}}>Consult Oracle</li>
                 <li className="nav-item" onClick={() => {navigate('/sacred-library')}}>Sacred Library</li>
+                <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
 
                 {isAuthenticated ? (
                   <li className="nav-item" onClick={() => navigate(profileRoute)}>Dashboard</li>

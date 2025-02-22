@@ -86,7 +86,7 @@ app.post("/api/sitemetrics/track", (req, res) => {
 
                 if (results.length > 0) {
                     // Update existing record (increment the count)
-                    const updateQuery = "UPDATE SiteMetrics SET traffic_count = traffic_count + 1 WHERE metric_date = ? AND metric_hour = ?";
+                    const updateQuery = "UPDATE sitemetrics SET traffic_count = traffic_count + 1 WHERE metric_date = ? AND metric_hour = ?";
                     db.query(updateQuery, [date, hour], (err) => {
                         if (err) {
                             console.error("Error updating traffic count:", err);
@@ -96,7 +96,7 @@ app.post("/api/sitemetrics/track", (req, res) => {
                     });
                 } else {
                     // Insert a new record
-                    const insertQuery = "INSERT INTO SiteMetrics (metric_date, metric_hour, traffic_count) VALUES (?, ?, 1)";
+                    const insertQuery = "INSERT INTO sitemetrics (metric_date, metric_hour, traffic_count) VALUES (?, ?, 1)";
                     db.query(insertQuery, [date, hour], (err) => {
                         if (err) {
                             console.error("Error inserting new traffic record:", err);
@@ -122,40 +122,40 @@ app.post("/api/sitemetrics/track", (req, res) => {
 app.get("/api/sitemetrics", async (req, res) => {
     try {
         const { filter } = req.query;
-        let siteMetricsCondition = "";
+        let sitemetricsCondition = "";
         let appointmentsCondition = "";
         let usersCondition = "";
 
         // Set date conditions based on the filter
         switch (filter) {
             case "today":
-                siteMetricsCondition = "AND metric_date = CURDATE()";
+                sitemetricsCondition = "AND metric_date = CURDATE()";
                 appointmentsCondition = "AND created_at = CURDATE()";
                 usersCondition = "AND created_at >= CURDATE()";
                 break;
             case "thisWeek":
-                siteMetricsCondition = "AND YEARWEEK(metric_date, 1) = YEARWEEK(CURDATE(), 1)";
+                sitemetricsCondition = "AND YEARWEEK(metric_date, 1) = YEARWEEK(CURDATE(), 1)";
                 appointmentsCondition = "AND YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)";
                 usersCondition = "AND YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)";
                 break;
             case "thisMonth":
-                siteMetricsCondition = "AND YEAR(metric_date) = YEAR(CURDATE()) AND MONTH(metric_date) = MONTH(CURDATE())";
+                sitemetricsCondition = "AND YEAR(metric_date) = YEAR(CURDATE()) AND MONTH(metric_date) = MONTH(CURDATE())";
                 appointmentsCondition = "AND YEAR(created_at) = YEAR(CURDATE()) AND MONTH(created_at) = MONTH(CURDATE())";
                 usersCondition = "AND YEAR(created_at) = YEAR(CURDATE()) AND MONTH(created_at) = MONTH(CURDATE())";
                 break;
             case "last6Months":
-                siteMetricsCondition = "AND metric_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
+                sitemetricsCondition = "AND metric_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
                 appointmentsCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
                 usersCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
                 break;
             case "last1Year":
-                siteMetricsCondition = "AND metric_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+                sitemetricsCondition = "AND metric_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
                 appointmentsCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
                 usersCondition = "AND created_at >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
                 break;
             case "overall":
             default:
-                siteMetricsCondition = "";
+                sitemetricsCondition = "";
                 appointmentsCondition = "";
                 usersCondition = "";
                 break;
@@ -163,7 +163,7 @@ app.get("/api/sitemetrics", async (req, res) => {
 
         // Fetch site traffic
         const [trafficResults] = await db.promise().query(
-            `SELECT SUM(traffic_count) AS traffic FROM SiteMetrics WHERE 1 ${siteMetricsCondition}`
+            `SELECT SUM(traffic_count) AS traffic FROM sitemetrics WHERE 1 ${sitemetricsCondition}`
         );
         const traffic = trafficResults[0].traffic || 0;
 

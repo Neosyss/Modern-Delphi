@@ -17,7 +17,7 @@ const NewAppointment = () => {
       try {
         const authToken = localStorage.getItem("authToken");
         if (!authToken) {navigate("/consult-oracle");return;}
-        const response = await axios.post("http://localhost:5000/api/check-appointment", { authToken });
+        const response = await axios.post("/api/check-appointment", { authToken });
         setHasPendingAppointment(response.data.hasPendingAppointment);
       } catch (error) {
         console.error("Error checking appointment:", error);
@@ -76,7 +76,7 @@ const NewAppointment = () => {
   const setAppointmentBooked = async (eventDataCalendly) => {
       try {
         const authToken = localStorage.getItem("authToken");
-        await axios.post("http://localhost:5000/api/set-appointment", {
+        await axios.post("/api/set-appointment", {
           authToken,
           eventDataCalendly
        });

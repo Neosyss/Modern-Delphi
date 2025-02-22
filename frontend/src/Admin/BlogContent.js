@@ -38,7 +38,7 @@ const BlogContent = () => {
     // Fetch all blogs
 
     const fetchBlogs = () => {
-        const apiUrl = 'http://localhost:5000/api/blogs';
+        const apiUrl = '/api/blogs';
         axios
             .get(apiUrl)
             .then((response) => {
@@ -78,7 +78,7 @@ const BlogContent = () => {
         formData.append('image', image);
     
         try {
-            const response = await axios.post('http://localhost:5000/api/blogs', formData, {
+            const response = await axios.post('/api/blogs', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
     
@@ -112,7 +112,7 @@ const BlogContent = () => {
         formData.append("image", image);
         
         axios
-            .put(`http://localhost:5000/api/blogs/${currentBlog.blog_id}`, formData, {
+            .put(`/api/blogs/${currentBlog.blog_id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             })
             .then((response) => {
@@ -129,7 +129,7 @@ const BlogContent = () => {
     // Delete blog
     const handleDeleteBlog = () => {
         axios
-            .delete(`http://localhost:5000/api/blogs/${currentBlog.blog_id}`)
+            .delete(`/api/blogs/${currentBlog.blog_id}`)
             .then(() => {
                 setBlogs(blogs.filter(blog => blog.blog_id !== currentBlog.blog_id));
                 closeModel();

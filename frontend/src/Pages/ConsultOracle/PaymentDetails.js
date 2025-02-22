@@ -12,7 +12,7 @@ const PaymentDetails = () => {
 
   const fetchPriceData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/price-data');
+      const response = await axios.get('/api/price-data');
       const matchingPlan = response.data.price_details.find(plan => plan.pricing_id === parseInt(id));
       if (matchingPlan) {
       setPlan(matchingPlan);

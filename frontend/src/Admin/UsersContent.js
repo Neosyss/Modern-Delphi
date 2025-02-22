@@ -10,7 +10,7 @@ const UsersContent = () => {
 
     const fetchUsersData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/all-users`);
+            const response = await axios.get(`/api/all-users`);
             setUsers(response.data);
             setFilteredUsers(response.data);
         } catch (error) {

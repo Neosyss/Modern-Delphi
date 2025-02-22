@@ -23,7 +23,7 @@ const SLHome = () => {
             setLoading(true);
             const limit = pagination.isInitialLoad ? 3 : 7; // Adjust limit accordingly
     
-            const response = await axios.post('http://localhost:5000/api/blogs/paginated', {
+            const response = await axios.post('/api/blogs/paginated', {
                 limit,
                 page: pagination.currentPage
             });

@@ -9,7 +9,7 @@ import HomeChatBot from "./HomeChatBot";
 
 const trackSiteVisit = async () => {
   try {
-      await axios.post("http://localhost:5000/api/sitemetrics/track");
+      await axios.post("/api/sitemetrics/track");
       console.log(1);
   } catch (error) {
       console.error("Error tracking site visit:", error);

@@ -17,7 +17,7 @@ const ConsultOracleHome = () => {
 
     const fetchPriceData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/price-data');
+        const response = await axios.get('/api/price-data');
         setPricingDetails(response.data.price_details);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -35,7 +35,7 @@ const ConsultOracleHome = () => {
           try {
             const authToken = localStorage.getItem("authToken");
             if (!authToken) {navigate("/consult-oracle");return;}
-            const response = await axios.post("http://localhost:5000/api/check-paid", { authToken });
+            const response = await axios.post("/api/check-paid", { authToken });
             setHasPendingAppointment(response.data.hasPendingAppointment);
             console.log(response.data)
           } catch (error) {

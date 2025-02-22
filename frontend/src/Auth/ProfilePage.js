@@ -23,7 +23,7 @@ const ProfilePage = ({ panelType }) => {
             if (!token) return;
 
             try {
-                const response = await axios.get(`http://localhost:5000/api/auth/${panelType === 1 ? "user" : "admin"}`, {
+                const response = await axios.get(`/api/auth/${panelType === 1 ? "user" : "admin"}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setUser(response.data.user);
@@ -57,7 +57,7 @@ const ProfilePage = ({ panelType }) => {
                 ? localStorage.getItem("authToken") 
                 : localStorage.getItem("adminAuthToken");
 
-            const response = await axios.post("http://localhost:5000/api/auth/change-password", {
+            const response = await axios.post("/api/auth/change-password", {
                 userId: user?.user_id,
                 currentPassword,
                 newPassword,

@@ -17,7 +17,7 @@ const SacredBlog = () => {
         try {
             setLoading(true);
     
-            const response = await axios.post('http://localhost:5000/api/blogs/paginated', {
+            const response = await axios.post('/api/blogs/paginated', {
                 limit: 6, 
                 page: 1
             });
@@ -43,7 +43,7 @@ const SacredBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+                const response = await axios.get(`/api/blogs/${id}`);
                 setBlog(response.data);
             } catch (err) {
                 setError("Failed to fetch blog post.");

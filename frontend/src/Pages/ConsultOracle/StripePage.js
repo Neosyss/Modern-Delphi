@@ -18,7 +18,7 @@ const StripePage = () => {
 
   const fetchPriceData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/price-data');
+      const response = await axios.get('/api/price-data');
       const matchingPlan = response.data.price_details.find(plan => plan.pricing_id === parseInt(id));
 
         if (matchingPlan) {
@@ -36,7 +36,7 @@ const StripePage = () => {
     try {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) {navigate("/consult-oracle");return;}
-      const response = await axios.post("http://localhost:5000/api/check-paid", { authToken });
+      const response = await axios.post("/api/check-paid", { authToken });
       if(response.data.hasPendingAppointment == true){
         navigate('/consult-oracle');
         return;
@@ -105,7 +105,7 @@ const StripePage = () => {
     const cardElement = elements.getElement(CardElement);
   
     try {
-      const response = await fetch("http://localhost:5000/create-payment-intent", {
+      const response = await fetch("/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: price, currency: "usd" }) // Fixed price object
@@ -136,7 +136,7 @@ const StripePage = () => {
         const userId = getUserIdFromToken(authToken);
 
         // Send payment details to backend
-        await axios.post("http://localhost:5000/api/save-payment", {
+        await axios.post("/api/save-payment", {
           user_id: userId,
           paymentIntentId: result.paymentIntent.id,  // Stripe Payment Intent ID
           amount: price,

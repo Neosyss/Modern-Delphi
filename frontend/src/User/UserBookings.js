@@ -22,7 +22,7 @@ const UserBookings = () => {
             const decodedToken = jwtDecode(authToken); // Decode token
             const userId = decodedToken.user_id; // Extract user_id (Ensure your JWT has `user_id`)
 
-            const response = await axios.get("http://localhost:5000/api/user-bookings", {
+            const response = await axios.get("/api/user-bookings", {
                 headers: { Authorization: `Bearer ${authToken}` } // Send token in headers
             });
 

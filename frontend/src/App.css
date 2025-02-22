@@ -77,7 +77,7 @@ body{
     color: var(--pri);
 }
 .style-2{
-    font: 400 5.5vw var(--style-font);
+    font: 400 var(--style-font);
     line-height: 45%;
     color: var(--pri);
 }

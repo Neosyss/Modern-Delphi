@@ -10,7 +10,7 @@ const UsersContent = () => {
 
     const fetchUsersData = async () => {
         try {
-            const response = await axios.get(`/api/all-users`);
+            const response = await axios.get(`/http://82.180.132.121:5000/api/all-users`);
             setUsers(response.data);
             setFilteredUsers(response.data);
         } catch (error) {

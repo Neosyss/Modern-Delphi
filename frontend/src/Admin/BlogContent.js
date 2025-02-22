@@ -78,7 +78,7 @@ const BlogContent = () => {
         formData.append('image', image);
     
         try {
-            const response = await axios.post('/api/blogs', formData, {
+            const response = await axios.post('/http://82.180.132.121:5000/api/blogs', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
     

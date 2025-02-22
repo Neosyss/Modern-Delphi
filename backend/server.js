@@ -30,8 +30,9 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage, fileFilter });
 
 app.use(cors({
-    methods: 'GET,POST,PUT,DELETE',  
-    credentials: true,               
+    origin: 'http://82.180.132.121', 
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true
 }));
 
 app.use(bodyParser.json());

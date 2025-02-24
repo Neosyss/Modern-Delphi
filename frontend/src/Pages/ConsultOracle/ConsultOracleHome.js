@@ -241,13 +241,13 @@ const PriceCard = ({ pricing_id, price, title, description, css=0 }) => {
             </div>
 
             <div className="p-3">
-                {description && description.map((desc)=>{
-                    return(
-                        <div className="d-flex justify-content-start">
+                {description && description.map((desc, index) => {
+                    return desc.trim() !== "" && (  // Check if desc is not empty
+                        <div key={index} className="d-flex justify-content-start">
                             <TiTick className='svgtick'/>
                             <div className="px-2">{desc}</div>
                         </div>        
-                    )
+                    );
                 })}
                 <div className="d-flex justify-content-center my-3 mt-4">
                     <div className={`w-100 ${ css == 1 ? 'priopa-btn prb-2' : 'prb-2' }`}

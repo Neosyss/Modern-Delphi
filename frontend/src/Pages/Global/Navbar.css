@@ -23,6 +23,19 @@
   padding: 0;
 }
 
+.nav-logo{
+  animation: logo .8s ease-in-out;
+}
+
+@keyframes logo {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+}
+
 .nav-item {
   margin: 10px 2vw;
   cursor: pointer;

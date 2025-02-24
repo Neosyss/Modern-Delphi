@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
+import logo from "../../images/logo.png";
+import logo2 from "../../images/logo.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css"; 
 
@@ -47,8 +49,16 @@ const Navbar = () => {
         {isDesktop && 
           <div className="d-flex justify-content-between">
             <div>
-              {/* <img src={img2} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo"/> */}
-              <h4 className="nav-item" onClick={() => {navigate('/')}}>Modern Delphi</h4>
+              {
+                isAtTopClass == 0 && (
+                  <img src={logo} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo"/>
+                )
+              }
+              {
+                isAtTopClass == 1 && (
+                  <img src={logo2} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo"/>
+                )
+              }
             </div>
             <div>
               <ul className="nav-list">

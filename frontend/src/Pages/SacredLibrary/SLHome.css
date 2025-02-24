@@ -160,4 +160,9 @@
 .slhomesvg{
     display: none;
 }
+
+.slhome-background{
+    height: 50vh;
+    padding-top: 20px;
+}
 }

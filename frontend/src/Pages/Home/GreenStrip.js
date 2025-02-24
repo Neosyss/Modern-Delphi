@@ -21,7 +21,7 @@ const GreenStrip = () => {
             <div className="strip-item">
                 <img src={locationIcon} alt="location" className="strip-icon" />
                 <p>789 Elm Avenue<br />
-                    Brooklyn, NY 11201</p>
+                    Brooklyn, Canada 11201</p>
             </div>
 
             <div className="strip-item">

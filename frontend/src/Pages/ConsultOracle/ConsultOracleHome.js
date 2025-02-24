@@ -16,12 +16,20 @@ import { FaEye } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 
+import unlockImg from '../../images/actual/Embrass the journey.jpg';
 
 const ConsultOracleHome = () => {
 
     const [pricingDetails, setPricingDetails] = useState([]);
     const [hasPendingAppointment, setHasPendingAppointment] = useState(false);
-
+    
+    const handleBookNowClick = () => {
+        const pricingSection = document.getElementById("pricing_plans");
+        if (pricingSection) {
+            pricingSection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+    
     const fetchPriceData = async () => {
       try {
         const response = await axios.get('/api/price-data');
@@ -63,7 +71,8 @@ const ConsultOracleHome = () => {
                     <p className="p sl-para w-80">Seek wisdom and guidance from the Mystic Oracle for your journey ahead.</p>
                 </div>
                 <div className="d-flex justify-content-center m-2">
-                    <div className="prb-2 mx-1"><div>Book Now</div></div>
+                    <div className="prb-2 mx-1" onClick={handleBookNowClick}
+                    ><div>Book Now</div></div>
                     {/* <div className="prb-1 mx-1"><div>Learn More</div></div> */}
                 </div>
             </div>
@@ -77,7 +86,7 @@ const ConsultOracleHome = () => {
                 </div>
                 <div className="container my-4">
                     <div className="row justify-content-center">
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 p-4">
                                 <div>
                                     <GiGraduateCap className="arrow-sl lgsvg my-4"/>
@@ -86,7 +95,7 @@ const ConsultOracleHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 p-4 sl-spec">
                             <div>
                                     <FaBookOpen className="arrow-sl lgsvg my-4"/>
@@ -95,7 +104,7 @@ const ConsultOracleHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 p-4">
                             <div>
                                     <PiTarget className="arrow-sl lgsvg my-4"/>
@@ -129,15 +138,15 @@ const ConsultOracleHome = () => {
                             </div>
                         </p>
                     </div>
-                    <div className="col-md-5">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
+                    <div className="col-md-5 d-flex justify-content-center align-items-center">
+                        <img src={unlockImg} className="img-fluid slhomeimg1" />
                     </div>
                 </div>
             </div>
 
             {hasPendingAppointment === false && (
                 <>
-                <div className="slhome-background3 pt-5">
+                <div className="slhome-background3 pt-5" id="pricing_plans">
                     <div className="tb-2">Pricing</div>
                     <div className="d-flex justify-content-center align-items-center flex-column text-center">
                         <h1 className="my-3 w-80 sl-heading3">Simple, Transparent Pricing</h1>
@@ -165,7 +174,9 @@ const ConsultOracleHome = () => {
 
 
             {hasPendingAppointment === true && (
-                <PaidAlready/>
+                <div id="pricing_plans">
+                    <PaidAlready/>
+                </div>
             )}
             
 
@@ -224,9 +235,9 @@ const PriceCard = ({ pricing_id, price, title, description, css=0 }) => {
     return (
         <div className={`price-card my-3 ${css == 1 ? 'price-card2':''}`}>
             <div className="d-flex flex-column align-items-center justify-content-center">
-                <h2 className='my-2 price-head mt-5'>${price}/mth</h2>
+                <h2 className='my-2 price-head mt-5'>${price}/session</h2>
                 <div className='mt-3 fw-bold'>{title}</div>
-                <p>Billed anually</p>   
+                <p>Billed per Session</p>   
             </div>
 
             <div className="p-3">

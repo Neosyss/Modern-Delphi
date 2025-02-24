@@ -9,6 +9,9 @@ import { PiPathFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa6";
 import { IoKey, IoSearch } from "react-icons/io5";
 
+import exploreImg from '../../images/actual/Explore the depth of knowledge 1.jpg';
+
+
 const SLHome = () => {
 
     const navigate = useNavigate();
@@ -103,8 +106,8 @@ const SLHome = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="col-md-5">
-                        <img src={pic1} className="img-fluid slhomeimg1" alt="Sacred Library" />
+                    <div className="col-md-5 d-flex justify-content-center align-items-center mt-3 px-2">
+                        <img src={exploreImg} className="img-fluid slhomeimg1" alt="Sacred Library" />
                     </div>
                 </div>
             </div>
@@ -157,7 +160,7 @@ const SLHome = () => {
                 </div>
                 <div className="container my-4">
                     <div className="row justify-content-center">
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/journeyers-anteroom')}}>
                                 <div>
                                     <PiPathFill className="arrow-sl lgsvg my-4"/>
@@ -170,7 +173,7 @@ const SLHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 cursor-pointer p-4 sl-spec">
                                 <div>
                                     <FaBookOpen className="arrow-sl lgsvg my-4"/>
@@ -183,7 +186,7 @@ const SLHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/consult-oracle')}}>
                                 <div>
                                     <IoSearch className="arrow-sl lgsvg my-4"/>

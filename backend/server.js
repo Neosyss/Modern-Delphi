@@ -28,9 +28,8 @@ const fileFilter = (req, file, cb) => {
     }
 };
 const upload = multer({ storage, fileFilter });
-
 app.use(cors({
-    origin: 'http://82.180.132.121', 
+    origin: ['http://82.180.132.121', 'http://localhost:3000'], 
     methods: 'GET,POST,PUT,DELETE',
     credentials: true
 }));
@@ -596,6 +595,38 @@ app.post("/create-payment-intent", async (req, res) => {
   });
   
 
+  app.post("/api/price-data", async (req, res) => {
+    const { price_details } = req.body;
+
+    if (!price_details || !Array.isArray(price_details)) {
+        return res.status(400).json({ message: "Invalid data format" });
+    }
+
+    try {
+        for (const plan of price_details) {
+            const updateQuery = `
+                UPDATE pricing 
+                SET plan_name = ?, price = ?, description = ?
+                WHERE pricing_id = ?
+            `;
+
+            await db.promise().query(updateQuery, [
+                plan.plan_name, 
+                plan.price, 
+                JSON.stringify(plan.description), 
+                plan.pricing_id
+            ]);
+        }
+
+        res.status(200).json({ success: true, message: "Pricing updated successfully" });
+
+    } catch (error) {
+        console.error("Error updating prices:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+});
+
+
   app.get("/api/price-data", (req, res) => {
 
         const query = "SELECT * from pricing";
@@ -742,7 +773,10 @@ app.post("/api/set-appointment", async (req, res) => {
   });
 
 
-app.listen(5000, '0.0.0.0', () => {
-    console.log("Server running on http://0.0.0.0:5000");
-});
+// app.listen(5000, '0.0.0.0', () => {
+//     console.log("Server running on http://0.0.0.0:5000");
+// });
 
+app.listen(5000, () => {
+    console.log("Server running on http://localhost:5000");
+});

@@ -5,6 +5,7 @@ import BlogContent from "./BlogContent";
 import UsersContent from "./UsersContent";
 import ProfilePage from "../Auth/ProfilePage";
 import Bookings from "./Bookings";
+import PricingSet from "./PricingSet";
 
 const AdminHome = () => {
 
@@ -24,6 +25,8 @@ const AdminHome = () => {
                             onClick={() => setSelectedOption("Bookings")}> Bookings </div>
                         <div className={`sideBarItem ${selectedOption === "Blogs" ? "selected" : ""}`} 
                             onClick={() => setSelectedOption("Blogs")}> Blogs </div>
+                        <div className={`sideBarItem ${selectedOption === "Pricing" ? "selected" : ""}`} 
+                            onClick={() => setSelectedOption("Pricing")}> Pricing </div>
                         <div className={`sideBarItem ${selectedOption === "Profile" ? "selected" : ""}`} 
                             onClick={() => setSelectedOption("Profile")}> Profile </div>
                     </div>
@@ -33,6 +36,7 @@ const AdminHome = () => {
                     {selectedOption === "Users" && <UsersContent/>}
                     {selectedOption === "Blogs" && <BlogContent/> }
                     {selectedOption === "Bookings" && <div><Bookings/></div>}
+                    {selectedOption === "Pricing" && <div><PricingSet/></div>}
                     {selectedOption === "Profile" && <ProfilePage panelType ={0}/>}
                 </div>
             </div>

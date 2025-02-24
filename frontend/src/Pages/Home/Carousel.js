@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Carousel.css';
-import img1 from '../../images/1.webp';
 import img2 from '../../images/2.webp';
 import svg1 from '../../isvgs/flowers-crop.webp';
 import { useNavigate } from 'react-router-dom';

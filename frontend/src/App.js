@@ -54,6 +54,8 @@ const Layout = () => {
         <Route path="/sacred-library" element={<SLHome />} />
         <Route path="/sacred-blog/:id" element={<SacredBlog />} />
         <Route path="/journeyers-anteroom" element={<JAHome />} />
+        <Route path="/test" element={<AdminHome />} />
+
         <Route path="/journeyers-chatroom" element={<JAChatRoom />} />
         <Route path="/consult-oracle" element={<ConsultOracleHome />} />
         <Route path="/payment-details/:id" element={<PaymentDetails/>} />

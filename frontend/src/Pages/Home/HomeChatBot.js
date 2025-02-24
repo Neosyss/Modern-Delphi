@@ -24,7 +24,7 @@ const HomeChatBot = () => {
 
     return(
         <>
-        <div className="home-chatbot my-4   py-5">
+        <div className="home-chatbot mt-4 py-2 pt-5">
             <div className="d-flex justify-content-center mt-4">
               <h1 className=" mx-1">Experience the</h1>
               <span className="span style-2 mx-1 customp-set">Anteroom</span>

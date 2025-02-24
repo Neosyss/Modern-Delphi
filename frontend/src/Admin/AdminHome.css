@@ -36,6 +36,12 @@
     display: none;
 }   
 
+.cardpriceplan{
+    background-color: white;
+    border: none!important;
+    border-radius: 15px;
+}
+
 @media (max-width: 768px) {
     .sideBar{
         height: 8vh;

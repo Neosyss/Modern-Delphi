@@ -38,13 +38,17 @@
 .card4{
     background-color: white;
     border-radius: 10px;
-    height: 250px;
-    width: 300px;
+    min-height: 250px;
+    width: 28vw;
     padding: 10px 20px;
 }
 @media (max-width: 768px) {
     .price-head {
         font-size: 2.5rem;
+    }
+
+    .card4{
+        width: 300px;
     }
     .card-holder{
         display: inline-block;

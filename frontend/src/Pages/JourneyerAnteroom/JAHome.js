@@ -2,6 +2,9 @@ import "./JAHome.css";
 import { FaArrowRight } from "react-icons/fa6";
 import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
+
+import reflectImg from '../../images/actual/Reflect on your journey.jpg';
+
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
@@ -35,7 +38,7 @@ const JAHome = () => {
                 <div className="row">
 
                     <div className="col-md-7">
-                        <div className="tb-2">Serenity</div>
+                        <div className="tb-2">Guidance</div>
                         <h1 className="my-3">Reflect on your journey: What question guides you today?</h1>
                         <p className="p sl-para text-start">Welcome to the Journeyer's Anteroom, a tranquil space for introspection. Here, you can explore the questions that matter most to you.</p>
 
@@ -57,37 +60,8 @@ const JAHome = () => {
                         </div>
 
                     </div>
-                    <div className="col-md-5">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
-                    </div>
-
-                </div>
-            </div>
-
-            <div className="slhome-background2">
-                <div className="row">
-                    <div className="col-md-5 order-md-1 order-2">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
-                    </div>
-                    <div className="col-md-7 order-1 padding-ar-1">
-                        <div className="tb-2">Serenity</div>
-                        <h1 className="my-3">Immerse Youself in Calming Sounds</h1>
-                        <p className="p sl-para text-start">Experience a soothing soundscape designed to enhance your journey.
-                            Toggle the atmospheric audio on or off to create your perfect space for reflection.</p>
-                        <div className="d-flex my-3 justify-content-start">
-                            <div className="ja-card1 my-2 p-3">
-                                <h1>50%</h1>
-                                <p>Relax and Find your innerpeace</p>
-                            </div>
-                            <div className="ja-card1 m-2 mx-3 p-3">
-                                <h1>50%</h1>
-                                <p>Let the Sounds guide your thoughts</p>
-                            </div>
-                        </div>
-                        <div className="d-flex justify-content-start my-3">
-                            <div className="prb-1 mx-1"><div>Play</div></div>
-                            <div className="prb-2 mx-1"><div>Pause</div></div>
-                        </div>
+                    <div className="col-md-5 d-flex justify-content-center align-items-center">
+                        <img src={reflectImg} className="img-fluid slhomeimg1" />
                     </div>
 
                 </div>
@@ -103,7 +77,7 @@ const JAHome = () => {
                 </div>
                 <div className="container my-4">
                     <div className="row justify-content-center">
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 p-4">
                                 <div>
                                     <PiPathFill className="arrow-sl lgsvg my-4" />
@@ -113,7 +87,7 @@ const JAHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 p-4 sl-spec">
                                 <div>
                                     <FaBookOpen className="arrow-sl lgsvg my-4" />
@@ -123,7 +97,7 @@ const JAHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-2">
+                        <div className="col-md-4 my-2">
                             <div className="sl-card2 p-4">
                                 <div>
                                     <IoKey className="arrow-sl lgsvg my-4" />

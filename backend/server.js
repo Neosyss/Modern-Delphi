@@ -1,4 +1,5 @@
 const seedAdmin = require("./seedAdmin");
+const seedPrice = require("./seedPrice");
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 
@@ -48,6 +49,7 @@ db.connect(err => {
     console.log('Database connected.');
 });
 seedAdmin(db);
+seedPrice(db);
 
 
 // Nodemailer transporter configuration

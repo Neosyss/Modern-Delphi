@@ -27,6 +27,29 @@
   animation: logo .8s ease-in-out;
 }
 
+.editable-price-input {
+  width: 100%;
+  text-align: center;
+  font-size: 3.5rem;
+  color: white;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  outline: none;
+  appearance: textfield;
+}
+.editable-price-input::-webkit-outer-spin-button,
+.editable-price-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+.editable-price-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
 @keyframes logo {
     0%{
       opacity: 0;

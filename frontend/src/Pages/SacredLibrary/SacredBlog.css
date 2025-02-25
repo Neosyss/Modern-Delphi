@@ -30,6 +30,19 @@
     object-fit: cover;
 }
 
+.comment-section{
+    background-color: #caded63f;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.user-comment{
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px #95a39e3f;
+}
+
 .small-slcard{
     height: 180px;
     overflow: hidden;

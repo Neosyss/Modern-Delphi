@@ -4,6 +4,7 @@ import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
 
 import reflectImg from '../../images/actual/Reflect on your journey.jpg';
+import immerseImg from '../../images/actual/Immerse yourself in calming sound.jpg';
 
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
@@ -13,14 +14,34 @@ import { PiPathFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa6";
 import { IoKey } from "react-icons/io5";
 
+import { useRef } from "react";
 
+const rain = "/audio/rain.mp3"
 
 const JAHome = () => {
 
     const navigate = useNavigate();
+    const audioRef = useRef(null);
+
+    const handlePlay = () => {
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
+    };
+
+    const handlePause = () => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+        }
+    };
 
     return (
         <>
+            <audio ref={audioRef} preload="auto">
+                <source src={rain} type="audio/mpeg" />
+                Your browser does not support the audio tag.
+            </audio>
+
             <div className="slhome-background">
                 <div className="tb-2">Welcome</div>
                 <h1 className="my-3">Enter the Anteroom</h1>
@@ -63,6 +84,49 @@ const JAHome = () => {
                     <div className="col-md-5 d-flex justify-content-center align-items-center">
                         <img src={reflectImg} className="img-fluid slhomeimg1" />
                     </div>
+
+                </div>
+            </div>
+
+
+            <div className="slhome-background2 back-priopa">
+                <div className="row">
+
+                <div className="col-md-5 d-flex justify-content-center align-items-center">
+                        <img src={immerseImg} className="img-fluid slhomeimg1" />
+                    </div>
+
+                    <div className="col-md-7 mt-4 px-4">
+                        <div className="tb-2">Serenity</div>
+                        <h1 className="my-3">Immerse Yourself in Calming Sounds</h1>
+                        <p className="p sl-para text-start">Experience a soothing soundscape designed to enhance your journey. Toggle the atmospheric audio on or offto create your perfect space for reflection.</p>
+
+                        <div className="d-flex justify-content-start">
+                            <div className="">
+                                <div className="sl-card2 border p-4">
+                                    <h1>50%</h1>
+                                    <p>Relax and find your innerpeace.</p>
+                                </div>
+                            </div>
+                            <div className="px-2">
+                                <div className="sl-card2 border p-4">
+                                    <h1>50%</h1>
+                                    <p>Let the sounds guide your thoughts.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="d-flex mt-4 justify-content-start">
+                            <div className="prb-1" onClick={handlePlay}>
+                                <div>Play</div>
+                            </div>
+                            <div className="mx-2 prb-2" onClick={handlePause}>
+                                <div>Pause</div>
+                            </div>
+                        </div>
+
+                    </div>
+                  
 
                 </div>
             </div>

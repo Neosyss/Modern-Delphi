@@ -210,6 +210,23 @@ app.get('/api/all-users', (req, res) => {
     });
 });
 
+app.get('/api/user/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = `SELECT name FROM users WHERE user_id = ?`;
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error("Database Error:", err);
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(results[0]);
+    });
+});
+
+
 app.get('/api/all-bookings', (req, res) => {
     const query = `
         SELECT 
@@ -570,9 +587,42 @@ app.post("/api/save-payment", async (req, res) => {
     }
 });
 
+
+app.post("/api/save-donation", async (req, res) => {
+    try {
+        const { 
+            paymentIntentId, amount, currency, 
+            name, email, address, city, postalCode, country 
+        } = req.body;
+
+        if (!paymentIntentId || !amount || !currency || 
+            !name || !email || !address || !city || !postalCode || !country) {
+            return res.status(400).json({ success: false, error: "All fields are required" });
+        }
+
+        const query = `
+            INSERT into donation 
+            (payment_intent_id, amount, currency, 
+            name, email, address, city, postal_code, country ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        const values = [
+            paymentIntentId, amount, currency, 
+            name, email, address, city, postalCode, country
+        ];
+
+        const [result] = await db.promise().query(query, values);
+
+        res.status(200).json({ success: true, message: "Donation details saved successfully", result });
+    } catch (error) {
+        console.error("Error saving donation details:", error);
+        res.status(500).json({ success: false, error: "Internal Server Error" });
+    }
+});
+
 // stripePayment
 
-app.post("/create-payment-intent", async (req, res) => {
+app.post("/api/create-payment-intent", async (req, res) => {
     try {
       // You can add logic here to handle dynamic amount, currency, etc.
       const amount = 1000; // Amount in cents (e.g., $10.00)
@@ -774,6 +824,45 @@ app.post("/api/set-appointment", async (req, res) => {
     }
   });
 
+
+
+// blog comments
+
+app.get("/api/comments/:blogId", async (req, res) => {
+    const { blogId } = req.params;
+    try {
+        const [comments] = await db.promise().query(
+            `SELECT c.id, c.description, c.date, c.user_id, 
+                    u.name AS user_name 
+             FROM comments c 
+             LEFT JOIN users u ON c.user_id = u.user_id 
+             WHERE c.blog_id = ? 
+             ORDER BY c.date DESC`, 
+            [blogId]
+        );
+
+        res.json(comments);
+    } catch (error) {
+        console.error("Error fetching comments:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+app.post("/api/comments", async (req, res) => {
+    const { description, user_id, blog_id } = req.body;
+    if (!description || !user_id || !blog_id) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    try {
+        await db.promise().query("INSERT INTO comments (description, user_id, blog_id) VALUES (?, ?, ?)", [description, user_id, blog_id]);
+        res.status(201).json({ message: "Comment added successfully" });
+    } catch (error) {
+        console.error("Error adding comment:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 // app.listen(5000, '0.0.0.0', () => {
 //     console.log("Server running on http://0.0.0.0:5000");

@@ -13,11 +13,25 @@ const Signup = () => {
         const adminToken = localStorage.getItem("adminAuthToken");
 
         if (adminToken) {
-            navigate("/admin");
+            navigate("/");
         } else if (userToken) {
-            navigate("/user");
+            navigate("/");
         }
+
+        const handleEnterPress = (e) => {
+            if (e.key === "Enter") {
+                handleSubmit(e);
+            }
+        };
+
+        window.addEventListener("keydown", handleEnterPress);
+        return () => {
+            window.removeEventListener("keydown", handleEnterPress);
+        };
+
     }, []);
+
+    
 
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -75,10 +89,10 @@ const Signup = () => {
 
             if (role === "admin") {
                 localStorage.setItem("adminAuthToken", token);
-                navigate("/admin");
+                navigate("/");
             } else {
                 localStorage.setItem("authToken", token);
-                navigate("/user");
+                navigate("/");
             }
         } catch (error) {
             setError(error.response?.data?.message || "Signup failed");

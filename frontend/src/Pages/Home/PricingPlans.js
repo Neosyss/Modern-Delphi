@@ -67,9 +67,9 @@ const PricingPlans = () => {
       </div>
       <div className="pricing-content">
         <div className="row ">
-            <div className="d-flex justify-content-center ">
-              <div className="tb-1">Pricing</div>
-            </div>
+            {/* <div className="d-flex justify-content-center "> */}
+              {/* <div className="tb-1">Pricing</div> */}
+            {/* </div> */}
             <div className="d-flex justify-content-center mt-4">
               <h1 className=" heading-main-2 mx-1">Consult The</h1>
               <span className="span style-2 mx-1 customp-set">Oracle</span>

@@ -202,7 +202,7 @@ const BlogContent = () => {
                                 onChange={(e) => setTitle(e.target.value)}
                             />
 
-                            <div className='mt-4'>Hashtags</div>
+                            <div className='mt-4'>Hashtags (#fun #trending)</div>
                             <input 
                                 className="form-control"
                                 value={hashtags}

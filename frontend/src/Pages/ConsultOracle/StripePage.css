@@ -9,7 +9,7 @@
 
 .payment-form{
   height: 80vh;
-  width: 60%;
+  width: 70vw;
   background-color: white;
   border-radius: 17px;
   margin-top: 50px;
@@ -72,7 +72,21 @@
   color: rgb(217, 225, 226);
 }
 
-@media(max-width: 768px){
+.enter-price{
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1111;
+  color: rgb(217, 225, 226);
+}
+
+@media(max-width: 1000px){
+  .payment-form{
+    width: 88vw;
+  }
+}
+  @media(max-width: 768px){
   .payment-img-cont{
     height: 20vh;
     width: 100%;

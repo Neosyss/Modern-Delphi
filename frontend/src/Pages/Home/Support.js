@@ -1,8 +1,10 @@
 import svg1 from '../../isvgs/flowers-crop-2.webp';
 import './Support.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const Support = () => {
+    const navigate = useNavigate();
     return (
         <>
             <div className="support-container">
@@ -22,12 +24,11 @@ const Support = () => {
                     </div>
                     {/* Buttons Section */}
                     <div className="d-flex justify-content-center mt-4">
-                        <div className="prb-2 me-3">
+                        <div className="prb-2 "
+                        onClick={() => {navigate('/donate')}}
+                        >
                             <div>Donate</div>
                             </div>
-                        <div className="prb-1">
-                            <div>Learn More</div>
-                        </div>
                     </div>
                 </div>
             </div>

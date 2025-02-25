@@ -21,13 +21,13 @@ const GreenStrip = () => {
             <div className="strip-item">
                 <img src={locationIcon} alt="location" className="strip-icon" />
                 <p>789 Elm Avenue<br />
-                    Brooklyn, Canada 11201</p>
+                    Canada 11201</p>
             </div>
 
             <div className="strip-item">
                 <img src={callIcon} alt="call" className="strip-icon" />
                 <p>+929 333 9296<br />
-                    contact@Neosyss.com</p>
+                    contact@moderndelphi.com</p>
             </div>
 
             <div className="d-flex justify-content-center mt-4 align-items-center">

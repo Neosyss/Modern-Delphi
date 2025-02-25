@@ -23,6 +23,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import PaymentDetails from './Pages/ConsultOracle/PaymentDetails';
 import AboutUs from './Pages/Global/AboutUs';
+import DonationPage from './Pages/Global/DonationPage';
+import Thankyou from './Pages/Global/Thankyou';
 
 const ProtectedRoute = () => {
     const token = localStorage.getItem("authToken");
@@ -54,7 +56,7 @@ const Layout = () => {
         <Route path="/sacred-library" element={<SLHome />} />
         <Route path="/sacred-blog/:id" element={<SacredBlog />} />
         <Route path="/journeyers-anteroom" element={<JAHome />} />
-        <Route path="/test" element={<AdminHome />} />
+        
 
         <Route path="/journeyers-chatroom" element={<JAChatRoom />} />
         <Route path="/consult-oracle" element={<ConsultOracleHome />} />
@@ -64,6 +66,15 @@ const Layout = () => {
             <StripePage/> 
           </Elements>
           } />
+
+        <Route path="/donate" element={
+          <Elements stripe={stripePromise}>
+            <DonationPage/> 
+          </Elements>
+          } />
+        
+        <Route path="/thankyou" element={<Thankyou />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 

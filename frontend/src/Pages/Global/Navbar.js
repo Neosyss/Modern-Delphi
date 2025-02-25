@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
 import logo from "../../images/logo.png";
-import logo2 from "../../images/logo.png";
+import logo2 from "../../images/logowhite.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css"; 
 
@@ -62,10 +62,10 @@ const Navbar = () => {
             </div>
             <div>
               <ul className="nav-list">
+                <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
                 <li className="nav-item" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</li>
                 <li className="nav-item" onClick={() => {navigate('/consult-oracle')}}>Consult Oracle</li>
                 <li className="nav-item" onClick={() => {navigate('/sacred-library')}}>Sacred Library</li>
-                <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
               </ul>
             </div>  
             <div>
@@ -88,8 +88,16 @@ const Navbar = () => {
         {isMobile && (
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              {/* <img src={img2} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo" /> */}
-              <h4 className="nav-item px-0 mx-0" onClick={() => {navigate('/')}}>Modern Delphi</h4>
+              {
+                isAtTopClass == 0 && (
+                  <img src={logo} className="nav-logo mb-2" onClick={() => {navigate('/')}} alt="Logo"/>
+                )
+              }
+              {
+                isAtTopClass == 1 && (
+                  <img src={logo2} className="nav-logo mb-2" onClick={() => {navigate('/')}} alt="Logo"/>
+                )
+              }
             </div>
             <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
               <div className={`line ${menuOpen ? "baropen" : ""} ${isAtTopClass ? "white" : "black"}`}></div>
@@ -98,10 +106,10 @@ const Navbar = () => {
             </div>
             <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>
               <ul>
+                <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
                 <li className="nav-item" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</li>
                 <li className="nav-item" onClick={() => {navigate('/consult-oracle')}}>Consult Oracle</li>
                 <li className="nav-item" onClick={() => {navigate('/sacred-library')}}>Sacred Library</li>
-                <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
 
                 {isAuthenticated ? (
                   <li className="nav-item" onClick={() => navigate(profileRoute)}>Dashboard</li>

@@ -1,12 +1,15 @@
 import "./AboutUs.css";
 import { FaArrowRight } from "react-icons/fa6";
-import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
 import { useNavigate } from "react-router-dom";
 import { MdMail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import Support from "../Home/Support";
+import img1 from "../../images/actual/The Journey Begins.jpg";
+import img2 from "../../images/actual/The Guiding Light.jpg";
+import img3 from "../../images/actual/Discover the enchanment.jpg";
+import img4 from "../../images/actual/Embrass the journey.jpg";
 
 const AboutUs = () => {
 
@@ -49,8 +52,8 @@ const AboutUs = () => {
                     </div>
 
 
-                    <div className="col-md-5">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
+                    <div className="col-md-5 d-flex justify-content-center align-items-center">
+                        <img src={img1} className="img-fluid slhomeimg1" />
                     </div>
 
                 </div>
@@ -58,8 +61,8 @@ const AboutUs = () => {
 
             <div className="slhome-background2 bgx">
                 <div className="row">
-                    <div className="col-md-5 order-md-1 order-2">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
+                    <div className="col-md-5  d-flex justify-content-center align-items-center order-md-1 order-2">
+                        <img src={img2} className="img-fluid slhomeimg1" />
                     </div>
                     <div className="col-md-7 order-1 padding-ar-1">
                         <div className="tb-2">Oracle</div>
@@ -113,8 +116,8 @@ const AboutUs = () => {
                     </div>
 
 
-                    <div className="col-md-5">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
+                    <div className="col-md-5 pt-0 mt-0 d-flex justify-content-center align-items-center">
+                        <img src={img3} className="img-fluid slhomeimg1" />
                     </div>
 
                 </div>
@@ -124,8 +127,8 @@ const AboutUs = () => {
 
             <div className="slhome-background2 bgx">
                 <div className="row">
-                    <div className="col-md-5 order-md-1 order-2">
-                        <img src={pic1} className="img-fluid slhomeimg1" />
+                    <div className="col-md-5 d-flex justify-content-center align-items-center order-md-1 order-2">
+                        <img src={img4} className="img-fluid slhomeimg1" />
                     </div>
                     <div className="col-md-7 order-1 padding-ar-1">
                         <div className="tb-2">Guidance</div>

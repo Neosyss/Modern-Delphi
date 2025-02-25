@@ -4,53 +4,17 @@ import paymentImg from "../../images/payment.jpeg";
 import Select from 'react-select';
 import CountryList from 'react-select-country-list';
 import ErrorBox from "../../ErrorBox";
-import "./StripePage.css";
 import { IoIosArrowBack } from "react-icons/io";
 import {useNavigate, useParams} from 'react-router-dom';
 import axios from "axios";
 import {jwtDecode} from 'jwt-decode';
 
-const StripePage = () => {
+const DonationPage = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(10.0);
 
-  const fetchPriceData = async () => {
-    try {
-      const response = await axios.get('/api/price-data');
-      const matchingPlan = response.data.price_details.find(plan => plan.pricing_id === parseInt(id));
-
-        if (matchingPlan) {
-          setPrice(matchingPlan.price); // Set the price state
-        } else {
-          console.warn("No matching pricing plan found.");
-        }
-
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  const checkPendingAppointment = async () => {
-    try {
-      const authToken = localStorage.getItem("authToken");
-      if (!authToken) {navigate("/consult-oracle");return;}
-      const response = await axios.post("/api/check-paid", { authToken });
-      if(response.data.hasPendingAppointment == true){
-        navigate('/consult-oracle');
-        return;
-      } 
-    } catch (error) {
-      console.error("Error checking appointment:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPriceData();
-    checkPendingAppointment();
-  }, []);
-  
 
   const stripe = useStripe();
   const elements = useElements();
@@ -82,17 +46,18 @@ const StripePage = () => {
     return true;
   };
 
-  const getUserIdFromToken = (token) => {
-    try {
-      if (!token) return null;
-  
-      const decodedToken = jwtDecode(token);
-      return decodedToken.user_id; // Extract user_id from the token
-    } catch (error) {
-      console.error("Error decoding token:", error);
-      return null;
-    }
+  const sanitizePriceInput = (value) => {
+    return value.replace(/[^0-9.]/g, "")  // Remove non-numeric characters except '.'
+    .replace(/(\..*)\./g, "$1"); // Ensure only one decimal point
   };
+  
+  
+  const handlePriceChange = (e) => {
+    const sanitizedValue = sanitizePriceInput(e.target.value);
+    setPrice(sanitizedValue);
+  };
+  
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -129,18 +94,10 @@ const StripePage = () => {
       if (result.error) {
         setError(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
-        // setSuccess("Payment successful! Thank you for your purchase.");
-  
-
-        const authToken = localStorage.getItem("authToken"); // Assuming token is stored in localStorage
-        const userId = getUserIdFromToken(authToken);
-
         // Send payment details to backend
-        await axios.post("/api/save-payment", {
-          user_id: userId,
+        await axios.post("/api/save-donation", {
           paymentIntentId: result.paymentIntent.id,  // Stripe Payment Intent ID
           amount: price,
-          pricing_id: id,
           currency: "usd",
           name,
           email,
@@ -150,7 +107,7 @@ const StripePage = () => {
           country: country.label,  // Sending country name
         });
   
-        navigate('/user', { state: { defaultPage: "Bookings" } });
+        navigate('/thankyou', { state: { defaultPage: "Bookings" } });
       }
     } catch (err) {
       setError(err.message);
@@ -167,10 +124,25 @@ const StripePage = () => {
           <div className="col-md-5 p-0 overflow-hidden h-21">
             <div className="payment-img-cont">
               <img src={paymentImg} className="payment-img" alt="Payment" />
-              <div className="price">${price}</div>
+
+              <div className="enter-price cursor-pointer">
+                Enter Amount in $
+                </div>
+              
+              <div className="price">
+                <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => handlePriceChange(e)}
+                    className="editable-price-input"
+                    min="1"
+                />
+                </div>
+
+
               <div className="back-price cursor-pointer"
-              onClick = {() =>{navigate('/consult-oracle')}} 
-              > <IoIosArrowBack className="mb-1 "/> Cancel Payment</div>
+              onClick = {() =>{navigate('/')}} 
+              > <IoIosArrowBack className="mb-1 "/> Cancel Donation</div>
             </div>
           </div>
           <div className="col-md-7 set-height-sp">
@@ -226,4 +198,4 @@ const StripePage = () => {
   );
 };
 
-export default StripePage;
+export default DonationPage;

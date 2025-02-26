@@ -1,37 +1,31 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './PricingPlans.css';
-import PriceCard from './PriceCard';
 import img1 from '../../images/services/1.webp';
 import img2 from '../../images/services/2.webp';
 import img3 from '../../images/services/3.webp';
+import PriceCard2 from './PriceCard';
+import axios from 'axios';
+import "../ConsultOracle/ConsultOracleHome.css";
 
-
-const data = [{
-  id : 1,
-  title : 'Illuminate Your Vision',
-  price : 75,
-  img : img1,
-  description: 'Step into Clarity. Together, we will uncover the essence of your aspirations, crafting a vision that reflects your deepest desires and highest potential. Let the Oracle help you see beyond the present into the boundless possibilities ahead.'
-},
-{
-  id : 2,
-  title : 'Forge Your Path',
-  price : 150,
-  img : img2,
-  description:'Guided by your vision, we will craft a purposeful mission and establish clear, attainable goals to bring it to life. The Oracle will illuminate the steps, helping you carve a detailed path toward achieving your goals, aligned with your values and potential.'
-},
-{
-  id : 3,
-  title : 'Career Counseling',
-  price : 50,
-  img : img3,
-  description: 'Challenges are inevitable, but they need not derail you. In this session, the Oracle will help you realign with your Vision, address obstacles, and refine your course. Together, we will transform roadblocks into opportunities and ensure you stay steadfast on your journey.'
-}
-];
 
 const PricingPlans = () => {
   const backgroundRef = useRef(null);
   const containerRef = useRef(null);
+  const [pricingDetails, setPricingDetails] = useState([]);
+  
+  const fetchPriceData = async () => {
+    try {
+        const response = await axios.get('/api/price-data');
+        setPricingDetails(response.data.price_details);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+
+useEffect(() => {
+    fetchPriceData();
+}, []);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,13 +71,25 @@ const PricingPlans = () => {
             <div className="justify-content-center d-flex">
             <p className='p custom-p-pricing'>Unlock personalized insights with AI-assisted guidance.</p>
             </div>
-            <div className="row">
-              {data.map((item) => (
-              <div className="col-md-4 my-2 pric-pad">
-                <PriceCard name={item.title} elem={item.id} img={item.img} price={item.price} key={item.id} desc={item.description}/>
+            <div className=" my-4">
+              <div className="row justify-content-center">
+                  {pricingDetails.map((priceCard, index) => {
+                      return (
+                          <div className="col-md-4 my-2" key={priceCard.id}>
+                              <PriceCard2
+                                  pricing_id={priceCard.pricing_id}
+                                  title={priceCard.plan_name}
+                                  description={priceCard.description}
+                                  price={priceCard.price}
+                                  elem={index === 1 ? 2 : undefined} // Pass elem=2 only for index 2
+                                  image={index === 0 ? img1 : index === 1 ? img2 : img3} // Assign images dynamically
+                              />
+                          </div>
+                      );
+                  })}
+
               </div>
-              ))}
-            </div>
+          </div>
         </div>        
       </div>
     </div>

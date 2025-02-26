@@ -665,7 +665,7 @@ app.post("/api/create-payment-intent", async (req, res) => {
             await db.promise().query(updateQuery, [
                 plan.plan_name, 
                 plan.price, 
-                JSON.stringify(plan.description), 
+                plan.description,
                 plan.pricing_id
             ]);
         }

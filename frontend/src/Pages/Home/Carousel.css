@@ -1,140 +1,148 @@
-.carousel{
+.carousel {
     height: 100vh;
     overflow: hidden;
-    position:relative;
-    object-fit: contain;
-}
-.carousel-img{
-    width: 100vw;
-    object-fit: cover;
-    height: auto;
-}
-.carousel-svg{
-    position:absolute;
-    bottom: 0;
-    left: 0;
-    height: 40%;
-}
-.carousel-content{
-    position:absolute;
-    top:25%;
-    left:50%;
-    height: 50%;
-}
-.carousel-padding{
-    padding: 10px;
-}
-.p-width{
-    width: 60%;
+    position: relative;
 }
 
-.carousel-btn{
+.carousel-content-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-content {
     position: absolute;
     top: 50%;
-    width: 20px;
-}
-.left-btn{
-    left: 30px;
-}
-.right-btn{
-    right: 50px;
-}
-
-.arrow-right-svg, .arrow-left-svg{
-    width: 35px;
-    height: auto;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    text-align: start;
     color: white;
-    cursor: pointer;
+    z-index: 10;
+    animation: fade .8s ease-in;
+}
+.carousel-svg {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    transform: translateX(-50%);
+    animation: fade2 .8s ease-in;
+    z-index: 113;
+    height: 23vw;
 }
 
-.arrow-left-svg{
-    transform: rotate(180deg);
+.fade-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.7s ease-out, transform 1s ease-out;
 }
 
-.heading-carousel{
+.fade-section.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@keyframes fade {
+    0%{
+        opacity: 0;
+        transform: translate(-50%, -50%)scale(1.2);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(-50%, -50%)scale(1);
+    }
+}
+
+@keyframes fade2 {
+    0%{
+        opacity: 0;
+        transform: translate(-50%, 0%)scale(1.2);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(-50%, 0%)scale(1);
+    }
+}
+
+.nextsvg{
+    width: 25px;
+    height: 25px;
+}
+
+
+.carousel-padding {
+    padding: 20px;
+}
+
+.heading-carousel {
     color: white;
     font-size: 3vw;
     letter-spacing: -0.15vw;
-    width: 70%;
+    /* width: 70%; */
+    margin: 0;
 }
 
-.subtitle-carousel{
+.subtitle-carousel {
     font: 400 5vw var(--style-font);
-    line-height: 45%;
+    line-height: 60%;
+    width: 100%;
     color: var(--pri);
 }
 
-@media(max-width: 768px){
-    .carousel{
-        height: 70vh;
-    }
-    .carousel-img{
-        height: 100%;
-        width: auto;
-        object-fit: cover;
-    }
-    .carousel-svg{
-        position:absolute;
-        bottom: 0;
-        left: 0;
-        height: 30%;
-    }
-    .carousel-content{
-        position:absolute;
-        top:20%;
-        left:0%;
-        height: 50%;
-    }
-    .p-width{
-        width: 70%;
-    }
-
-    .left-btn{
-        left: 0px;
-    }
-    .right-btn{
-        right: 5px;
-    }
-    .arrow-right-svg, .arrow-left-svg{
-        width: 20px;
-        height: auto;
-        color: white;
-        cursor: pointer;
-    }    
-
+.next-arrow, .prev-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1929;
+    color: white;
+    font-size: 24px;
 }
 
-@media (max-width: 500px) {
-    .carousel{
+.prev-arrow {
+    left: 20px;
+}
+
+.next-arrow {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .carousel {
         height: 100vh;
     }
-    .carousel-img{
-        height: 100%;
-        width: auto;
-        transform: translate(-170px, -300px);
-        object-fit: cover;
+
+    .carousel-svg {
+        height: 15%;
     }
-    .carousel-svg{
-        position:absolute;
-        bottom: 0;
-        left: 0;
-        height: 12%;
+
+    .carousel-content {
+        top: 50%;
+        width: 80%;
+        left: 50%;
     }
-    .carousel-content{
-        position:absolute;
-        top:25%;
-        left:0%;
-        height: 50%;
-    }
-    .p-width{
-        width: 100%;
-    }
-    .heading-carousel{
-        font-size: 7vw;
-        letter-spacing: -0.15vw;
+
+    .heading-carousel {
+        font-size: 5vw;
         width: 90%;
     }
-    .subtitle-carousel{
-        font: 400 11vw var(--style-font);
+
+    .subtitle-carousel {
+        font-size: 14vw;
     }
 }

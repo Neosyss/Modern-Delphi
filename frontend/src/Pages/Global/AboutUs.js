@@ -10,6 +10,7 @@ import img1 from "../../images/actual/The Journey Begins.jpg";
 import img2 from "../../images/actual/The Guiding Light.jpg";
 import img3 from "../../images/actual/Discover the enchanment.jpg";
 import img4 from "../../images/actual/Embrass the journey.jpg";
+import FadeInSection from "../Home/UseInView";
 
 const AboutUs = () => {
 
@@ -17,6 +18,7 @@ const AboutUs = () => {
 
     return (
         <>
+        <FadeInSection>
             <div className="slhome-background">
                 <div className="tb-2">Greetings</div>
                 <h1 className="my-3">Welcome to Delphi</h1>
@@ -25,9 +27,10 @@ const AboutUs = () => {
                         Modern Delphi is a mystical haven where the ancient wisdom of the Oracle meets the serene beauty of the Boreal Forest. Here, amidst towering trees and starry skies, seekers embark on transformative journey of self-discovery.
                     </p>
                 </div>
-
             </div>
+            </FadeInSection>
 
+            <FadeInSection>
             <div className="slhome-background2">
                 <div className="row">
 
@@ -58,7 +61,9 @@ const AboutUs = () => {
 
                 </div>
             </div>
+            </FadeInSection>
 
+            <FadeInSection>
             <div className="slhome-background2 bgx">
                 <div className="row">
                     <div className="col-md-5  d-flex justify-content-center align-items-center order-md-1 order-2">
@@ -86,8 +91,9 @@ const AboutUs = () => {
 
                 </div>
             </div>
+            </FadeInSection>
 
-
+            <FadeInSection>
             <div className="slhome-background2">
                 <div className="row">
 
@@ -122,9 +128,10 @@ const AboutUs = () => {
 
                 </div>
             </div>
+            </FadeInSection>
 
 
-
+            <FadeInSection>
             <div className="slhome-background2 bgx">
                 <div className="row">
                     <div className="col-md-5 d-flex justify-content-center align-items-center order-md-1 order-2">
@@ -166,15 +173,18 @@ const AboutUs = () => {
 
                 </div>
             </div>
+            </FadeInSection>
 
+            <FadeInSection>
             <Support />
+            </FadeInSection>
 
-
+            <FadeInSection>
             <div className="slhome-background4">
                 <img src={pic2} className="slhomesvg" />
                 <div className="tb-2">Connect</div>
                 <div className="d-flex justify-content-center align-items-center flex-column text-center">
-                    <h1 className="my-3  sl-heading3 w-80">Get in Touch</h1>
+                    <h1 className="my-3  sl-heading3">Get in Touch</h1>
                     <p className="p sl-para  sl-heading3">We would love to hear from you </p>
                 </div>
                 <div className="container my-4">
@@ -218,13 +228,14 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-
+            </FadeInSection>
         </>
     );
 }
 
 const SLCard = ({ image, title, description }) => {
     return (
+        <FadeInSection>
         <div className="sl-card my-3">
             <div className="img-sl-card">
                 <img src={image} alt={title} className="img-fluid" />
@@ -237,6 +248,7 @@ const SLCard = ({ image, title, description }) => {
                 </div>
             </div>
         </div>
+        </FadeInSection>
     );
 };
 

@@ -62,6 +62,7 @@ const Navbar = () => {
             </div>
             <div>
               <ul className="nav-list">
+                <li className="nav-item" onClick={() => {navigate('/')}}>Home</li>
                 <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
                 <li className="nav-item" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</li>
                 <li className="nav-item" onClick={() => {navigate('/consult-oracle')}}>Consult Oracle</li>
@@ -106,6 +107,7 @@ const Navbar = () => {
             </div>
             <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>
               <ul>
+                <li className="nav-item" onClick={() => {navigate('/')}}>Home</li>
                 <li className="nav-item" onClick={() => {navigate('/about-us')}}>About Us</li>
                 <li className="nav-item" onClick={() => {navigate('/journeyers-anteroom')}}>Journeyer's Anteroom</li>
                 <li className="nav-item" onClick={() => {navigate('/consult-oracle')}}>Consult Oracle</li>

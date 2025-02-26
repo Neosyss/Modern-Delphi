@@ -10,6 +10,7 @@ import { FaBookOpen } from "react-icons/fa6";
 import { IoKey, IoSearch } from "react-icons/io5";
 
 import exploreImg from '../../images/actual/Explore the depth of knowledge 1.jpg';
+import FadeInSection from "../Home/UseInView";
 
 
 const SLHome = () => {
@@ -72,6 +73,7 @@ const SLHome = () => {
 
     return (
         <>
+            <FadeInSection>
             <div className="slhome-background">
                 <div className="tb-2">Wisdom</div>
                 <h1 className="my-3">Explore Ancient Knowledge</h1>
@@ -82,7 +84,9 @@ const SLHome = () => {
                 </div>
                 
             </div>
+            </FadeInSection>
 
+            <FadeInSection>
             <div className="slhome-background2">
                 <div className="row">
                     <div className="col-md-7">
@@ -111,7 +115,9 @@ const SLHome = () => {
                     </div>
                 </div>
             </div>
-
+            </FadeInSection>
+            
+            <FadeInSection>
             <div className="slhome-background3 back-priopa py-5">
                 <div className="tb-2">Knowledge</div>
                 <div className="d-flex justify-content-center align-items-center flex-column text-center">
@@ -148,7 +154,9 @@ const SLHome = () => {
                     </div>
                 )}
             </div>
+            </FadeInSection>
 
+            <FadeInSection>
             <div className="slhome-background4">
                 <img src={pic2} className="slhomesvg" alt="Sacred Library" />
                 <div className="tb-2">Explore</div>
@@ -202,14 +210,15 @@ const SLHome = () => {
                     </div>
                 </div>
             </div>
+        </FadeInSection>
         </>
     );
 };
 
 const SLCard = ({ image, title, description, id }) => {
     const navigate = useNavigate();
-
     return (
+        <FadeInSection>
         <div className="sl-card my-3">
             <div className="img-sl-card">
                 <img src={image} alt={title} className="img-fluid" />
@@ -222,6 +231,7 @@ const SLCard = ({ image, title, description, id }) => {
                 </div>
             </div>
         </div>
+        </FadeInSection>
     );
 };
 

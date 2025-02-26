@@ -1,6 +1,9 @@
 .price-card{
     background-color: var(--priopa);
-    height: 400px;
+    min-height: 400px;
+    margin: 10px 0!important;
+    min-width: 30vw;
+    max-width: 100%;
 }
 .price-card2{
    background-color: var(--sec);

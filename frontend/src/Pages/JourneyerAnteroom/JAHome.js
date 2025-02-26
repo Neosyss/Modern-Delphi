@@ -5,6 +5,7 @@ import pic2 from '../../isvgs/flowers-crop-2.webp';
 
 import reflectImg from '../../images/actual/Reflect on your journey.jpg';
 import immerseImg from '../../images/actual/Immerse yourself in calming sound.jpg';
+import FadeInSection from "../Home/UseInView";
 
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
@@ -41,7 +42,7 @@ const JAHome = () => {
                 <source src={rain} type="audio/mpeg" />
                 Your browser does not support the audio tag.
             </audio>
-
+            <FadeInSection>
             <div className="slhome-background">
                 <div className="tb-2">Welcome</div>
                 <h1 className="my-3">Enter the Anteroom</h1>
@@ -54,7 +55,9 @@ const JAHome = () => {
                     ><div>Let's Have a Chat</div></div>
                 </div>
             </div>
+            </FadeInSection>
 
+            <FadeInSection>
             <div className="slhome-background2">
                 <div className="row">
 
@@ -87,7 +90,10 @@ const JAHome = () => {
 
                 </div>
             </div>
+            </FadeInSection>
 
+
+            <FadeInSection>
 
             <div className="slhome-background2 back-priopa">
                 <div className="row">
@@ -130,7 +136,10 @@ const JAHome = () => {
 
                 </div>
             </div>
+            </FadeInSection>
 
+
+            <FadeInSection>
 
             <div className="slhome-background4">
                 <img src={pic2} className="slhomesvg" />
@@ -174,6 +183,8 @@ const JAHome = () => {
                     </div>
                 </div>
             </div>
+            </FadeInSection>
+
 
         </>
     );

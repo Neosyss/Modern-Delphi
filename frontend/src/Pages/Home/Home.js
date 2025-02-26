@@ -6,6 +6,8 @@ import Support from "./Support";
 import axios from "axios";
 import { useEffect } from "react";
 import HomeChatBot from "./HomeChatBot";
+import FadeInSection from "./UseInView";
+
 
 const trackSiteVisit = async () => {
   try {
@@ -25,15 +27,28 @@ const Home = () => {
   return (
     <>
     {/* <Navbar /> */}
+
     <Carousel />
-    <WelcomeSection />
-    <HomeChatBot/>
-    <GreenStrip/>
-    <PricingPlans />
+    <FadeInSection>
+      <WelcomeSection />
+    </FadeInSection>
+
+    <FadeInSection>
+      <HomeChatBot/>
+    </FadeInSection>
+  
+      <GreenStrip/>
+  
+    <FadeInSection>
+      <PricingPlans />
+    </FadeInSection>
+  
     {/* <JeffreySection /> */}
     {/* <Services /> */}
     {/* <OurTeam/> */}
-    <Support/>
+    <FadeInSection>
+      <Support/>
+    </FadeInSection>
     {/* <Questions/> */}
     {/* <ContactCardHome/> */}
     </>

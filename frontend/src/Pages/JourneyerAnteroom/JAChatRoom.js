@@ -51,7 +51,7 @@ const JAChatRoom = () => {
                     </div>
                 </div>
                 <iframe
-                    src="https://www.chatbase.co/chatbot-iframe/Lf-WDj2kkpHKNECkE8rK1"
+                    src="https://www.chatbase.co/chatbot-iframe/c4DQnBKIBUL97tBeh1NRd"
                     className="ja-iframe"
                     frameBorder="0"
                 ></iframe>

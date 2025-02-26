@@ -19,11 +19,10 @@ const Login = () => {
 
 
         if (adminToken) {
-            navigate("/");
+            navigate("/admin");
         } else if (userToken) {
-            navigate("/");
+            navigate("/user");
         }
-
 
         const handleEnterPress = (e) => {
             if (e.key === "Enter") {

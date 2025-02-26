@@ -15,7 +15,7 @@ const PricingSet = () => {
             console.log(response);
             const plans = response.data.price_details.length > 0 
                 ? response.data.price_details
-                : [{ pricing_id: null, plan_name: "", price: "", description: ["", "", "", "", ""] }];
+                : [{ pricing_id: null, plan_name: "", price: "", description: "" }];
             
             setPriceData(plans);
         } catch (error) {
@@ -42,21 +42,6 @@ const PricingSet = () => {
             prevData.map((plan, i) => i === index ? { ...plan, [key]: value } : plan)
         );
     };
-
-    const handleDescriptionChange = (index, lineIndex, value) => {
-        setPriceData(prevData => 
-            prevData.map((plan, i) => 
-                i === index 
-                    ? { 
-                        ...plan, 
-                        description: [
-                            ...Array.from({ length: 5 }, (_, j) => plan.description[j] || ""),
-                        ].map((desc, j) => j === lineIndex ? value : desc)
-                    } 
-                    : plan
-            )
-        );
-    };
     
     return (
         <div className="p-4 max-w-3xl mx-auto">
@@ -64,14 +49,14 @@ const PricingSet = () => {
                 <h2 className="text-2xl font-bold mb-4">Pricing Plans</h2>
                 <div 
                     onClick={handleEditClick} 
-                    className="prb-2"
+                    className="prb-2 cursor-pointer text-blue-600"
                 >
                     <div>{editing ? "Save" : "Edit"}</div>
                 </div>
             </div>
 
             {priceData.map((plan, index) => (
-                <div key={index} className="p-4 mb-4 cardpriceplan ">
+                <div key={index} className="p-4 mb-4 cardpriceplan">
 
                     <div className="row my-2">
                         <div className="col-md-4">
@@ -88,7 +73,7 @@ const PricingSet = () => {
                         </div>
                     </div>
 
-                    <div className=" my-2 row">
+                    <div className="my-2 row">
                         <div className="col-md-4">
                             <label className="block text-gray-700 mt-2">Price:</label>
                         </div>
@@ -108,16 +93,12 @@ const PricingSet = () => {
                             <label className="block text-gray-700 mt-2">Description:</label>
                         </div>
                         <div className="col-md-8">
-                            {Array.from({ length: 5 }).map((_, lineIndex) => (
-                                <input 
-                                    key={lineIndex}
-                                    type="text"
-                                    className="border p-2 my-2 w-50 rounded mt-1"
-                                    value={plan.description[lineIndex] || ""}
-                                    onChange={(e) => handleDescriptionChange(index, lineIndex, e.target.value)}
-                                    disabled={!editing}
-                                />
-                            ))}
+                            <textarea 
+                                className="border p-2 my-2 w-100 rounded mt-1"
+                                value={plan.description || ""}
+                                onChange={(e) => handleChange(index, "description", e.target.value)}
+                                disabled={!editing}
+                            />
                         </div>
                     </div>
                 </div>

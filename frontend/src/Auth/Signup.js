@@ -13,9 +13,9 @@ const Signup = () => {
         const adminToken = localStorage.getItem("adminAuthToken");
 
         if (adminToken) {
-            navigate("/");
+            navigate("/admin");
         } else if (userToken) {
-            navigate("/");
+            navigate("/user");
         }
 
         const handleEnterPress = (e) => {

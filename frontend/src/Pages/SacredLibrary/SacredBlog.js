@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FadeInSection from "../Home/UseInView";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -99,6 +100,8 @@ const SacredBlog = () => {
     if (!blog) return <div>Blog not found.</div>;
 
     return (
+        <FadeInSection>
+
         <div className="container sl-blog">
             <div className="prb-1 mb-3" onClick={() => navigate('/sacred-library')}>
                 <div>Back</div>
@@ -195,6 +198,7 @@ const SacredBlog = () => {
                 </div>
             </div>
         </div>
+        </FadeInSection>
     );
 };
 

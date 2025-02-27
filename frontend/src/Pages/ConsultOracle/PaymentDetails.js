@@ -50,16 +50,9 @@ const PaymentDetails = () => {
             </div>
             <div className="col-md-7 height-pd my-2">
               <span className="span my-4 fs-med ">{plan.plan_name}</span>
-              <p className="p my-4 text-dark">Billed One Time Only</p>
+              <p className="p my-4 text-secondary">Billed One Time Only</p>
               
-              {plan.description && plan.description.map((desc, index) => {
-                  return desc.trim() !== "" && (  // Check if desc is not empty
-                      <div key={index} className="d-flex justify-content-start">
-                          <TiTick className='svgtick'/>
-                          <div className="px-2">{desc}</div>
-                      </div>        
-                  );
-              })}
+              <div className="my-4">{plan.description}</div>
 
               <div className="d-flex justify-content-center my-5">
                     

@@ -197,7 +197,7 @@ const ConsultOracleHome = () => {
 
             <FadeInSection>
 
-            <div className="slhome-background2 back-priopa">
+            <div className="slhome-background2 back-priopa" style={{backgroundColor:"#ecf4f0"}}>
                 <div className="d-flex flex-column align-items-center justify-content-center">
                     <div>
                         <div className="tb-2">Guidance</div>

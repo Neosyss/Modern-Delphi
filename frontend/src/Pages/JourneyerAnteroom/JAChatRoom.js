@@ -37,7 +37,7 @@ const JAChatRoom = () => {
     return (
         <>
             {isLoggedIn && (
-                <audio ref={audioRef} preload="auto" loop>
+                <audio ref={audioRef} preload="none" loop>
                     <source src={rain} type="audio/mpeg" />
                     Your browser does not support the audio tag.
                 </audio>

@@ -38,7 +38,7 @@ const JAHome = () => {
 
     return (
         <>
-            <audio ref={audioRef} preload="auto">
+            <audio ref={audioRef} preload="none">
                 <source src={rain} type="audio/mpeg" />
                 Your browser does not support the audio tag.
             </audio>

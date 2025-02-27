@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 const UseInView = (threshold = 0.2) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -7,10 +7,7 @@ const UseInView = (threshold = 0.2) => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect(); // Stop observing once it's visible
-                }
+                setIsVisible(entry.isIntersecting); // Update visibility whenever it enters or exits
             },
             { threshold }
         );
@@ -23,21 +20,18 @@ const UseInView = (threshold = 0.2) => {
     return [ref, isVisible];
 };
 
-// import React from 'react';
-// import useInView from '../hooks/useInView'; // Import the hook
-// import './FadeInSection.css'; // Import CSS
-
 const FadeInSection = ({ children }) => {
     const [ref, isVisible] = UseInView();
 
     return (
-        <div ref={ref} className={`fade-section ${isVisible ? 'animate-in' : ''}`}>
+        <div ref={ref} className={`fade-section ${isVisible ? 'animate-in' : 'animate-out'}`}>
             {children}
         </div>
     );
 };
 
 export default FadeInSection;
+
 
 
 // export default UseInView;

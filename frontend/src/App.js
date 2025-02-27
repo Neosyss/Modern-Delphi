@@ -38,6 +38,7 @@ const ProtectedAdminRoute = () => {
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
+
 const Layout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";

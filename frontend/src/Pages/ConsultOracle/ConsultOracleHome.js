@@ -69,11 +69,11 @@ const ConsultOracleHome = () => {
     return (
         <>
             <FadeInSection>
-            <div className="slhome-background">
+            <div className="slhome-background clhome-img-bg">
                 <div className="tb-2">Wisdom</div>
                 <h1 className="my-3">Consult The Oracle</h1>
                 <div className="d-flex justify-content-center">
-                    <p className="p sl-para w-80">Seek wisdom and guidance from the Mystic Oracle for your journey ahead.</p>
+                    <p className="p text-light sl-para w-80">Seek wisdom and guidance from the Mystic Oracle for your journey ahead.</p>
                 </div>
                 <div className="d-flex justify-content-center m-2">
                     <div className="prb-2 mx-1" onClick={handleBookNowClick}

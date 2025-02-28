@@ -43,11 +43,11 @@ const JAHome = () => {
                 Your browser does not support the audio tag.
             </audio>
             <FadeInSection>
-            <div className="slhome-background">
+            <div className="slhome-background jachatroom-bg-img">
                 <div className="tb-2">Welcome</div>
                 <h1 className="my-3">Enter the Anteroom</h1>
                 <div className="d-flex justify-content-center">
-                    <p className="p sl-para w-80">A serene space for reflection, inviting you to explore the
+                    <p className="p text-light sl-para w-80">A serene space for reflection, inviting you to explore the
                         depths for your journey</p>
                 </div>
                 <div className="d-flex justify-content-center m-2">

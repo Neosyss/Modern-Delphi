@@ -41,7 +41,9 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Layout = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const homePaths = ["/", "/consult-oracle", "/journeyers-chatroom", "/sacred-library", "about-us"];
+  const isHomePage = homePaths.includes(location.pathname);
+
   const hideFooterRoutes = ["/journeyers-chatroom"]; // Add routes where you want to hide the footer
 
   return (

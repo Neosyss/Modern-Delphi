@@ -11,7 +11,12 @@ const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });  
   const isDesktop = useMediaQuery({ minWidth: 767 });  
 
-  const isAtHome = location.pathname === "/"; 
+  const homePaths = ["", "home", "consult-oracle", "journeyers-anteroom", "sacred-library", "about-us"];
+  const currentPath = location.pathname.replace(/^\//, ""); // Remove leading `/`
+  const isAtHome  = homePaths.includes(currentPath);
+
+  console.log(isAtHome)
+
   const [isAtTopClass, setIsAtTopClass] = useState(isAtHome);
   const [menuOpen, setMenuOpen] = useState(false);
 

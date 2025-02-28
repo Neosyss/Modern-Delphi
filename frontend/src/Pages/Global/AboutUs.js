@@ -19,11 +19,11 @@ const AboutUs = () => {
     return (
         <>
         <FadeInSection>
-            <div className="slhome-background">
+            <div className="slhome-background aboutus-img-bg">
                 <div className="tb-2">Greetings</div>
                 <h1 className="my-3">Welcome to Delphi</h1>
                 <div className="d-flex justify-content-center">
-                    <p className="p sl-para w-80">
+                    <p className="p text-light sl-para w-80">
                         Modern Delphi is a mystical haven where the ancient wisdom of the Oracle meets the serene beauty of the Boreal Forest. Here, amidst towering trees and starry skies, seekers embark on transformative journey of self-discovery.
                     </p>
                 </div>
@@ -105,15 +105,15 @@ const AboutUs = () => {
                             connect with nature and reflect on your inner journey
                         </p>
                         <div className="d-flex my-3 justify-content-start">
-                            <div className="ja-card1 my-2 p-3">
+                            <div className="ja-card1 w-50 my-2 mx-1 p-3">
                                 <h3>Nature</h3>
                                 <p>A sanctuary for reflection and
                                     renewal</p>
                             </div>
-                            <div className="ja-card1 m-2 mx-3 p-3">
+                            <div className="ja-card1 w-50 m-2 mx-1 p-3">
                                 <h3>Wisdom</h3>
                                 <p>Embrace the journey of sell
-                                    discovery and insight</p>
+                                    discovery and insight</p>
                             </div>
                         </div>
 
@@ -184,7 +184,7 @@ const AboutUs = () => {
                 <img src={pic2} className="slhomesvg" />
                 <div className="tb-2">Connect</div>
                 <div className="d-flex justify-content-center align-items-center flex-column text-center">
-                    <h1 className="my-3  sl-heading3">Get in Touch</h1>
+                    <h1 className="my-3 text-center sl-heading3">Get in Touch</h1>
                     <p className="p sl-para  sl-heading3">We would love to hear from you </p>
                 </div>
                 <div className="container my-4">

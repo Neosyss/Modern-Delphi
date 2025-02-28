@@ -74,11 +74,11 @@ const SLHome = () => {
     return (
         <>
             <FadeInSection>
-            <div className="slhome-background">
+            <div className="slhome-background slhome-bg-img">
                 <div className="tb-2">Wisdom</div>
                 <h1 className="my-3">Explore Ancient Knowledge</h1>
                 <div className="d-flex justify-content-center">
-                    <p className="p sl-para w-80">
+                    <p className="p text-light sl-para w-80">
                         Delve into a treasure trove of insights, reflections, & guidance for your journey ahead
                     </p>
                 </div>

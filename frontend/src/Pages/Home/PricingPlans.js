@@ -66,7 +66,7 @@ useEffect(() => {
             {/* </div> */}
             <div className="d-flex justify-content-center mt-4">
               <h1 className=" heading-main-2 mx-1">Consult The</h1>
-              <span className="span style-2 mx-1 customp-set">Oracle</span>
+              <span className="span style-2 mx-1 customp-set text-light">Oracle</span>
             </div>
             <div className="justify-content-center d-flex">
             <p className='p custom-p-pricing'>Unlock personalized insights with AI-assisted guidance.</p>

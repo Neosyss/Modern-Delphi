@@ -10,19 +10,30 @@ const Bookings = () => {
     const [sortBy, setSortBy] = useState("");
     const [bookings, setBookings] = useState([]);
     const [filteredBookings, setFilteredBookings] = useState([]);
+    const [priceData, setPriceData] = useState([]);
 
     const fetchBookingsData = async () => {
         try {
             const response = await axios.get(`/api/all-bookings`);
             setBookings(response.data);
-            console.log(response.data);
             setFilteredBookings(response.data);
         } catch (error) {
             console.error("Error fetching bookings:", error);
         }
     };
 
+    const fetchPriceData = async () => {
+        try {
+            const response = await axios.get(`/api/price-data`);
+            setPriceData(response.data.price_details);
+
+        } catch(err){
+            console.log(err);
+        }
+    };
+    
     useEffect(() => {
+        fetchPriceData();
         fetchBookingsData();
     }, []);
 
@@ -85,11 +96,15 @@ const Bookings = () => {
                                     <div className="col-md-6">
                                         <p><strong>User: </strong> {currentBooking?.user_name || "N/A"}</p>
                                         <p><strong>Email: </strong> {currentBooking?.user_email || "N/A"}</p>
-                                        <p><strong>Payment ID: </strong> {currentBooking?.payment_intent_id || "N/A"}</p>
-                                        
+                                        <p style={{wordBreak:'break-word'}}><strong>Payment ID: </strong > {currentBooking?.payment_intent_id || "N/A"}</p>
+                                        <p><strong>Plan:</strong> { 
+                                            priceData.find(plan => plan.pricing_id === currentBooking?.pricing_id)?.plan_name || "N/A"
+                                        }</p>
+                                        <p><strong>Price:</strong> { 
+                                            priceData.find(plan => plan.pricing_id === currentBooking?.pricing_id)?.price || "N/A"
+                                        }</p>
                                     </div>
                                     <div className="col-md-6">
-                                    <p><strong>Price Plan: </strong> {currentBooking?.pricing_id || "N/A"}</p>
 
                                     <p><strong>Meeting Creation Date: </strong>
                                         {(() => {

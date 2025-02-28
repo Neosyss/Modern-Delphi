@@ -9,7 +9,7 @@ const WelcomeSection = () => {
         <>
             <div className="containerWelcome">
                 <div className="row padding-picture-section">
-                    <div className="col-md-6 d-flex align-items-center h-cont">
+                    <div className="col-md-6 d-flex set-c-align h-cont">
                         <PicContainer1 />
                     </div>
                     <div className="col-md-6 p-3 ">

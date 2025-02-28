@@ -531,16 +531,14 @@ app.post("/api/auth/login", (req, res) => {
             console.error("Error fetching user:", err);
             return res.status(500).json({ error: "Database error" });
         }
-
+        
         if (results.length === 0) {
             return res.status(401).json({ error: "Invalid email or password" });
         }
-
+        
         const user = results[0];
-
-        // Compare hashed password
+        
         if (!bcrypt.compareSync(password, user.password_hash)) {
-        // if (password !==  user.password_hash) {
             return res.status(401).json({ error: "Invalid email or password" });
         }
 
@@ -554,7 +552,6 @@ app.post("/api/auth/login", (req, res) => {
     });
 });
 
-// change pass
 app.post("/api/save-payment", async (req, res) => {
     try {
         const { 
@@ -567,8 +564,25 @@ app.post("/api/save-payment", async (req, res) => {
             return res.status(400).json({ success: false, error: "All fields are required" });
         }
 
+        // ✅ Use async/await for user lookup
+        const [users] = await db.promise().query(`SELECT * FROM users WHERE user_id = ?`, [user_id]);
+        
+        if (users.length === 0) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const user = users[0];
+        
+
+        const [pricedata] = await db.promise().query(`SELECT * FROM pricing WHERE pricing_id = ?`, [pricing_id]);
+        
+        if (pricedata.length === 0) {
+            return res.status(404).json({ success: false, message: "Price Plan not found" });
+        }
+        
+
+        // ✅ Use async/await for insertion
         const query = `
-            INSERT into appointments 
+            INSERT INTO appointments 
             (user_id, payment_intent_id, pricing_id, amount, currency, 
             name, email, address, city, postal_code, country, paid, appt_booked) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -578,14 +592,48 @@ app.post("/api/save-payment", async (req, res) => {
             name, email, address, city, postalCode, country, '1', '0'
         ];
 
-        const [result] = await db.promise().query(query, values);
+        await db.promise().query(query, values);
 
-        res.status(200).json({ success: true, message: "Payment details saved successfully", result });
+        res.status(200).json({ success: true, message: "Payment details saved successfully" });
+
+        // ✅ Ensure email sending happens AFTER response (to prevent delays)
+        const mailOptions = {
+            from: process.env.SMTP_SENDER, 
+            to: user.email, 
+            subject: 'Modern Delphi | Booking Successful!', 
+            html: `<h3>Dear User</h3>
+            <div>Welcome to Modern Delphi and Thank you for your booking.
+            Your payment has been successfully recieved. However you need to go to your Dashboard to schedule your appointment in the available time slots.
+            </div>
+            <br></br>
+            <div>Details of Booking:</div>
+            <br></br>
+            <div><strong>Name:</strong> ${name}</div>
+            <div><strong>Email:</strong> ${email}</div>
+            <div><strong>Address:</strong> ${address}</div>
+            <div><strong>Postal Code:</strong> ${postalCode}</div>
+            <div><strong>City:</strong> ${city}</div>
+            <div><strong>Country:</strong> ${country}</div>
+            <br></br>
+            <div><strong>Price Plan:</strong> ${pricedata[0].plan_name}</div>
+            <div><strong>Amount Paid:</strong> $${amount}</div>
+            <br></br>
+            <br></br>
+            <div>Thanks and Best Regards.</div>
+            `,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) console.error('Error sending email:', error);
+            else console.log('Email sent:', info.response);
+        });
+
     } catch (error) {
         console.error("Error saving payment details:", error);
         res.status(500).json({ success: false, error: "Internal Server Error" });
     }
 });
+
 
 
 app.post("/api/save-donation", async (req, res) => {
@@ -693,23 +741,6 @@ app.post("/api/create-payment-intent", async (req, res) => {
             res.status(200).json({ price_details: results });
         });
 });
-  
-app.post("/api/save-payment", async (req, res) => {
-    try {
-      const { user_id, paymentIntentId, pricing_id, amount, currency, name, email, address, city, postalCode, country, status, date } = req.body;
-  
-      // Save to database (replace with actual DB logic)
-      await db.query(
-        "INSERT into appointments (user_id, payment_intent_id, pricing_id, amount, currency, name, email, address, city, postal_code, country, status, date, paid, appt_booked) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [user_id, paymentIntentId, pricing_id, amount, currency, name, email, address, city, postalCode, country, status, date, '1', '0']
-      );
-  
-      res.json({ success: true, message: "Payment details saved successfully" });
-    } catch (error) {
-      console.error("Error saving payment details:", error);
-      res.status(500).json({ success: false, error: "Internal Server Error" });
-    }
-  });
   
 
   app.post("/api/appt_booked", async (req, res) => {

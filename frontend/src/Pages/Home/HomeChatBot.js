@@ -8,7 +8,6 @@ const HomeChatBot = () => {
     
     const checkOnline = () => {
         const token = localStorage.getItem('authToken');
-        console.log(token);
         if(token !== null){
             setHasTerms(1);
         }

@@ -57,7 +57,6 @@ const ConsultOracleHome = () => {
                 if (!authToken) { navigate("/consult-oracle"); return; }
                 const response = await axios.post("/api/check-paid", { authToken });
                 setHasPendingAppointment(response.data.hasPendingAppointment);
-                console.log(response.data)
             } catch (error) {
                 console.error("Error checking appointment:", error);
                 setHasPendingAppointment(false);
@@ -168,7 +167,7 @@ const ConsultOracleHome = () => {
                             <div className="row justify-content-center">
                                 {pricingDetails.map((priceCard, index) => {
                                     return (
-                                        <div className="col-md-4" key={priceCard.id}>
+                                        <div className="col-md-4 my-2" key={priceCard.id}>
                                             <PriceCard2
                                                 pricing_id={priceCard.pricing_id}
                                                 title={priceCard.plan_name}
@@ -242,7 +241,7 @@ const PriceCard2 = ({ pricing_id, price, title, description, image, css = 0, ele
     const navigate = useNavigate();
 
     const handlePaymentProceed = () => {
-        const token = localStorage.getItem("authToken");
+        const token = localStorage.getItem("authToken") ||  localStorage.getItem("adminAuthToken");
         if (token) {
             navigate(`/payment-details/${pricing_id}`);
         } else {

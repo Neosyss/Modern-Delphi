@@ -28,7 +28,7 @@ const BlogContent = () => {
     const [isModelOpen, setIsModelOpen] = useState(0);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
-    const [hashtags, setHashtags] = useState('');
+    const [hashtags, setHashtags] = useState('hashtag');
     const [image, setImage] = useState(null);
     const [currentBlog, setCurrentBlog] = useState(null);
     const [blogs, setBlogs] = useState([]);
@@ -87,7 +87,6 @@ const BlogContent = () => {
                 fetchBlogs();
                 setContent('');
                 setError('');
-                setHashtags('');
                 setImage(null);
                 setTitle('');
             }
@@ -168,7 +167,6 @@ const BlogContent = () => {
     const openModel = (blog) => {
         setCurrentBlog(blog);
         setTitle(blog.title);
-        setHashtags(blog.hashtags);
         setContent(blog.description);
         setImage(blog.images ? blog.images : null);
         setIsModelOpen(1);
@@ -178,7 +176,6 @@ const BlogContent = () => {
         setIsModelOpen(0);
         setCurrentBlog(null);
         setTitle(''); 
-        setHashtags('');
         setContent('');
         setImage(null);
         setError(null);
@@ -202,11 +199,10 @@ const BlogContent = () => {
                                 onChange={(e) => setTitle(e.target.value)}
                             />
 
-                            <div className='mt-4'>Hashtags (#fun #trending)</div>
+                            <div className='d-none mt-4'>Hashtags (#fun #trending)</div>
                             <input 
-                                className="form-control"
+                                className="d-none form-control"
                                 value={hashtags}
-                                onChange={(e) => setHashtags(e.target.value)}
                             />
 
                             <div className='mt-4'>Image</div>
@@ -260,11 +256,10 @@ const BlogContent = () => {
                                 onChange={(e) => setTitle(e.target.value)}
                             />
 
-                            <div className='mt-4'>Hashtags</div>
+                            <div className='mt-4 d-none'>Hashtags</div>
                             <input 
-                                className="form-control"
+                                className="form-control d-none"
                                 value={hashtags}
-                                onChange={(e) => setHashtags(e.target.value)}
                             />
 
                             <div className='mt-4'>Image</div>

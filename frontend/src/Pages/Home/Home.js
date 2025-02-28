@@ -12,7 +12,6 @@ import FadeInSection from "./UseInView";
 const trackSiteVisit = async () => {
   try {
       await axios.post("/api/sitemetrics/track");
-      console.log(1);
   } catch (error) {
       console.error("Error tracking site visit:", error);
   }

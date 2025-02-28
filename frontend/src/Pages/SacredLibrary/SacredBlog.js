@@ -16,7 +16,7 @@ const SacredBlog = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const authToken = localStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken") || localStorage.getItem("adminAuthToken");
     const user = authToken ? jwtDecode(authToken) : null;
 
     const [username, setUsername] = useState('');
@@ -89,7 +89,7 @@ const SacredBlog = () => {
                 blog_id: id
             });
             setNewComment("");
-            setComments([...comments, { description: newComment, user_id: user.user_id, date: new Date().toISOString() }]);
+            setComments([...comments, { description: newComment, user_id: user.user_id, user_name: username, date: new Date().toISOString() }]);
         } catch (error) {
             console.error("Error posting comment:", error);
         }
@@ -101,7 +101,6 @@ const SacredBlog = () => {
 
     return (
         <FadeInSection>
-
         <div className="container sl-blog">
             <div className="prb-1 mb-3" onClick={() => navigate('/sacred-library')}>
                 <div>Back</div>
@@ -122,7 +121,6 @@ const SacredBlog = () => {
             <div className="row">
                 <div className="col-md-8 mx-0 padding-psm my-5">
                     <div className="mb-3" dangerouslySetInnerHTML={{ __html: blog.description }}></div>
-                    <h3 className="my-5">{blog.hashtags}</h3>
 
                     <div className="comment-section">
                         <div className="text-center">

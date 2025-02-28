@@ -10,6 +10,23 @@ const UserBookings = () => {
     const [sortBy, setSortBy] = useState("");
     const [bookings, setBookings] = useState([]);
     const [filteredBookings, setFilteredBookings] = useState([]);
+    const [priceData, setPriceData] = useState([]);
+
+
+    const fetchPriceData = async () => {
+        try {
+            const response = await axios.get(`/api/price-data`);
+            setPriceData(response.data.price_details);
+
+        } catch(err){
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        fetchPriceData();
+    }) 
+
 
     const fetchBookingsData = async () => {
         try {
@@ -122,6 +139,10 @@ const UserBookings = () => {
                         <div className="p-3">
                             <p><strong>User:</strong> {currentBooking?.user_name || "N/A"}</p>
                             <p><strong>Email:</strong> {currentBooking?.user_email || "N/A"}</p>
+                            <p><strong>Plan:</strong> { 
+                                priceData.find(plan => plan.pricing_id === currentBooking?.pricing_id)?.plan_name || "N/A"
+                            }</p>
+                            <p><strong>Price Paid:</strong> {currentBooking?.amount || "N/A"}</p>
                             <p><strong>Meeting Date:</strong> {new Date(currentBooking?.meeting_time).toLocaleDateString()}</p>
                             <p><strong>Meeting Time:</strong> {new Date(currentBooking?.meeting_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</p>
                             <p><strong>Meeting Link:</strong> <a href={currentBooking?.meeting_link} target="_blank" rel="noopener noreferrer" style={{color: 'var(--pri)'}} >Join Meeting</a></p>

@@ -12,7 +12,6 @@ const PricingSet = () => {
     const fetchData = async () => {
         try {
             const response = await axios.get("/api/price-data");
-            console.log(response);
             const plans = response.data.price_details.length > 0 
                 ? response.data.price_details
                 : [{ pricing_id: null, plan_name: "", price: "", description: "" }];

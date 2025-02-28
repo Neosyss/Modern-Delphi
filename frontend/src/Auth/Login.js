@@ -49,9 +49,6 @@ const Login = () => {
         if (email == "" || password == "") {
             setError("Please Enter Email and Password.")
             setShowErrorBox(true);
-            setTimeout(() => {
-                setError('');
-            }, 3000)
             return;
         }
 
@@ -59,6 +56,9 @@ const Login = () => {
             const response = await axios.post("/api/auth/login", { email, password });
             if (response.status == 200) {
                 console.log("Login Successful", response.data);
+                setError('Login Successful');
+                setShowErrorBox(true);
+                setGreen(true);
                 if (response.data.userRole == "admin") {
                     localStorage.setItem('adminAuthToken', response.data.token);
                     navigate('/');
@@ -66,13 +66,6 @@ const Login = () => {
                     localStorage.setItem('authToken', response.data.token);
                     navigate('/');
                 }
-            } else {
-                setError('Login Unsuccessful');
-                setGreen(true);
-                setShowErrorBox(true);
-                setTimeout(()=>{
-                    setGreen(false);
-                }, 3000)
             }
         } catch (err) {
             setError("Invalid email or password. Please try again.");

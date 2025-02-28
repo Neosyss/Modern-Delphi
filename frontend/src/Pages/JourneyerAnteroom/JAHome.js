@@ -103,7 +103,7 @@ const JAHome = () => {
                     </div>
 
                     <div className="col-md-7 mt-0 px-4">
-                        <div className="tb-2">Serenity</div>
+                        <div className="tb-2 mt-2">Serenity</div>
                         <h1 className="my-3">Immerse Yourself in Calming Sounds</h1>
                         <p className="p sl-para text-start">Experience a soothing soundscape designed to enhance your journey. Toggle the atmospheric audio on or offto create your perfect space for reflection.</p>
 

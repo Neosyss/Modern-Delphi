@@ -127,6 +127,7 @@ const StripePage = () => {
       });
   
       if (result.error) {
+        console.log(result.error)
         setError(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
         // setSuccess("Payment successful! Thank you for your purchase.");
@@ -154,6 +155,7 @@ const StripePage = () => {
       }
     } catch (err) {
       setError(err.message);
+      console.log(err)
     } finally {
       setLoading(false);
     }

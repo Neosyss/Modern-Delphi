@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./HomeChatBot.css";
 import { useNavigate } from "react-router-dom";
+import Chatbot from "../JourneyerAnteroom/ChatBotAnteroom";
 
 const HomeChatBot = () => {
     const navigate = useNavigate();
@@ -52,11 +53,7 @@ const HomeChatBot = () => {
                     </div>
                 </div>
                 <div className="w-custom-home">
-                    <iframe
-                        src="https://www.chatbase.co/chatbot-iframe/Lf-WDj2kkpHKNECkE8rK1"
-                        className="homeiframe"
-                        frameBorder="0"
-                        ></iframe>
+                    <Chatbot chatbot={"Homepage"} />
                 </div>
             </div>
         </div>

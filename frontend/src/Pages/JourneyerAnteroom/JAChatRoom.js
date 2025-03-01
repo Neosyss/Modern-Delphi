@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { IoVolumeHigh, IoVolumeMute } from "react-icons/io5"; // Mute/unmute icons
+import ChatBotAnteroom from "./ChatBotAnteroom";
 
 const rain = "/audio/rain.mp3";
 
@@ -83,11 +84,14 @@ const JAChatRoom = () => {
                     )}
                     </div>
                 </div>
-                <iframe
+                {/* <iframe
                     src="https://www.chatbase.co/chatbot-iframe/c4DQnBKIBUL97tBeh1NRd"
                     className="ja-iframe"
                     frameBorder="0"
-                ></iframe>
+                ></iframe> */}
+                <div className="ja-iframe">
+                    <ChatBotAnteroom chatbot={"Anteroom"}/>
+                </div>
             </div>
         </>
     );

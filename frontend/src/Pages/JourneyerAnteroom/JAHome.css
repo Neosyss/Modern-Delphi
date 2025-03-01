@@ -17,8 +17,8 @@
 }
 
 .ja-iframe{
-    height:calc( 100% - 27px);
-    min-height: calc( 100vh - 27px);
+    height:calc( 100% - 50px);
+    min-height: calc( 100vh - 50px);
     width: 70%;
 }
 .backbtn-chat{

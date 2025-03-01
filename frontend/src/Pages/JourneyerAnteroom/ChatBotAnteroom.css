@@ -1,0 +1,95 @@
+.chatbot-anteroom{
+    background-color: rgb(255, 255, 255);
+    height: calc(100vh - 50px);
+    width: 100%;
+}
+
+.topbar-ca{
+    background-color: rgb(98, 215, 44);
+    height: 55px;
+    width: 100%;
+}
+
+.dot-b{
+    background-color: rgba(0, 0, 0, 0.729);
+    width: 5px;
+    height: 5px;
+    border-radius: 20px;
+    margin:1px;
+}
+
+.chat-box-ca{
+    height: 72vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.send-svg{
+    color: var(--sec);
+    height: 30px;
+    width: 30px;
+}
+
+.user-msg{
+    display: flex;
+    justify-content: end;
+    padding: 7px;
+}
+.user-msg div{
+    background-color: rgb(217, 228, 230);
+    padding: 8px 15px;
+    border-radius: 23px 23px 5px 23px;
+    max-width: 60%;
+}
+
+.bot-msg{
+    display: flex;
+    justify-content: start;
+    padding: 7px;
+}
+.bot-msg div{
+    background-color: rgb(98, 215, 44);
+    padding: 8px 15px;
+    border-radius: 23px 23px 23px 5px;
+    max-width: 60%;
+}
+
+.message-input-ca{
+    padding: 20px !important;
+}
+.message-input-ca:focus{
+    box-shadow: none !important;
+    border-color: rgba(128, 128, 128, 0.503) !important;
+}
+
+.user-msg p, .bot-msg p {
+    margin-bottom: 0px !important;
+}
+
+@media (max-width: 1030px) {
+    .chatbot-anteroom{
+        margin-top: 25px;
+        height: calc(100vh - 74px);
+    }
+    .chat-box-ca{
+        height: 68vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .chatbot-anteroom{
+        margin-top: 25px;
+        height: calc(100vh - 180px);
+    }
+    .chat-box-ca{
+        height: 63vh;
+    }
+
+    .user-msg div{
+        max-width: 75%;
+    }
+    .bot-msg div{
+        max-width: 75%;
+    }
+}
+

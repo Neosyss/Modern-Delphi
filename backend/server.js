@@ -2,8 +2,11 @@ const seedAdmin = require("./seedAdmin");
 const seedPrice = require("./seedPrice");
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const OpenAI = require('openai');
+
 
 bcrypt.setRandomFallback((len) => crypto.randomBytes(len));
+const { anteroomSystemPrompt, homepageSystemPrompt } = require('./data');
 
 const jwt = require('jsonwebtoken');
 const express = require('express');
@@ -894,6 +897,86 @@ app.post("/api/comments", async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
+
+const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENROUTER_API_KEY,
+});
+
+const chatbotType = {
+    HOMEPAGE: 'Homepage',
+    ANTEROOM: 'Anteroom'
+}
+
+let chatSessions = {};
+
+app.post('/api/chat', async (req, res) => {
+    const { message, chatbot, sessionId } = req.body;
+
+    if (!chatSessions[sessionId]) {
+        chatSessions[sessionId] = {};
+    }
+    
+    if (!chatSessions[sessionId][chatbot]) {
+        chatSessions[sessionId][chatbot] = [];
+    }
+
+    chatSessions[sessionId][chatbot].push({ role: 'user', content: message });
+
+    if(chatSessions[sessionId][chatbotType.HOMEPAGE] && chatbot === chatbotType.ANTEROOM) {
+
+    } 
+
+    // openai.FineTuningJob.create
+
+    try {
+        let response;
+        let maxRetries = 3;
+        let attempt = 0;
+    
+        do {
+            response = await openai.chat.completions.create({
+                model: 'deepseek/deepseek-r1-distill-llama-70b',
+                messages: [
+                    { role: 'system', content: chatbot === 'Anteroom' ? anteroomSystemPrompt('') : homepageSystemPrompt },
+                    ...chatSessions[sessionId][chatbot]
+                ],
+                provider: {
+                    order: ['DeepInfra', 'Nebius']
+                }
+            });
+    
+            attempt++;
+        } while ((!response.choices[0].message.content || response.choices[0].message.content.trim() === '') && attempt < maxRetries);
+    
+        if (response.choices[0].message.content && response.choices[0].message.content.trim() !== '') {
+            chatSessions[sessionId][chatbot].push({ role: 'assistant', content: response.choices[0].message.content });
+        } else {
+            console.error('Failed to get a valid response after retries.');
+        }
+
+        res.json({ response: response.choices[0].message.content });
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+});
+
+app.post('/api/reset-chat', (req, res) => {
+    const { chatbot, sessionId } = req.body;
+
+    if (chatSessions[sessionId] && chatSessions[sessionId][chatbot]) {
+        delete chatSessions[sessionId][chatbot];
+
+        if (Object.keys(chatSessions[sessionId]).length === 0) {
+            delete chatSessions[sessionId];
+        }
+    }
+
+    res.json({ message: 'Chat session reset successfully' });
+});
+
 
 // app.listen(5000, '0.0.0.0', () => {
 //     console.log("Server running on http://0.0.0.0:5000");

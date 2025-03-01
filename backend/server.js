@@ -898,7 +898,7 @@ app.post("/api/comments", async (req, res) => {
     }
 });
 
-
+console.log(process.env.OPENROUTER_API_KEY)
 
 const openai = new OpenAI({
     baseURL: 'https://openrouter.ai/api/v1',

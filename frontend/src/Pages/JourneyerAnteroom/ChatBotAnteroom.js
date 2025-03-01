@@ -22,7 +22,7 @@ const Chatbot = ({ chatbot }) => {
         setLoading(true);
 
         try {
-            const response = await axios.post('/api/chat', { message: input, chatbot, sessionId });
+            const response = await axios.post('http://localhost:5000/api/chat', { message: input, chatbot, sessionId });
             setMessages(prevMessages => [...prevMessages, { role: 'bot', content: response.data.response }]);
         } catch (error) {
             console.error('Error fetching response:', error);
@@ -34,7 +34,7 @@ const Chatbot = ({ chatbot }) => {
     const clearChat = async () => {
         setMessages([]);
         try {
-            await axios.post('/api/reset-chat', { chatbot, sessionId });
+            await axios.post('http://localhost:5000/api/reset-chat', { chatbot, sessionId });
             setSession(uuidv4());
         } catch (error) {
             console.error('Error resetting chat:', error);

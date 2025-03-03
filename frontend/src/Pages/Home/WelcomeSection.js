@@ -1,7 +1,6 @@
 import PicContainer1 from "./PicContainer1";
 import { FaCheck } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
-import img1 from '../../images/misc/trustpilot.png';
 import './WelcomeSection.css';
 
 const WelcomeSection = () => {

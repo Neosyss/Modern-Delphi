@@ -108,13 +108,13 @@ const JAHome = () => {
                         <p className="p sl-para text-start">Experience a soothing soundscape designed to enhance your journey. Toggle the atmospheric audio on or offto create your perfect space for reflection.</p>
 
                         <div className="d-flex justify-content-start">
-                            <div className="">
+                            <div className="w-50 px-1">
                                 <div className="sl-card2 border p-4">
                                     <h1>50%</h1>
                                     <p>Relax and find your innerpeace.</p>
                                 </div>
                             </div>
-                            <div className="px-2">
+                            <div className="px-1 w-50">
                                 <div className="sl-card2 border p-4">
                                     <h1>50%</h1>
                                     <p>Let the sounds guide your thoughts.</p>

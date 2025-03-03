@@ -126,7 +126,18 @@
     right: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
+    .carousel-content {
+        top: 50%;
+        width: 80%;
+        left: 50%;
+    }
+    .subtitle-carousel {
+        font-size: 70px;
+    }
+
+}
+@media (max-width: 1100px) {
     .carousel {
         height: 100vh;
     }
@@ -147,6 +158,13 @@
     }
 
     .subtitle-carousel {
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 450px) {
+    .subtitle-carousel {
         font-size: 14vw;
+        width: 60%;
     }
 }

@@ -55,7 +55,7 @@
         margin-top: 5vw;
     }
     .h-cont{
-        height: 90vw;
+        height: 70vw;
     }
     .f-small{
         line-height: 160%;
@@ -70,3 +70,8 @@
 
  }
 
+ @media (max-width:540px) {
+    .h-cont{
+        height: 80vw;
+    }
+ }

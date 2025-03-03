@@ -2,6 +2,7 @@ const seedAdmin = require("./seedAdmin");
 const seedPrice = require("./seedPrice");
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const axios = require('axios');
 const OpenAI = require('openai');
 
 
@@ -898,44 +899,153 @@ app.post("/api/comments", async (req, res) => {
     }
 });
 
-console.log(process.env.OPENROUTER_API_KEY)
 
-const openai = new OpenAI({
-    baseURL: 'https://openrouter.ai/api/v1',
-    apiKey: process.env.OPENROUTER_API_KEY,
-});
+const PROVISIONING_API_KEY = process.env.OPENROUTER_PROVISION_KEY;
+const OPENROUTER_API_BASE = 'https://openrouter.ai/api/v1/keys';
+
+let cachedApiKey = null;
+let lastFetched = 0;
+const API_KEY_EXPIRATION = 10 * 60 * 1000; // 10 minutes cache
 
 const chatbotType = {
     HOMEPAGE: 'Homepage',
     ANTEROOM: 'Anteroom'
-}
+};
 
 let chatSessions = {};
 
-app.post('/api/chat', async (req, res) => {
-    const { message, chatbot, sessionId } = req.body;
+// Function to fetch the actual API key using the hash
+async function fetchApiKeyByHash(keyHash) {
+    try {
+        const response = await axios.get(`${OPENROUTER_API_BASE}/${keyHash}`, {
+            headers: {
+                Authorization: `Bearer ${PROVISIONING_API_KEY}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-    if (!chatSessions[sessionId]) {
-        chatSessions[sessionId] = {};
+        console.log("Fetched API Key by Hash:", JSON.stringify(response.data, null, 2));
+
+        if (response.data.key) {
+            return response.data.key; // Return the actual API key
+        } else {
+            console.error("No API key found in the response.");
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching API key by hash:", error.response?.data || error.message);
+        return null;
     }
-    
-    if (!chatSessions[sessionId][chatbot]) {
-        chatSessions[sessionId][chatbot] = [];
+}
+
+async function getActiveApiKey() {
+    try {
+        console.log("Fetching existing API keys...");
+        const response = await axios.get(OPENROUTER_API_BASE, {
+            headers: {
+                Authorization: `Bearer ${PROVISIONING_API_KEY}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const keys = response.data.data || [];
+        console.log("API Key Response:", JSON.stringify(keys, null, 2));
+
+        const activeKey = keys.find(key => !key.disabled);
+        if (activeKey) {
+            // Fetch the actual API key using the hash
+            const actualApiKey = await fetchApiKeyByHash(activeKey.hash);
+            if (actualApiKey) {
+                cachedApiKey = actualApiKey;
+                lastFetched = Date.now();
+                console.log("Using existing API key:", cachedApiKey);
+                return cachedApiKey;
+            }
+        }
+
+        console.log("No active API key found, creating a new one...");
+        return await createNewApiKey();
+    } catch (error) {
+        console.error("Error fetching API keys:", error.response?.data || error.message);
+        return null;
     }
+}
+
+// Function to create a new API key
+async function createNewApiKey() {
+    try {
+        const response = await axios.post(OPENROUTER_API_BASE, {
+            name: "Chatbot Key",
+            label: "chatbot-instance",
+            limit: 1000 // Set a reasonable limit
+        }, {
+            headers: {
+                Authorization: `Bearer ${PROVISIONING_API_KEY}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        console.log("API Key Created Response:", JSON.stringify(response.data, null, 2));
+
+        if (response.data.key) { // Use the actual API key from the response
+            cachedApiKey = response.data.key;
+            lastFetched = Date.now();
+            console.log("Created new API key:", cachedApiKey);
+            return cachedApiKey;
+        } else {
+            console.error("No API key found in the response.");
+            return null;
+        }
+    } catch (error) {
+        console.error("Error creating new API key:", error.response?.data || error.message);
+        return null;
+    }
+}
+
+// OpenAI instance (must use cachedApiKey)
+function getOpenAIInstance() {
+    if (!cachedApiKey) {
+        console.error("No valid API key available!");
+        return null;
+    }
+
+    console.log("Using API key for OpenAI requests:", cachedApiKey);
+
+    return new OpenAI({
+        baseURL: 'https://openrouter.ai/api/v1',
+        apiKey: cachedApiKey // Use the actual API key
+    });
+}
+
+
+// Middleware to ensure we have a valid API key
+async function ensureApiKey() {
+    if (!cachedApiKey || Date.now() - lastFetched > API_KEY_EXPIRATION) {
+        console.log("Refreshing API key...");
+        await getActiveApiKey();
+    }
+}
+
+// Chatbot endpoint
+app.post('/api/chat', async (req, res) => {
+    await ensureApiKey();  // Ensure a valid API key
+    const openai = getOpenAIInstance();
+
+    if (!openai) {
+        return res.status(500).json({ error: 'No valid API key available' });
+    }
+
+    const { message, chatbot, sessionId } = req.body;
+    if (!chatSessions[sessionId]) chatSessions[sessionId] = {};
+    if (!chatSessions[sessionId][chatbot]) chatSessions[sessionId][chatbot] = [];
 
     chatSessions[sessionId][chatbot].push({ role: 'user', content: message });
-
-    if(chatSessions[sessionId][chatbotType.HOMEPAGE] && chatbot === chatbotType.ANTEROOM) {
-
-    } 
-
-    // openai.FineTuningJob.create
 
     try {
         let response;
         let maxRetries = 3;
         let attempt = 0;
-    
+
         do {
             response = await openai.chat.completions.create({
                 model: 'deepseek/deepseek-r1-distill-llama-70b',
@@ -943,14 +1053,12 @@ app.post('/api/chat', async (req, res) => {
                     { role: 'system', content: chatbot === 'Anteroom' ? anteroomSystemPrompt('') : homepageSystemPrompt },
                     ...chatSessions[sessionId][chatbot]
                 ],
-                provider: {
-                    order: ['DeepInfra', 'Nebius']
-                }
+                provider: { order: ['DeepInfra', 'Nebius'] }
             });
-    
+
             attempt++;
         } while ((!response.choices[0].message.content || response.choices[0].message.content.trim() === '') && attempt < maxRetries);
-    
+
         if (response.choices[0].message.content && response.choices[0].message.content.trim() !== '') {
             chatSessions[sessionId][chatbot].push({ role: 'assistant', content: response.choices[0].message.content });
         } else {
@@ -959,19 +1067,18 @@ app.post('/api/chat', async (req, res) => {
 
         res.json({ response: response.choices[0].message.content });
     } catch (error) {
-        res.status(500).json({ error: error });
+        console.error('Chat request failed:', error.response?.data || error.message);
+        res.status(500).json({ error: 'Chat request failed' });
     }
 });
 
+// Reset chat session
 app.post('/api/reset-chat', (req, res) => {
     const { chatbot, sessionId } = req.body;
 
     if (chatSessions[sessionId] && chatSessions[sessionId][chatbot]) {
         delete chatSessions[sessionId][chatbot];
-
-        if (Object.keys(chatSessions[sessionId]).length === 0) {
-            delete chatSessions[sessionId];
-        }
+        if (Object.keys(chatSessions[sessionId]).length === 0) delete chatSessions[sessionId];
     }
 
     res.json({ message: 'Chat session reset successfully' });

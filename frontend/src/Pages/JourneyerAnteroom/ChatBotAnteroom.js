@@ -11,18 +11,23 @@ const Chatbot = ({ chatbot }) => {
     const [input, setInput] = useState('');
     const [sessionId, setSession] = useState(initSessionId);
     const [loading, setLoading] = useState(false);
+    const [botGreeted, setBotGreeted] = useState(false); // Flag to track initial message
 
-    const chatBoxRef = useRef(null); // Reference to chat box
+    const chatBoxRef = useRef(null);
 
-    const sendMessage = async () => {
-        if (!input.trim()) return;
-        const userMessage = { role: 'user', content: input };
-        setMessages([...messages, userMessage]);
+    const sendMessage = async (message, showUserMessage = true) => {
+        if (!message.trim()) return;
+
+        if (showUserMessage) {
+            const userMessage = { role: 'user', content: message };
+            setMessages(prevMessages => [...prevMessages, userMessage]);
+        }
+
         setInput('');
-        setLoading(true);
 
+        setLoading(true);
         try {
-            const response = await axios.post('/api/chat', { message: input, chatbot, sessionId });
+            const response = await axios.post('/api/chat', { message, chatbot, sessionId });
             setMessages(prevMessages => [...prevMessages, { role: 'bot', content: response.data.response }]);
         } catch (error) {
             console.error('Error fetching response:', error);
@@ -48,6 +53,13 @@ const Chatbot = ({ chatbot }) => {
     }, [messages]);
 
     useEffect(() => {
+        if (!botGreeted) {
+            sendMessage("Hello", false); // Send "Hello" but don't show it in chat
+            setBotGreeted(true);
+        }
+    }, [botGreeted]);
+
+    useEffect(() => {
         return () => {
             clearChat(); // Runs when component unmounts
         };
@@ -56,7 +68,7 @@ const Chatbot = ({ chatbot }) => {
     return (
         <div className="chatbot-anteroom">
             <div className="topbar-ca d-flex justify-content-between align-items-center px-3">
-                <h5 className='mt-1'>{chatbot === 'Homepage' ? 'Homepage' : 'Kleio Anteroom'}</h5>
+                <h5 className='mt-1'>{chatbot === 'Homepage' ? 'Kleio' : 'Kleio Anteroom'}</h5>
                 <div className="d-flex justify-content-center flex-column align-items-center">
                     <div className="dot-b"></div>
                     <div className="dot-b"></div>
@@ -80,10 +92,10 @@ const Chatbot = ({ chatbot }) => {
                     placeholder='Type a message...' 
                     value={input} 
                     onChange={(e) => setInput(e.target.value)} 
-                    onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                    onKeyPress={(e) => e.key === 'Enter' && sendMessage(input)}
                 />
                 <div className="d-flex justify-content-center align-items-center mx-3">
-                    <RiSendPlaneFill className='cursor-pointer send-svg' onClick={sendMessage} />
+                    <RiSendPlaneFill className='cursor-pointer send-svg' onClick={() => sendMessage(input)} />
                 </div>
             </div>
         </div>

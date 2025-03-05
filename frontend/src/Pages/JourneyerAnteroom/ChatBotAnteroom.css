@@ -1,6 +1,6 @@
 .chatbot-anteroom{
     background-color: rgb(255, 255, 255);
-    height: calc(100vh - 50px);
+    min-height: calc(100vh - 50px);
     width: 100%;
 }
 

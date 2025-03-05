@@ -1048,7 +1048,8 @@ app.post('/api/chat', async (req, res) => {
 
         do {
             response = await openai.chat.completions.create({
-                model: 'deepseek/deepseek-r1-distill-llama-70b',
+                // model: 'deepseek/deepseek-r1-distill-llama-70b',
+                model: 'google/gemini-2.0-flash-001',
                 messages: [
                     { role: 'system', content: chatbot === 'Anteroom' ? anteroomSystemPrompt('') : homepageSystemPrompt },
                     ...chatSessions[sessionId][chatbot]

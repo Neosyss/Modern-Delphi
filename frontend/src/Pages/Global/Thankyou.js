@@ -6,7 +6,7 @@ const Thankyou = () => {
     return(
     <>
     <div className="thankyou">
-        <h1>Thank You for your Donation!!</h1>
+        <h1>Thank You for your Donation!</h1>
         <p>We really appreciate you</p>
 
         <div className="my-3">

@@ -26,10 +26,10 @@ const HomeChatBot = () => {
         <>
         <div className="home-chatbot mt-4 py-2 pt-5">
             <div className="d-flex justify-content-center mt-4">
-              <h1 className=" mx-1">Experience the</h1>
-              <span className="span style-2 mx-1 customp-set">Anteroom</span>
+              <h1 className=" mx-1">Meet               <span className="span style-2 mx-1 customp-set">Kleio</span>
+              : Your Guide to Clarity</h1>
             </div>
-            <div className="justify-content-center  d-flex">
+            <div className="justify-content-center d-flex">
             <p className='p text-dark text-center'>A serene space for reflection, inviting you to explore the depths for your journey.</p>
             </div>
             <div className="d-flex rel justify-content-center">

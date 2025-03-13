@@ -1,6 +1,4 @@
 import PicContainer1 from "./PicContainer1";
-import { FaCheck } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
 import './WelcomeSection.css';
 
 const WelcomeSection = () => {
@@ -11,16 +9,18 @@ const WelcomeSection = () => {
                     <div className="col-md-6 d-flex set-c-align h-cont">
                         <PicContainer1 />
                     </div>
-                    <div className="col-md-6 p-3 ">
+                    <div className="col-md-6 p-3">
                         <div className="tb-2">About</div>
-                        <h1 className="mt-2 text-dark heading-main-2">Transform Your</h1>
-                        <span className="span style-2">Mental Health</span>
+                        <h1 className="mt-2 text-dark heading-main-2">What is Modern Delphi?</h1>
 
-                        <p className="p grey f-small pt-4 mobileColor"><strong>Seeker - Know Theyself</strong><br /><br />Modern Delphi is nestled in the peaceful boreal Canadian woodlands. It is the home of the Oracle, your guide through the maze of the Present.<br /><br />
-                            The Oracle is the Wisdom Keeper. To walk the path of a Wisdom Keeper is to join another's Sacred Journey through the Labyrinth. The answers are locked within, where shadows and light entwine. The Seeker always holds the keys; the Wisdom Keeper provides the map.<br /><br />
-                            The Oracle is the Strategic Seer. To be a Seer is to Understand what lies beneath the surface. The Seer's vision lights the room and parts the veil.You stand at a Crossroads. The Path is yours to choose, the journey yours to claim.<br /><br />
-                            Step into a world where ancient wisdom meets modern innovation, and unlock the potential within you.<br /><br />
-                            The future is not written - it is waiting.</p>
+                        <p className="p grey f-small pt-4 mobileColor">Modern Delphi is a sanctuary for deep thinking, insight, and transformation. Inspired by the ancient Oracles and the Socratic tradition, it is a place where seekers explore profound questions, challenge assumptions, and find clarity through guided reflection. Whether you seek wisdom, knowledge, or purpose, Modern Delphi provides the tools to help you navigate your path.</p>
+
+                        <h2 className="mt-2 text-dark heading-main-3">Why Does This Matter to You?</h2>
+
+                        <p className="p grey f-small pt-4 mobileColor"><strong>Are you seeking clarity in your personal journey? Exploring life’s deeper questions?
+                        Searching for guidance? </strong>
+                        At Modern Delphi, wisdom is not given—it is discovered. ask your first question, challenge your
+                        perspective, and step forward on your journey</p>
                     </div>
                 </div>
             </div>

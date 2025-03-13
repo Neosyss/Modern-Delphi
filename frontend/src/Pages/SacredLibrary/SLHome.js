@@ -4,10 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import "./SLHome.css";
 import pic1 from '../../images/misc/10.webp';
-import pic2 from '../../isvgs/flowers-crop-2.webp';
-import { PiPathFill } from "react-icons/pi";
-import { FaBookOpen } from "react-icons/fa6";
-import { IoKey, IoSearch } from "react-icons/io5";
 
 import exploreImg from '../../images/actual/Explore the depth of knowledge 1.jpg';
 import FadeInSection from "../Home/UseInView";
@@ -16,7 +12,6 @@ import FadeInSection from "../Home/UseInView";
 const SLHome = () => {
 
     const navigate = useNavigate();
-    const [sections, setSections] = useState([]);
     const [blogs, setBlogs] = useState([]);
     const [pagination, setPagination] = useState({
         currentPage: 1,
@@ -76,10 +71,10 @@ const SLHome = () => {
             <FadeInSection>
             <div className="slhome-background slhome-bg-img">
                 <div className="tb-2">Wisdom</div>
-                <h1 className="my-3">Explore Ancient Knowledge</h1>
+                <h1 className="my-3">Step Into the Sacred Library</h1>
                 <div className="d-flex justify-content-center">
                     <p className="p text-light sl-para w-80">
-                        Delve into a treasure trove of insights, reflections, & guidance for your journey ahead
+                        A collection of insights, reflections, and explorations – for seekers, thinkers, and the quietly curious.
                     </p>
                 </div>
                 
@@ -157,56 +152,28 @@ const SLHome = () => {
             </FadeInSection>
 
             <FadeInSection>
-            <div className="slhome-background4">
-                <img src={pic2} className="slhomesvg" alt="Sacred Library" />
-                <div className="tb-2">Explore</div>
-                <div className="d-flex justify-content-center align-items-center flex-column text-center">
-                    <h1 className="my-3 sl-heading3">Your Journey Awaits</h1>
-                    <p className="p sl-para sl-heading3">
-                        Discover Insights and Wisdom for your path.
-                    </p>
-                </div>
-                <div className="container my-4">
-                    <div className="row justify-content-center">
-                        <div className="col-md-4 my-2">
-                            <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/journeyers-anteroom')}}>
-                                <div>
-                                    <PiPathFill className="arrow-sl lgsvg my-4"/>
-                                    <h5>Return to the Anteroom</h5>
-                                    <p>Connect with the Oracle for guidance</p>
-                                </div>
-                                <div className="d-flex mt-3 justify-content-end">
-                                    <p className="card-description m-2">Consult</p>
-                                    <FaArrowRight className="arrow-sl2"/>
-                                </div>
+            <div className="support-container">
+                {/* <img src={svg1} alt="Background" className="ourteam-svg" /> */}
+                <div className="py-5">
+                    <div className="d-flex my-3 justify-content-center">
+                        <div className="tb-2">Support</div>
+                    </div>
+                    <div className="custom-centric text-center">
+                        <h1 className="mt-2 px-1 text-dark text-center heading-main-2">Support</h1>
+                        <span className="span mt-3 px-1 style-2">Our Sacred Journey</span>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <p className="p grey f-small w-services text-center pt-4 w-52 mobileColor">
+                            Your kind contribution helps us nurture a space for reflection, insight, and shared growth. Your support will promote a vibrant community. The modern Delphi. Join Us. Together, We Can Build Something Wonderful.
+                        </p>
+                    </div>
+                    {/* Buttons Section */}
+                    <div className="d-flex justify-content-center mt-4">
+                        <div className="prb-2 "
+                        onClick={() => {navigate('/donate')}}
+                        >
+                            <div>Donate</div>
                             </div>
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <div className="sl-card2 cursor-pointer p-4 sl-spec">
-                                <div>
-                                    <FaBookOpen className="arrow-sl lgsvg my-4"/>
-                                    <h5>Visit the Resting Grove</h5>
-                                    <p>Take a moment to reflect & rejuvenate</p>
-                                </div>
-                                <div className="d-flex mt-3 justify-content-end">
-                                    <p className="card-description text-light m-2">Rest</p>
-                                    <FaArrowRight className="arrow-sl2"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <div className="sl-card2 cursor-pointer p-4" onClick={() => {navigate('/consult-oracle')}}>
-                                <div>
-                                    <IoSearch className="arrow-sl lgsvg my-4"/>
-                                    <h5>Explore More Resources</h5>
-                                    <p>Find articles and tools for your journey</p>
-                                </div>
-                                <div className="d-flex mt-3 justify-content-end">
-                                    <p className="card-description m-2">Learn</p>
-                                    <FaArrowRight className="arrow-sl2"/>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

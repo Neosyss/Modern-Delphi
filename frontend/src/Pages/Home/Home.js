@@ -1,12 +1,12 @@
 import Carousel from "./Carousel";
 import WelcomeSection from "./WelcomeSection";
-import GreenStrip from "./GreenStrip";
 import PricingPlans from "./PricingPlans";
 import Support from "./Support";
 import axios from "axios";
 import { useEffect } from "react";
 import HomeChatBot from "./HomeChatBot";
 import FadeInSection from "./UseInView";
+import SacredLibrarySection from "./SacredLibrarySection";
 
 
 const trackSiteVisit = async () => {
@@ -25,31 +25,26 @@ const Home = () => {
 
   return (
     <>
-    {/* <Navbar /> */}
+      <Carousel />
+      <FadeInSection>
+        <WelcomeSection />
+      </FadeInSection>
 
-    <Carousel />
-    <FadeInSection>
-      <WelcomeSection />
-    </FadeInSection>
+      <FadeInSection>
+        <HomeChatBot/>
+      </FadeInSection>
+    
+      <FadeInSection>
+        <PricingPlans />
+      </FadeInSection>
 
-    <FadeInSection>
-      <HomeChatBot/>
-    </FadeInSection>
-  
-      <GreenStrip/>
-  
-    <FadeInSection>
-      <PricingPlans />
-    </FadeInSection>
-  
-    {/* <JeffreySection /> */}
-    {/* <Services /> */}
-    {/* <OurTeam/> */}
-    <FadeInSection>
-      <Support/>
-    </FadeInSection>
-    {/* <Questions/> */}
-    {/* <ContactCardHome/> */}
+      <FadeInSection>
+        <SacredLibrarySection />
+      </FadeInSection>
+    
+      <FadeInSection>
+        <Support/>
+      </FadeInSection>
     </>
   );
 };

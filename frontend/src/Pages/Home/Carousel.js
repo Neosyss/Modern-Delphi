@@ -12,16 +12,16 @@ const slides = [
     {
         img: img1,
         title: "Your Future Awaits",
-        heading: "Discover Insights Beyond The Ordinary",
+        heading: "A sanctuary for seekers, thinkers, and visionaries.",
         subtitle: "Welcome to Modern Delphi",
-        description: "Personalized Oracle consultations blending ancient wisdom with modern tools. At Modern Delphi, we blend the Vision of ancient oracles with cutting-edge AI technology to deliver personalized consultations that empower you in your Journey.",
+        description: "Discover a space where inquiry leads to insight and action. Ask your question, explore profound ideas, and step into your own Hero’s Journey.",
     },
     {
         img: img2,
         title: "Your Future Awaits",
-        heading: "Discover Insights Beyond The Ordinary",
-        subtitle: "Welcome to Modern Delphi",
-        description: "This is the second slide. Personalized Oracle consultations blending ancient wisdom with modern tools. At Modern Delphi, we blend the Vision of ancient oracles with cutting-edge AI technology to deliver personalized consultations that empower you in your Journey.",
+        heading: "An AI Muse for the modern age, Kleio helps you shape your path.",
+        subtitle: "Ask. Reflect. Discover. Meet Kleio.",
+        description: "Wisdom is not found in easy answers but in asking the right questions. Kleio is here to guide you—not by telling you what to do, but by helping you uncover the clarity already within you. Are you ready to explore?",
     },
 ];
 

@@ -69,7 +69,7 @@ useEffect(() => {
               <span className="span style-2 mx-1 customp-set text-light">Oracle</span>
             </div>
             <div className="justify-content-center d-flex">
-            <p className='p custom-p-pricing'>Unlock personalized insights with AI-assisted guidance.</p>
+            <p className='p custom-p-pricing'>Ask, and the path will unfold.</p>
             </div>
             <div className=" my-4">
               <div className="row justify-content-center">

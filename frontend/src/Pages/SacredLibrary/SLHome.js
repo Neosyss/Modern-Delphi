@@ -71,9 +71,9 @@ const SLHome = () => {
             <FadeInSection>
             <div className="slhome-background slhome-bg-img">
                 <div className="tb-2">Wisdom</div>
-                <h1 className="my-3">Step Into the Sacred Library</h1>
+                <h1 className="my-3 text-dark">Step Into the Sacred Library</h1>
                 <div className="d-flex justify-content-center">
-                    <p className="p text-light sl-para w-80">
+                    <p className="p text-dark sl-para w-80">
                         A collection of insights, reflections, and explorations – for seekers, thinkers, and the quietly curious.
                     </p>
                 </div>

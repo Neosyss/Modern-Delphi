@@ -47,20 +47,20 @@ const Navbar = () => {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  const isSacredLibrary = location.pathname === "/sacred-library";
+
   return (
     <nav className="">
-      <div className={`nav-row pt-2 ${isAtTopClass ? "atTop" : "notTop"} row`}>
+        <div className={`nav-row pt-2 ${isSacredLibrary || !isAtTopClass ? "notTop" : "atTop"} row`}>
 
         {isDesktop && 
           <div className="d-flex justify-content-between">
             <div>
               {
-                isAtTopClass == 0 && (
+                (isAtTopClass == 0 || isSacredLibrary) ? (
                   <img src={logo} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo"/>
                 )
-              }
-              {
-                isAtTopClass == 1 && (
+                : (
                   <img src={logo2} className="nav-logo" onClick={() => {navigate('/')}} alt="Logo"/>
                 )
               }
@@ -95,20 +95,18 @@ const Navbar = () => {
           <div className="d-flex justify-content-between align-items-center">
             <div>
               {
-                isAtTopClass == 0 && (
+                (isAtTopClass == 0 || isSacredLibrary) ? (
                   <img src={logo} className="nav-logo mb-2" onClick={() => {navigate('/')}} alt="Logo"/>
                 )
-              }
-              {
-                isAtTopClass == 1 && (
+                : (
                   <img src={logo2} className="nav-logo mb-2" onClick={() => {navigate('/')}} alt="Logo"/>
                 )
               }
             </div>
             <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-              <div className={`line ${menuOpen ? "baropen" : ""} ${isAtTopClass ? "white" : "black"}`}></div>
-              <div className={`line ${menuOpen ? "baropen" : ""} ${isAtTopClass ? "white" : "black"}`}></div>
-              <div className={`line ${menuOpen ? "baropen" : ""} ${isAtTopClass ? "white" : "black"}`}></div>
+              <div className={`line ${menuOpen ? "baropen" : ""} ${!isSacredLibrary && isAtTopClass ? "white" : "black"}`}></div>
+              <div className={`line ${menuOpen ? "baropen" : ""} ${!isSacredLibrary && isAtTopClass ? "white" : "black"}`}></div>
+              <div className={`line ${menuOpen ? "baropen" : ""} ${!isSacredLibrary && isAtTopClass ? "white" : "black"}`}></div>
             </div>
             <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>
               <ul>

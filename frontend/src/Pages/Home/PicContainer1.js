@@ -1,9 +1,9 @@
 import './PicContainer1.css';
 
-import img1 from '../../images/actual/home12.jpeg';
-import img2 from '../../images/actual/home13.jpeg';
-import img3 from '../../images/actual/home14.jpeg';
-import img4 from '../../images/actual/home15.jpeg';
+import img1 from '../../images/actual/welcome1.jpeg';
+import img2 from '../../images/actual/welcome2.jpeg';
+import img3 from '../../images/actual/welcome3.jpeg';
+import img4 from '../../images/actual/welcome4.jpeg';
 
 const PicContainer1 = () => {
     return (

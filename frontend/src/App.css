@@ -157,15 +157,15 @@ strong {
 }
   
 .jachatroom-bg-img{
-    background:url('./images/actual/anteroom.jpeg');
-    color: white!important;
-}
-.slhome-bg-img{
     background:url('./images/actual/sacred library.jpeg');
     color: white!important;
 }
+.slhome-bg-img{
+    background:url('./images/actual/sl-overexposure.jpeg');
+    color: white!important;
+}
 .clhome-img-bg{
-    background:url('./images/actual/consult.jpeg');
+    background:url('./images/actual/Home\ Page\ 2.jpg');
     color: white!important;
 }
 

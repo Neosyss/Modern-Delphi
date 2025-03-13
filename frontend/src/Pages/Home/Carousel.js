@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './Carousel.css';
-import img1 from '../../images/actual/Home Page 1.jpg';
-import img2 from '../../images/actual/Home Page 2.jpg';
+import img1 from '../../images/actual/sacred library.jpeg';
+import img2 from '../../images/actual/Home Page 1.jpg';
 import svg1 from '../../isvgs/flowers-crop.webp';
 import { useNavigate } from 'react-router-dom';
 import { GrNext } from "react-icons/gr";

@@ -6,8 +6,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import HomeChatBot from "./HomeChatBot";
 import FadeInSection from "./UseInView";
-import SacredLibrarySection from "./SacredLibrarySection";
-
 
 const trackSiteVisit = async () => {
   try {
@@ -18,7 +16,6 @@ const trackSiteVisit = async () => {
 };
 
 const Home = () => {
-
   useEffect(() => {
     trackSiteVisit(); 
   }, []);
@@ -38,10 +35,6 @@ const Home = () => {
         <PricingPlans />
       </FadeInSection>
 
-      <FadeInSection>
-        <SacredLibrarySection />
-      </FadeInSection>
-    
       <FadeInSection>
         <Support/>
       </FadeInSection>

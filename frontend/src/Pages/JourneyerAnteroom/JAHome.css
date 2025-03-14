@@ -6,7 +6,7 @@
     background-color: var(--priopa);
     border: 1px solid #a4afa8;
     border-radius: 10px;
-    width: 50%;
+    /* width: 50%; */
 }
 .padding-top-jachat{
     position: relative;

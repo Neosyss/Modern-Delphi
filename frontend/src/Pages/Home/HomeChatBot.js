@@ -24,7 +24,7 @@ const HomeChatBot = () => {
 
     return(
         <>
-        <div className="home-chatbot mt-4 py-2 pt-5">
+        <div className="home-chatbot mt-4 py-2 pt-5" id="kleio">
             <div className="d-flex justify-content-center mt-4">
               <h1 className=" mx-1">Meet               <span className="span style-2 mx-1 customp-set">Kleio</span>
               : Your Guide to Clarity</h1>
@@ -33,7 +33,7 @@ const HomeChatBot = () => {
             <p className='p text-dark text-center'>A serene space for reflection, inviting you to explore the depths for your journey.</p>
             </div>
             <div className="d-flex rel justify-content-center">
-                <div className={`overflow-homebot p-2 justify-content-center align-items-center ${hasTerms == 1 ? "d-none" : " d-flex"}`}>
+                <div className={`overflow-homebot p-2 justify-content-center align-items-center ${hasTerms == 0 ? "d-none" : " d-flex"}`}>
                     <div className="signup-modal p-4">
                         <h3>Sign In to access the Anteroom</h3>
                         <p>You need to sign in or create an account to access the Journeyer's Anteroom</p>

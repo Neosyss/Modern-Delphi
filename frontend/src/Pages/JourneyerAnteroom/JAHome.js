@@ -2,7 +2,7 @@ import "./JAHome.css";
 import { FaArrowRight } from "react-icons/fa6";
 import pic2 from '../../isvgs/flowers-crop-2.webp';
 
-import reflectImg from '../../images/actual/Reflect on your journey.jpg';
+import reflectImg from '../../images/actual/anteroom.jpeg';
 import immerseImg from '../../images/actual/Immerse yourself in calming sound.jpg';
 import FadeInSection from "../Home/UseInView";
 
@@ -45,6 +45,13 @@ const JAHome = () => {
         sacredLibraryRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    const handleSanctuaryClick = () => {
+        const sanctuarySection = document.getElementById("ja-sanctuary");
+        if (sanctuarySection) {
+            sanctuarySection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <>
             <audio ref={audioRef} preload="none">
@@ -59,15 +66,15 @@ const JAHome = () => {
                         <p className="p text-light sl-para w-80">A sanctuary for stillness. A space between past and future. Here, you may pause, reflect, and breathe before stepping forward. Pause. Breathe. Begin your Journey.</p>
                     </div>
                     <div className="d-flex justify-content-center m-2">
-                        <div className="prb-2 mx-1" onClick={() => { navigate('/journeyers-chatroom') }}>
-                            <div>Let's Have a Chat</div>
+                        <div className="prb-2 mx-1" onClick={handleSanctuaryClick}>
+                            <div>Sanctuary</div>
                         </div>
                     </div>
                 </div>
             </FadeInSection>
 
             <FadeInSection>
-                <div className="slhome-background4">
+                <div className="slhome-background4" id="ja-sanctuary">
                     <img src={pic2} className="slhomesvg" />
                     <div className="tb-2">Sanctuary</div>
                     <div className="d-flex justify-content-center align-items-center flex-column text-center">
@@ -81,8 +88,37 @@ const JAHome = () => {
                         <div className="mx-2 prb-2" onClick={scrollToSection}>
                             <div>Reflect</div>
                         </div>
-                        <div className="mx-2 prb-1" onClick={() => {navigate('/journeyers-chatroom')}}>
+                        <div className="prb-2" onClick={() => {navigate('/journeyers-chatroom')}}>
                             <div>Enter</div>
+                        </div>
+                    </div>
+                </div>
+            </FadeInSection>
+
+            <FadeInSection>
+                <div className="slhome-background2 back-priopa ja-section-img-bg" id="JASerenity" ref={sacredLibraryRef}>
+                    <div className="row">
+                        <div className="col-md-5 d-flex justify-content-center align-items-center">
+                            <img src={immerseImg} className="img-fluid slhomeimg1" />
+                        </div>
+                        <div className="col-md-7 mt-0 px-4">
+                            <div className="tb-2 mt-2">Serenity</div>
+                            <h1 className="my-3">A Moment of Reflection</h1>
+                            <p className="p text-light sl-para text-start">Close your eyes. Inhale deeply. Let yourself settle into stillness. What is your body whispering to you? What does your heart long for? What thoughts drift through your mind? Sit with these questions, not seeking answers, but simply listening.</p>
+
+                            <h4 className="my-2w">Reflections</h4>
+                            <div className="d-flex justify-content-start">
+                                <p>What is your body asking for?</p>
+                                <p className="p-3">Rest? Movement? Release?</p>
+                            </div>
+                            <div className="d-flex justify-content-start">
+                                <p>What thoughts rise and fall?</p>
+                                <p className="p-3">Observe without grasping</p>
+                            </div>
+                            <div className="d-flex justify-content-start">
+                                <p>What do you need?</p>
+                                <p className="p-3">Space? Clarity? Something unnamed?</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,35 +143,6 @@ const JAHome = () => {
                         </div>
                         <div className="col-md-5 d-flex justify-content-center align-items-center">
                             <img src={reflectImg} className="img-fluid slhomeimg1" />
-                        </div>
-                    </div>
-                </div>
-            </FadeInSection>
-
-            <FadeInSection>
-                <div className="slhome-background2 back-priopa" id="JASerenity" ref={sacredLibraryRef}>
-                    <div className="row">
-                        <div className="col-md-5 d-flex justify-content-center align-items-center">
-                            <img src={immerseImg} className="img-fluid slhomeimg1" />
-                        </div>
-                        <div className="col-md-7 mt-0 px-4">
-                            <div className="tb-2 mt-2">Serenity</div>
-                            <h1 className="my-3">A Moment of Reflection</h1>
-                            <p className="p sl-para text-start">Close your eyes. Inhale deeply. Let yourself settle into stillness. What is your body whispering to you? What does your heart long for? What thoughts drift through your mind? Sit with these questions, not seeking answers, but simply listening.</p>
-
-                            <h4 className="my-2w">Reflections</h4>
-                            <div className="d-flex justify-content-start">
-                                <p>What is your body asking for?</p>
-                                <p className="p-3">Rest? Movement? Release?</p>
-                            </div>
-                            <div className="d-flex justify-content-start">
-                                <p>What thoughts rise and fall?</p>
-                                <p className="p-3">Observe without grasping</p>
-                            </div>
-                            <div className="d-flex justify-content-start">
-                                <p>What do you need?</p>
-                                <p className="p-3">Space? Clarity? Something unnamed?</p>
-                            </div>
                         </div>
                     </div>
                 </div>

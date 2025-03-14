@@ -153,15 +153,22 @@ strong {
 .aboutus-img-bg{
     background-image:url('./images/actual/about us.jpeg');
     color: white!important;
+}
 
+.ja-section-img-bg{
+    background-image: url('./images/actual/beautiful-japanese-forest-landscape.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    color: white!important;
 }
   
 .jachatroom-bg-img{
-    background:url('./images/actual/sacred library.jpeg');
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url('./images/actual/Reflect on your journey.jpg');
     color: white!important;
 }
 .slhome-bg-img{
-    background:url('./images/actual/sl-overexposure.jpeg');
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('./images/actual/sl-overexposure.jpeg');
     color: white!important;
 }
 .clhome-img-bg{

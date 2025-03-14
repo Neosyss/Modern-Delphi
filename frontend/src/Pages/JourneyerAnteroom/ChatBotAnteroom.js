@@ -68,12 +68,7 @@ const Chatbot = ({ chatbot }) => {
     return (
         <div className="chatbot-anteroom">
             <div className="topbar-ca d-flex justify-content-between align-items-center px-3">
-                <h5 className='mt-1'>{chatbot === 'Homepage' ? 'Kleio' : 'Kleio Anteroom'}</h5>
-                <div className="d-flex justify-content-center flex-column align-items-center">
-                    <div className="dot-b"></div>
-                    <div className="dot-b"></div>
-                    <div className="dot-b"></div>
-                </div>
+                <h5 className='mt-2'>{chatbot === 'Homepage' ? 'Kleio' : 'Kleio Anteroom'}</h5>
             </div>
 
             <div className="chat-box-ca p-3" ref={chatBoxRef}>

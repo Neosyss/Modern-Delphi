@@ -62,15 +62,10 @@ const AboutUs = () => {
                             <h1 className="my-3">What Awaits You Here</h1>
                             <p className="p sl-para text-start">Modern Delphi is a space for visionaries, seekers, and those on the path of self-discovery. Here, among the deep roots and the shifting light of the Boreal, you may:</p>
 
-                            <p className="p my-1 text-dark">Consult the Oracle for personalized guidance and deep reflection</p>
-                            <p className="p my-1 text-dark">Meet Kleio, the Muse for symbolic insights</p>
-                            <p className="p my-1 text-dark">Enter the Anteroom a space for reflection</p>
-                            <p className="p my-1 text-dark">Explore the Sacred Library what knowledge awaits your discovery?</p>
-
-                            <div className="d-flex mt-5 justify-content-start my-3">
-                                <div className="prb-1 mx-1"><div>Explore</div></div>
-                                <div className="prb-2 mx-1"><div>Discover</div></div>
-                            </div>
+                            <p className="p my-1 text-dark">1. Consult the Oracle <span className="fst-italic">for personalized guidance and deep reflection</span></p>
+                            <p className="p my-1 text-dark">2. Meet Kleio, the Muse <span className="fst-italic">for symbolic insights</span></p>
+                            <p className="p my-1 text-dark">3. Enter the Anteroom <span className="fst-italic">a space for reflection</span></p>
+                            <p className="p my-1 text-dark">4. Explore the Sacred Library: <span className="fst-italic">what knowledge awaits your discovery?</span></p>
                         </div>
                     </div>
                 </div>
@@ -83,17 +78,17 @@ const AboutUs = () => {
                             <h1 className="my-3">Your Journey Begins Here</h1>
                             <p className="p sl-para text-start">Every path begins with a step. Here, among the towering trees and shifting sky, the Hero’s journey unfolds. You have entered the threshold. Where will you go next?</p>
                             <div className="my-3 justify-content-start">
-                                <div className="ja-card1 w-80 my-2 mx-1 prb-3" onClick={() => {navigate('/journeyers-anteroom')}}>
+                                <div className="ja-card1 text-center w-80 my-2 mx-1 prb-3" onClick={() => {navigate('/journeyers-anteroom')}}>
                                     <h4>Step Into the Anteroom</h4>
-                                    <p>For seekers who want reflection first</p>
+                                    <p className="fst-italic">For seekers who want reflection first</p>
                                 </div>
-                                <div className="ja-card1 w-50 m-2 mx-1 prb-3" onClick={() => {navigate('/consult-oracle')}}>
+                                <div className="ja-card1 text-center w-80 m-2 mx-1 prb-3" onClick={() => {navigate('/consult-oracle')}}>
                                     <h4>Consult the Oracle</h4>
-                                    <p>For those ready to engage in deeper inquiry</p>
+                                    <p className="fst-italic">For those ready to engage in deeper inquiry</p>
                                 </div>
-                                <div className="ja-card1 w-50 m-2 mx-1 prb-3">
+                                <div className="ja-card1 text-center w-80 m-2 mx-1 prb-3">
                                     <h4>Meet Kleio, the Muse</h4>
-                                    <p>For those drawn to symbolic exploration</p>
+                                    <p className="fst-italic">For those drawn to symbolic exploration</p>
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,9 @@
 import FadeInSection from '../Home/UseInView';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { TiTick } from "react-icons/ti";
-import { FaArrowRight } from "react-icons/fa6";
+
 import { FaStar } from 'react-icons/fa6';
 import "./ConsultOracleHome.css";
-import pic1 from '../../images/misc/10.webp';
 import pic2 from '../../isvgs/flowers-crop-2.webp';
 import Questions from './Questions';
 import axios from 'axios';
@@ -17,9 +15,9 @@ import { FaEye } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 
-import img1 from '../../images/services/1.webp';
-import img2 from '../../images/services/2.webp';
-import img3 from '../../images/services/3.webp';
+import img1 from '../../images/actual/home12.jpeg';
+import img2 from '../../images/actual/home13.jpeg';
+import img3 from '../../images/actual/home14.jpeg';
 
 import unlockImg from '../../images/actual/Embrass the journey.jpg';
 
@@ -196,9 +194,6 @@ const ConsultOracleHome = () => {
             <FadeInSection>
                 <div className="slhome-background2 back-priopa" style={{backgroundColor:"#ecf4f0"}}>
                     <div className="d-flex flex-column align-items-center justify-content-center">
-                        <div>
-                            <div className="tb-2">Guidance</div>
-                        </div>
                         <h1 className="my-3">Words from Seekers</h1>
                         <p className="p sl-para text-start">Reflections from Those who have Sat Before the Oracle</p>
                         <div className="card-holder mt-5">
@@ -209,7 +204,7 @@ const ConsultOracleHome = () => {
                             </div>
                             <div className="card4 m-3">
                                 <FaStar className='fastar-green' /><FaStar className='fastar-green' /><FaStar className='fastar-green' /><FaStar className='fastar-green' /><FaStar className='fastar-green' />
-                                <h4 className='py-4'>“ came with confusion, and I left with fire in my spirit. The Oracle doesn’t tell you what to do—they guide you to remember what you have always known."</h4>
+                                <h4 className='py-4'>“I came with confusion, and I left with fire in my spirit. The Oracle doesn’t tell you what to do—they guide you to remember what you have always known."</h4>
                                 <h6>A Fellow Traveler</h6>
                             </div>
                             <div className="card4 m-3">

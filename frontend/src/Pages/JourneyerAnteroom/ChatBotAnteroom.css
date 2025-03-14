@@ -66,6 +66,15 @@
     margin-bottom: 0px !important;
 }
 
+.chatbot-legal{
+    background-color: #eeeeee;
+    margin-top: 15px;
+    padding: 1px 15px;
+    padding-top: 10px;
+    border-radius: 5px;
+    color: #777;
+}
+
 @media (max-width: 1030px) {
     .chatbot-anteroom{
         margin-top: 25px;

@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './PricingPlans.css';
-import img1 from '../../images/services/1.webp';
-import img2 from '../../images/services/2.webp';
-import img3 from '../../images/services/3.webp';
+
+import img1 from '../../images/actual/home12.jpeg';
+import img2 from '../../images/actual/home13.jpeg';
+import img3 from '../../images/actual/home14.jpeg';
+
 import PriceCard2 from './PriceCard';
 import axios from 'axios';
 import "../ConsultOracle/ConsultOracleHome.css";

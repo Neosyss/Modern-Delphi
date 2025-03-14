@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css"; // Custom CSS for additional styling
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
-import img from '../images/2.webp';
+import img from '../images/actual/beautiful-japanese-forest-landscape.jpg';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import ErrorBox from '../ErrorBox.js';
@@ -93,9 +93,6 @@ const Login = () => {
                             <img src={img} className="login-page-img" alt="Welcome" />
                             <h4 className="title-login-page">Welcome to</h4>
                             <h4 className="title2-login-page">Modern Delphi</h4>
-                            <h4 className="para-login-page">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis tempore consequuntur.
-                            </h4>
                         </div>
                         <div className="col-md-6 p-5 mt-3 login-content">
                             <h2 className="text-center mb-4">Login</h2>

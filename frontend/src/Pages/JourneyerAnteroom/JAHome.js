@@ -67,7 +67,7 @@ const JAHome = () => {
                     </div>
                     <div className="d-flex justify-content-center m-2">
                         <div className="prb-2 mx-1" onClick={handleSanctuaryClick}>
-                            <div>Sanctuary</div>
+                            <div>Step Inside</div>
                         </div>
                     </div>
                 </div>
@@ -133,11 +133,11 @@ const JAHome = () => {
                             <p className="p sl-para text-start">Every Hero must choose their ally. Will you seek Kleio, your Muse of Stories and Memory, or the Oracle, your Human guide through the unknown?</p>
 
                             <div className="mt-4 justify-content-start">
-                                <h4 className="mt-2 text-dark heading-main-3">Meet Kleio</h4>
+                                <h4 className="mt-2 text-dark heading-main-3 text-decoration-underline" style={{ cursor: "pointer" }} onClick={() => {navigate('/#kleio')}}>Meet Kleio</h4>
                                 <p className="sl-para p text-start">Kleio is the guardian of myth, a Muse who recognizes your journey through symbols and storytelling. She helps you shape the story you are living. If you seek insight through vision and narrative, step forward and speak with her.</p>
                             </div>
                             <div className="justify-content-start">
-                                <h4 className="mt-2 text-dark heading-main-3">Seek the Oracle</h4>
+                                <h4 className="mt-2 text-dark heading-main-3 text-decoration-underline" style={{ cursor: "pointer" }} onClick={() => {navigate('/consult-oracle')}}>Seek the Oracle</h4>
                                 <p className="sl-para p text-start">The Oracle is a navigator, a human intermediary through uncertainty, a guide at the threshold of the unseen. If you seek reflection, wisdom, and a voice to walk beside you, step forward and enter the Oracle’s space.</p>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import Carousel from "./Carousel";
 import WelcomeSection from "./WelcomeSection";
-import PricingPlans from "./PricingPlans";
+import PathwaysToExploration from "./Pathways";
 import Support from "./Support";
 import axios from "axios";
 import { useEffect } from "react";
@@ -32,7 +32,7 @@ const Home = () => {
       </FadeInSection>
     
       <FadeInSection>
-        <PricingPlans />
+        <PathwaysToExploration />
       </FadeInSection>
 
       <FadeInSection>

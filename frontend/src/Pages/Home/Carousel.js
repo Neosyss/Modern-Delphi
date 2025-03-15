@@ -75,7 +75,7 @@ const Carousel = () => {
                                         }
                                     }}
                                 >
-                                    <div>{index === 0 ? "View Services" : "Meet Kleio"}</div>
+                                    <div>{index === 0 ? "Explore" : "Meet Kleio"}</div>
                                 </div>
                             </div>
                         </div>

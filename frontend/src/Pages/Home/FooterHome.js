@@ -1,5 +1,6 @@
 import "./FooterHome.css";
 import { useNavigate } from "react-router-dom";
+import logo from '../../images/logo-removebg-preview.png';
 
 const FooterHome = () => {
     const navigate = useNavigate();
@@ -19,6 +20,12 @@ const FooterHome = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="col-md-4 mt-3 px-4">
+                        <div className="my-4 text-center">
+                            <img src={logo} style={{ width: '70%' }}></img>
+                        </div>
+                    </div>
+
                     <div className="col-md-4 mt-3 px-4">
                         <p className="p text-dark text-center fw-bold">Reach Out to Us</p>
                         <div className="my-4 text-center">

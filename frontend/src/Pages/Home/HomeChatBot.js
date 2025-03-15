@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./HomeChatBot.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Chatbot from "../JourneyerAnteroom/ChatBotAnteroom";
 
 const HomeChatBot = () => {
     const navigate = useNavigate();
     const [hasTerms, setHasTerms] = useState(0);
+
+    const location = useLocation();
     
     const checkOnline = () => {
         const token = localStorage.getItem('authToken');
@@ -20,6 +22,15 @@ const HomeChatBot = () => {
     useEffect(() => {
         checkOnline();
     }, []);
+
+    useEffect(() => {
+        if (location.hash) {
+          const element = document.getElementById(location.hash.substring(1));
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, [location]);
     
 
     return(
@@ -30,7 +41,7 @@ const HomeChatBot = () => {
               : Your Guide to Clarity</h1>
             </div>
             <div className="justify-content-center d-flex">
-            <p className='p text-dark text-center'>A serene space for reflection, inviting you to explore the depths for your journey.</p>
+            <p className='p text-dark text-center'>I am Kleio, the oracle's guide. I don't provide answers, I help you discover them.</p>
             </div>
             <div className="d-flex rel justify-content-center">
                 <div className={`overflow-homebot p-2 justify-content-center align-items-center ${hasTerms == 0 ? "d-none" : " d-flex"}`}>

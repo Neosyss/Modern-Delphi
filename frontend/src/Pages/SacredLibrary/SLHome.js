@@ -85,23 +85,27 @@ const SLHome = () => {
             <div className="slhome-background2">
                 <div className="row">
                     <div className="col-md-7">
-                        <div className="tb-2">Guidance</div>
-                        <h1 className="my-3">Explore the Depths of Knowledge in The Sacred Library</h1>
+                        <div className="tb-2">Pathways to Exploration</div>
+                        <h1 className="my-3">Choose Your Path – Explore Knowing through Four Lenses</h1>
                         <p className="p sl-para text-start">
-                            The Sacred Library serves as a treasure trove of insights, thoughtfully organized into themes like Self-Leadership, Mysticism, and Reflections. Dive into our curated articles to enrich your journey and discover new perspectives.
+                            Understanding unfolds in many ways. Walk the path that calls to you.
                         </p>
                         <div className="p my-4 sl-para text-start">
                             <p className="sl-para p text-start">
-                                <span className="p sl-para fw-bold">Self-Leadership: </span> 
-                                Empower Your Inner Guide
+                                <span className="p sl-para fw-bold">🏛️ Mythos – The Stories that Shape Us.</span> 
+                                <div className="fst-italic">What do the myths and symbols whisper to us?</div>
                             </p>
                             <p className="sl-para p text-start">
-                                <span className="p sl-para fw-bold">Mysticism: </span> 
-                                Explore the Unknown and Unseen
+                                <span className="p sl-para fw-bold">🧠 Logos – The Journey of Reason.</span> 
+                                <div className="fst-italic">How does critical thought refine our understanding?</div>
                             </p>
                             <p className="sl-para p text-start">
-                                <span className="p sl-para fw-bold">Reflections: </span>
-                                Insights for personal Growth and Renewal
+                                <span className="p sl-para fw-bold">🎭 Sensus – The Embodied Experience.</span> 
+                                <div className="fst-italic">What can intuition, art and emotion teach us?</div>
+                            </p>
+                            <p className="sl-para p text-start">
+                                <span className="p sl-para fw-bold">⚡ Actio – Practical Insight, Transformative Action.</span> 
+                                <div className="fst-italic">Where do wisdom and action meet?</div>
                             </p>
                         </div>
                     </div>

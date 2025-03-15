@@ -75,7 +75,7 @@ const ConsultOracleHome = () => {
                     </div>
                     <div className="d-flex justify-content-center m-2">
                         <div className="prb-2 mx-1" onClick={handleBookNowClick}>
-                            <div>Book Now</div>
+                            <div>Begin</div>
                         </div>
                     </div>
                 </div>
@@ -123,10 +123,10 @@ const ConsultOracleHome = () => {
             <FadeInSection>
                 <div className="slhome-background4">
                     <img src={pic2} className="slhomesvg" />
-                    <div className="tb-2">Engage</div>
+                    <div className="tb-2">Guidance</div>
                     <div className="d-flex justify-content-center align-items-center flex-column text-center">
-                        <h1 className="my-3  sl-heading3">Explore Our Unique Consultation Options</h1>
-                        <p className="p sl-para w-80 sl-heading3">Our consultations are designed to provide clarity & insights. Whether you prefer a live session or a written reading, we cater to your needs.</p>
+                        <h1 className="my-3  sl-heading3">The Oracle’s Role in Your Journey</h1>
+                        <p className="p sl-para w-80 sl-heading3">The Oracle stands at the threshold, where the wisdom of the ancients meets the intelligence of the new age. Through the language of symbols, myth, and intuition, the Oracle reaches into the unseen, drawing forth insight from both mystical traditions and modern knowledge. AI whispers from the archives of human thought, while the Oracle interprets, reframes, and reveals what lies beneath the surface. This is not a place for answers, but for inquiry—a sacred space where the you- the Hero - is guided, through dialogue, reflection, and revelation. The path is yours to walk, but the Oracle can illuminate the way.</p>
                     </div>
                     <div className="container my-4">
                         <div className="row justify-content-center">
@@ -134,8 +134,8 @@ const ConsultOracleHome = () => {
                                 <div className="sl-card2 p-4">
                                     <div>
                                         <GiGraduateCap className="arrow-sl lgsvg my-4" />
-                                        <h5>Illuminate Your Visions With Our Experts</h5>
-                                        <p>Gain fresh perspective & guidance on your journey.</p>
+                                        <h5>A Bridge Between Ancient and Modern Wisdom</h5>
+                                        <p>The Oracle unites mysticism and modern insight, guiding seekers with both symbolic language and structured reflection.</p>
                                     </div>
                                 </div>
                             </div>
@@ -143,8 +143,8 @@ const ConsultOracleHome = () => {
                                 <div className="sl-card2 p-4 sl-spec">
                                     <div>
                                         <FaBookOpen className="arrow-sl lgsvg my-4" />
-                                        <h5>Forge your Path With Sacred Readings</h5>
-                                        <p>Unlock the wisdom that lies within you.</p>
+                                        <h5>Clarity Through Inquiry</h5>
+                                        <p>True wisdom does not come from simple answers but from uncovering the deeper questions hidden beneath the surface.</p>
                                     </div>
                                 </div>
                             </div>
@@ -152,8 +152,8 @@ const ConsultOracleHome = () => {
                                 <div className="sl-card2 p-4">
                                     <div>
                                         <PiTarget className="arrow-sl lgsvg my-4" />
-                                        <h5>Align & Overcome Your Life's Challenges</h5>
-                                        <p>Transform obstacles into opportunities for growth.</p>
+                                        <h5>Guidance That Respects Your Free Will </h5>
+                                        <p>The Oracle does not impose decisions but helps you explore, discern, and move forward on the path that resonates with your highest self.</p>
                                     </div>
                                 </div>
                             </div>

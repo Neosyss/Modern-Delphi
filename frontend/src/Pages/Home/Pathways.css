@@ -1,0 +1,203 @@
+.pathways-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 100px 30px;
+}
+
+.pathways-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  /* Extra height to allow for movement */
+  background-image: url('../../images/actual/Bg Image for 3 points.jpg');
+  background-size: cover;
+  filter: blur(2px);
+  background-position: center;
+  transition: transform 0.1s ease-out;
+}
+
+.pathways-content {
+  position: relative;
+  z-index: 1;
+  /* Add any additional styling for content */
+}
+
+.h-full {
+  height: 60vh;
+}
+
+.pathways-content {
+  color: white;
+  font-size: 2.3vw;
+  line-height: 120%;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jeftitle {
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+
+.pic-secjef {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 20px 50px; */
+}
+
+.jefpic {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+
+.customp-set {
+  margin-top: 7px;
+  font-size: 5vw;
+}
+
+.custom-p-pathways {
+  width: 50%;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.pathways-card {
+  height: 60%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.top-head-pathways-card {
+  background-color: var(--sec);
+  padding: 1.3vw 1.3vw .5vw 1.3vw;
+}
+
+.top-head-pathways-card2 {
+  background-color: var(--pri);
+  padding: 1.3vw 1.3vw .5vw 1.3vw;
+}
+
+.pric-pad {
+  padding: 0 15px;
+}
+
+.pathways-card-img {
+  width: 6.5vw;
+  height: 6.5vw;
+  border-radius: 100%;
+}
+
+.bolder-pathways-card {
+  font-weight: 500;
+}
+
+.heading-pathways-card {
+  font-size: 3.4vw;
+  font-weight: 500;
+  color: var(--pri);
+}
+
+.session-pc {
+  font-size: medium;
+}
+
+.appoint-btn {
+  width: 87%;
+  padding: 13px;
+  background-color: #e9e9ec94;
+  color: black;
+  border-radius: 100px;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.appoint-btn:hover {
+  background-color: var(--sec);
+  color: white;
+  box-shadow: 0 0 20px rgba(175, 175, 175, 0.562);
+}
+
+.tickSvg2 {
+  color: var(--pri);
+  width: 15px;
+  height: 15px;
+}
+
+@media(max-width:768px) {
+  .customp-set {
+    font-size: 11vw;
+  }
+
+  .custom-p-pathways {
+    width: 100%;
+  }
+
+  .pathways-section {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    padding: 40px 20px;
+    overflow: hidden;
+  }
+
+  .h-full {
+    height: fit-content;
+  }
+
+  .pathways-content {
+    font-size: 9vw;
+  }
+
+  .pic-secjef {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .jeftitle {
+    font-size: 5.5vw;
+    font-weight: 500;
+  }
+
+  .margin-topjef {
+    margin-top: 40px !important;
+  }
+
+
+  @media (max-width: 768px) {
+    .pric-pad {
+      padding: 0px !important;
+    }
+
+    .top-head-pathways-card {
+      padding: 4vw 4vw 1.5vw 4vw;
+    }
+
+    .top-head-pathways-card2 {
+      padding: 4vw 4vw 1.5vw 4vw;
+    }
+
+    .pathways-card-img {
+      width: 23vw;
+      height: 23vw;
+      border-radius: 100%;
+    }
+
+    .heading-pathways-card {
+      font-size: 11vw;
+    }
+  }
+}

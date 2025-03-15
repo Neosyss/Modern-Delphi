@@ -80,17 +80,22 @@ const Chatbot = ({ chatbot }) => {
                 {loading && <div className="bot-msg"><div>Bot is typing...</div></div>}
             </div>
 
-            <div className="message-box d-flex px-2 justify-content-center">
-                <input 
-                    autoFocus 
-                    className='form-control mt-2 message-input-ca' 
-                    placeholder='Type a message...' 
-                    value={input} 
-                    onChange={(e) => setInput(e.target.value)} 
-                    onKeyPress={(e) => e.key === 'Enter' && sendMessage(input)}
-                />
-                <div className="d-flex justify-content-center align-items-center mx-3">
-                    <RiSendPlaneFill className='cursor-pointer send-svg' onClick={() => sendMessage(input)} />
+            <div>
+                <div className="message-box d-flex px-2 justify-content-center">
+                    <input 
+                        autoFocus 
+                        className='form-control mt-2 message-input-ca' 
+                        placeholder='Type a message...' 
+                        value={input} 
+                        onChange={(e) => setInput(e.target.value)} 
+                        onKeyPress={(e) => e.key === 'Enter' && sendMessage(input)}
+                        />
+                    <div className="d-flex justify-content-center align-items-center mx-3">
+                        <RiSendPlaneFill className='cursor-pointer send-svg' onClick={() => sendMessage(input)} />
+                    </div>
+                </div>
+                <div className="chatbot-legal">
+                    <p>Kleio is a guide for exploration, not an authority. For critical decisions, seek professional expertise                    </p>
                 </div>
             </div>
         </div>

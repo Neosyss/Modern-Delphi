@@ -57,14 +57,14 @@ font-size: 1vw;
 .title-login-page{
     color: white;
     position: absolute;
-    bottom: 23vh;
+    bottom: 11vh;
     left: 30px;
     font-size: 2.5vw;
 }
 .title2-login-page{
     color: var(--pri);
     position: absolute;
-    bottom: 18vh;
+    bottom: 5vh;
     left: 30px;
     font-size: 2.5vw;
 }

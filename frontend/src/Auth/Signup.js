@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css"; 
-import img from '../images/2.webp';
+import img from '../images/actual/beautiful-japanese-forest-landscape.jpg';
 import ErrorBox from '../ErrorBox.js';
 
 const Signup = () => {
@@ -122,9 +122,6 @@ const Signup = () => {
                             <img src={img} className="login-page-img" alt="Signup" />
                             <h4 className="title-login-page">Welcome to</h4>
                             <h4 className="title2-login-page">Modern Delphi</h4>
-                            <h4 className="para-login-page">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            </h4>
                         </div>
                         <div className="col-md-6 p-4 px-5 mt-3 login-content signup-content">
                             <h2 className="text-center mb-3">Sign Up</h2>

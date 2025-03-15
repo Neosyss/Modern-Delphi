@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './Carousel.css';
 import img1 from '../../images/actual/sacred library.jpeg';
 import img2 from '../../images/actual/Home Page 1.jpg';
@@ -6,7 +6,6 @@ import svg1 from '../../isvgs/flowers-crop.webp';
 import { useNavigate } from 'react-router-dom';
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
-
 
 const slides = [
     {
@@ -45,9 +44,14 @@ const Carousel = () => {
         }
     };
 
+    useEffect(() => {
+        const interval = setInterval(handleNextClick, 5000); // Move to the next slide every 5 seconds
+        return () => clearInterval(interval); // Clear interval on component unmount
+    }, []);
+
     return (
         <div className="carousel">
-            <div className="next-arrow" onClick={handleNextClick}><GrNext  className='nextsvg'/></div>
+            <div className="next-arrow" onClick={handleNextClick}><GrNext className='nextsvg'/></div>
             <div className="prev-arrow" onClick={handlePrevClick}><GrPrevious className='nextsvg'/></div>
             <div
                 className="carousel-content-container"
@@ -58,7 +62,7 @@ const Carousel = () => {
                     <div key={index} className="carousel-slide">
                         <img src={slide.img} alt="carousel-slide" className="carousel-img" />
                         <div className="animate" key={currentSlide}>
-                        <img src={svg1} alt="1" key={!currentSlide}  className="carousel-svg" />
+                        <img src={svg1} alt="1" key={!currentSlide} className="carousel-svg" />
                         <div key={index} className="carousel-content">
                             <div className="carousel-padding">
                                 <div className="tb-1 mb-4">{slide.title}</div>

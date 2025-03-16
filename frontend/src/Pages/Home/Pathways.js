@@ -58,7 +58,7 @@ const PathwaysToExploration = () => {
           <div className="my-4">
             <div className="row justify-content-center">
               <div className="col-md-4 my-2" style={{ cursor: "pointer" }} onClick={() => {navigate('/journeyers-anteroom')}}>
-                <div className="price-card d-flex flex-column justify-content-between">
+                <div className="pathways-card d-flex flex-column justify-content-between">
                   <div>
                     <div className="top-head-pathways-card2">
                       <h4>Step into the Anteroom</h4>
@@ -81,7 +81,7 @@ const PathwaysToExploration = () => {
                 </div>
               </div>
               <div className="col-md-4 my-2" style={{ cursor: "pointer" }} onClick={() => {navigate('/consult-oracle')}}>
-                <div className="price-card d-flex flex-column justify-content-between">
+                <div className="pathways-card d-flex flex-column justify-content-between">
                   <div>
                     <div className="top-head-pathways-card2">
                       <h4>Consult the Oracle</h4>
@@ -103,7 +103,7 @@ const PathwaysToExploration = () => {
                 </div>
               </div>
               <div className="col-md-4 my-2" style={{ cursor: "pointer" }} onClick={() => {navigate('/sacred-library')}}>
-                <div className="price-card d-flex flex-column justify-content-between">
+                <div className="pathways-card d-flex flex-column justify-content-between">
                   <div>
                     <div className="top-head-pathways-card2">
                       <h4>Explore the Sacred Library</h4>

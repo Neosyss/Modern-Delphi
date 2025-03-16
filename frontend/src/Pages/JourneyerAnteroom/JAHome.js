@@ -133,7 +133,7 @@ const JAHome = () => {
                             <p className="p sl-para text-start">Every Hero must choose their ally. Will you seek Kleio, your Muse of Stories and Memory, or the Oracle, your Human guide through the unknown?</p>
 
                             <div className="mt-4 justify-content-start">
-                                <h4 className="mt-2 text-dark heading-main-3 text-decoration-underline" style={{ cursor: "pointer" }} onClick={() => {navigate('/#kleio')}}>Meet Kleio</h4>
+                                <h4 className="mt-2 text-dark heading-main-3 text-decoration-underline" style={{ cursor: "pointer" }} onClick={() => {navigate('/journeyers-chatroom')}}>Meet Kleio</h4>
                                 <p className="sl-para p text-start">Kleio is the guardian of myth, a Muse who recognizes your journey through symbols and storytelling. She helps you shape the story you are living. If you seek insight through vision and narrative, step forward and speak with her.</p>
                             </div>
                             <div className="justify-content-start">

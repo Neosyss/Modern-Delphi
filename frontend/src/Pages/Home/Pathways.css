@@ -6,6 +6,14 @@
   padding: 100px 30px;
 }
 
+.pathways-card{
+  background-color: var(--priopa);
+  min-height: 350px;
+  margin: 10px 0!important;
+  min-width: 30vw;
+  max-width: 100%;
+}
+
 .pathways-background {
   position: absolute;
   top: 0;

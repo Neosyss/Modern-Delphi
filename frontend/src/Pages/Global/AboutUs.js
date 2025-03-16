@@ -93,7 +93,7 @@ const AboutUs = () => {
                                     <h4>Consult the Oracle</h4>
                                     <p className="fst-italic">For those ready to engage in deeper inquiry</p>
                                 </div>
-                                <div className="ja-card1 text-center w-80 m-2 mx-1 prb-3" onClick={() => {navigate('/journeyers-chatroom')}}>
+                                <div className="ja-card1 text-center w-80 m-2 mx-1 prb-3" onClick={() => {navigate('/#kleio')}}>
                                     <h4>Meet Kleio, the Muse</h4>
                                     <p className="fst-italic">For those drawn to symbolic exploration</p>
                                 </div>

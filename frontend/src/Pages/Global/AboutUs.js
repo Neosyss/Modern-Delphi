@@ -93,7 +93,7 @@ const AboutUs = () => {
                                     <h4>Consult the Oracle</h4>
                                     <p className="fst-italic">For those ready to engage in deeper inquiry</p>
                                 </div>
-                                <div className="ja-card1 text-center w-80 m-2 mx-1 prb-3" onClick={() => {navigate('/#kleio')}}>
+                                <div className="ja-card1 text-center w-80 m-2 mx-1 prb-3" onClick={() => {navigate('/journeyers-chatroom')}}>
                                     <h4>Meet Kleio, the Muse</h4>
                                     <p className="fst-italic">For those drawn to symbolic exploration</p>
                                 </div>
@@ -106,47 +106,6 @@ const AboutUs = () => {
                     </div>
                 </div>
             </FadeInSection>
-
-            {/* <FadeInSection>
-                <div className="slhome-background2 bgx">
-                    <div className="row">
-                        <div className="col-md-5 d-flex justify-content-center align-items-center order-md-1 order-2">
-                            <img src={img4} className="img-fluid slhomeimg1" />
-                        </div>
-                        <div className="col-md-7 order-1 padding-ar-1">
-                            <h1 className="my-3">Embrace the Journey of Self-
-                                Discovery and Transformation at
-                                Modern Delphi
-
-                            </h1>
-                            <p className="p sl-para text-start">At Modern Delphi, we invite you to explore the depths of your being. Oul
-                                sanctuary is designed for those seeking clarity, wisdom, and renewal
-                                Know Thyself
-                            </p>
-
-                            <div className="d-flex my-3 justify-content-start">
-                                <div className="ja-card1 my-2 p-3">
-                                    <h3>Know Thyself</h3>
-                                    <p>Reflect on your iourney and
-                                        uncover the truths within you</p>
-                                </div>
-                                <div className="ja-card1 m-2 mx-3 p-3">
-                                    <h3>Seek Insight</h3>
-                                    <p>Discover the wisdom that lies
-                                        in the heart of the Boreal
-                                        Forest
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="d-flex justify-content-start my-3">
-                                <div className="prb-1 mx-1"><div>Book Now</div></div>
-                                <div className="prb-2 mx-1"><div>Learn More</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </FadeInSection> */}
 
             <FadeInSection>
                 <div className="support-container">

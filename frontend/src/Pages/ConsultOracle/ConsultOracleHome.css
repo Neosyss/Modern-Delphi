@@ -1,6 +1,6 @@
 .price-card{
     background-color: var(--priopa);
-    min-height: 400px;
+    min-height: 550px;
     margin: 10px 0!important;
     min-width: 30vw;
     max-width: 100%;
@@ -9,6 +9,16 @@
    background-color: var(--sec);
    color: white;
 }
+
+.top-head-price-card{
+    background-color: var(--sec);
+    padding: 1.3vw 1.3vw .5vw 1.3vw;
+}
+.top-head-price-card2{
+    background-color: var(--pri);
+    padding: 1.3vw 1.3vw .5vw 1.3vw;
+}
+
 .priopa-btn{
     background-color: var(--priopa)!important;
 }
@@ -45,6 +55,24 @@
     width: 28vw;
     padding: 10px 20px;
 }
+.price-card-img{
+    width: 6.5vw;
+    height: 6.5vw;
+    border-radius: 100%;
+}
+.bolder-price-card{
+    font-weight: 500;
+}
+.heading-price-card{
+    font-size: 3.4vw;
+    font-weight: 500;
+    color: var(--pri);
+}
+.session-pc{
+    font-size: medium;
+}
+
+
 @media (max-width: 768px) {
     .price-head {
         font-size: 2.5rem;
@@ -55,5 +83,19 @@
     }
     .card-holder{
         display: inline-block;
+    }
+    .top-head-price-card{
+        padding: 4vw 4vw 1.5vw 4vw;
+    }
+    .top-head-price-card2{
+        padding: 4vw 4vw 1.5vw 4vw;
+    }
+    .price-card-img{
+        width: 23vw;
+        height: 23vw;
+        border-radius: 100%;
+    }
+    .heading-price-card{
+        font-size: 11vw;
     }
 }

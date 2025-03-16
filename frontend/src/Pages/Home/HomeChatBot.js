@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import "./HomeChatBot.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Chatbot from "../JourneyerAnteroom/ChatBotAnteroom";
 
 const HomeChatBot = () => {
-    const navigate = useNavigate();
     const [hasTerms, setHasTerms] = useState(0);
 
     const location = useLocation();
@@ -44,25 +43,6 @@ const HomeChatBot = () => {
             <p className='p text-dark text-center'>I am Kleio, the oracle's guide. I don't provide answers, I help you discover them.</p>
             </div>
             <div className="d-flex rel justify-content-center">
-                <div className={`overflow-homebot p-2 justify-content-center align-items-center ${hasTerms == 0 ? "d-none" : " d-flex"}`}>
-                    <div className="signup-modal p-4">
-                        <h3>Sign In to access the Anteroom</h3>
-                        <p>You need to sign in or create an account to access the Journeyer's Anteroom</p>
-
-                        <div className="my-5 d-flex justify-content-center align-items-center">
-                            <div className="prb-1 mx-1"
-                            onClick = {() => {navigate('/login')}}
-                            >
-                                <div>Sign In</div>
-                            </div>
-                            <div className="prb-2 mx-1"
-                            onClick = {() => {navigate('/signup')}}
-                            >
-                                <div>Sign Up</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="w-custom-home">
                     <Chatbot chatbot={"Homepage"} />
                 </div>

@@ -342,10 +342,10 @@ app.put('/api/blogs/:id', upload.single('image'), (req, res) => {
     let updateQuery, params;
 
     if (image) {
-        updateQuery = 'UPDATE Blogs SET title = ?, description = ?, hashtags = ?, images = ? WHERE blog_id = ?';
+        updateQuery = 'UPDATE blogs SET title = ?, description = ?, hashtags = ?, images = ? WHERE blog_id = ?';
         params = [title, description, hashtags, image, id];
     } else {
-        updateQuery = 'UPDATE Blogs SET title = ?, description = ?, hashtags = ? WHERE blog_id = ?';
+        updateQuery = 'UPDATE blogs SET title = ?, description = ?, hashtags = ? WHERE blog_id = ?';
         params = [title, description, hashtags, id];
     }
 

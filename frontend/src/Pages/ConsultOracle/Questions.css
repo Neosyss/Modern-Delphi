@@ -32,8 +32,9 @@
 
 .answer-container.show {
     padding: 20px;
-    max-height: 200px; /* Adjust based on expected answer size */
+    height: 200px; /* Adjust based on expected answer size */
     opacity: 1;
+    min-height: 200px;
 }
 
 .answer-container.hide {

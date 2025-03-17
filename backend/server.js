@@ -41,17 +41,13 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: '127.0.0.1',
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
 });
 
-db.connect(err => {
-    if (err) throw err;
-    console.log('Database connected.');
-});
 seedAdmin(db);
 seedPrice(db);
 

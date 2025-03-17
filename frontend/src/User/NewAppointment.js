@@ -163,7 +163,7 @@ const NewAppointment = () => {
           {hasPendingAppointment === null ? (
             <p>Loading...</p>
           ) : hasPendingAppointment ? (
-            <InlineWidget url="https://calendly.com/mujtabashafqat0" />
+            <InlineWidget url="https://calendly.com/moderndelphi" />
           ) : (
             <p>Redirecting...</p>
           )}

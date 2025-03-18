@@ -45,7 +45,7 @@ const Carousel = () => {
     };
 
     useEffect(() => {
-        const interval = setInterval(handleNextClick, 5000); // Move to the next slide every 5 seconds
+        const interval = setInterval(handleNextClick, 20000); // Move to the next slide every 5 seconds
         return () => clearInterval(interval); // Clear interval on component unmount
     }, []);
 

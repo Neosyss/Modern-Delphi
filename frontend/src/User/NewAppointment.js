@@ -140,12 +140,12 @@ const NewAppointment = () => {
                   <div className="col-md-6">{eventDataCalendly.status}</div>
                 </div>
                 <div className="row my-2">
-                  <div className="fw-bold col-md-4 mt-2">Google Meet Link</div>
+                  <div className="fw-bold col-md-4 mt-2">Meet Link</div>
                   <div className="col-md-6">
                   <div className="prb-2">
                     <div onClick={() => window.open(eventDataCalendly.location['join_url'], '_blank')}
                       style={{ cursor: 'pointer', color: 'white', textDecoration: 'none' }}>
-                      Google Meet
+                      Join
                     </div>
                   </div>
 
